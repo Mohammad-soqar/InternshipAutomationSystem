@@ -1,0 +1,25 @@
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+
+namespace InternshipAutomationSystem.Models
+{
+    public class InternshipJob
+    {
+        public int Id { get; set; }
+        public string CompanyName { get; set; }
+        public string JobTitle { get; set; }
+        public string Location { get; set; }
+
+
+        [ValidateNever]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy HH:mm tt}")]
+        public DateTime? DatePosted { get; set; }
+        public string SkillsReq { get; set; }
+        public string type { get; set; }
+        public string Site { get; set; }
+
+        [ValidateNever]
+        public string ImageUrl { get; set; }
+        public string Description { get; set; }
+    }
+}
