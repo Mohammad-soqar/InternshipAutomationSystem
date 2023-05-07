@@ -1,0 +1,230 @@
+﻿.nav-bar {
+    justify-content: flex-end !important;
+}
+
+.DataTable {
+    margin: 1.5rem 0rem 0rem 0rem;
+}
+
+.CareerCenter-Content {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 5rem 0rem 0rem 0rem;
+}
+
+.both-sides {
+    display: flex;
+    transition: width 0.5s ease;
+}
+
+.widgets-shared {
+    background-color: #fff;
+    box-shadow: 2px 2px 30px 2px #00000015;
+    border-radius: 27px;
+}
+
+.nav-bar {
+    justify-content: flex-end !important;
+}
+
+.widgetHeader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.Icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.widget-left-side p,
+.widget-right-side p {
+    color: #585858;
+    font-size: 20px;
+    font-family: inter;
+    font-weight: 600;
+}
+
+.left-section {
+    transition: width 0.5s ease;
+    width: 100%;
+}
+
+.widget-left-side img {
+    margin: 0px 10px 0px 0px
+}
+
+.widget-left-side .hover-image {
+    transition: transform 0.3s ease;
+}
+
+.widget-left-side:hover .hover-image {
+    transform: scale(1.1) translate(-3.5%, -3.7%);
+}
+
+.widget-left-side {
+    flex-direction: column;
+    display: flex;
+    margin: 0rem 2rem 0rem 0rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    position: relative;
+}
+
+    .widget-left-side img.hover-image {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+.check-all-btn button {
+    background-color: transparent;
+    border: none;
+    font-family: inter;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.widget-right-side p {
+    width: 60%;
+}
+
+.widget-right-side img {
+    margin: 0px 10px 0px 0px
+}
+
+.widget-right-side {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.right-section-widgets {
+    display: flex;
+    transition: width 0.5s ease;
+    flex-direction: column;
+    /* Add overflow property to hide content when width is 0 */
+}
+
+.right-section-widgets {
+    width: 70%;
+    justify-content: space-between;
+}
+
+
+.collapse {
+    width: 0 !important;
+}
+
+.collapseVertical {
+    height: 0 !important;
+}
+
+#searchInput {
+    display: none;
+}
+
+
+
+.back-left-btn {
+    position: absolute;
+    padding: 0.5rem;
+    font-size: 18px;
+    top: 12%;
+    color: #fff !important;
+    border: none !important;
+    background-color: #FFD504 !important;
+    border-radius: 21px;
+    cursor: pointer;
+}
+
+.Add-User-Form-invisible {
+    display: none;
+}
+
+    .Add-User-Form-invisible input {
+        box-sizing: border-box;
+        border: solid #FFD504 2px;
+        border-radius: 10px;
+        padding: 10px 15px;
+    }
+
+.nomargin {
+    margin: 0rem 1rem 0rem 1rem !important;
+}
+
+textarea {
+    resize: none;
+    height: 63px;
+}
+
+.password-btn {
+    color: #fff;
+    background-color: #FFD504;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid #FFD504;
+}
+
+.copyBtn {
+    color: #FFD504;
+    background-color: transparent;
+}
+
+.Add-User-Form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 2rem 3rem 2rem;
+    gap: 10px;
+}
+
+.sendButton {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.Two-Inputs-line {
+    display: flex;
+    gap: 10px;
+    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
+}
+
+    .Two-Inputs-line > div {
+        flex: 1;
+    }
+
+    .Two-Inputs-line label {
+        flex: 0 0 100px; /* Adjust the width of the labels as needed */
+    }
+
+    .Two-Inputs-line input[type="text"] {
+        flex: 1;
+    }
+
+.Add-User-Form > div {
+    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
+    margin-top: 10px;
+}
+
+    .Add-User-Form > div label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+
+
+.Add-User-Form button {
+    margin-top: 10px;
+    align-self: flex-end;
+}
