@@ -16,13 +16,13 @@
             <section class="side-bar">
                 <div class="logo">
                     <a href="">
-                        <img src="img\logo.png" alt="" height="120rem">
+                        <img src="~/img/logo.png" alt="" height="120rem">
                     </a>
                 </div>
                 <div class="icons">
                     <div class="home">
                         <a href="">
-                            <img src="img\home-symbol.png" alt="" height="27px">
+                            <img src="~/img/home-symbol.png" alt="" height="27px">
                             <p>Home</p>
                         </a>
                     </div>
@@ -30,9 +30,9 @@
 
                     <div class="Messages">
                         <div id="dropdown-messages-student">
-                            <img src="img\messages-symbol.png" alt="" width="27px " height="22px">
+                            <img src="~/img/messages-symbol.png" alt="" width="27px " height="22px">
                             <p>
-                                Messages <img id="down-arrow-home-student" src="img\Dowm-arrow.png" alt="" height="10px">
+                                Messages <img id="down-arrow-home-student" src="~/img/Dowm-arrow.png" alt="" height="10px">
                             </p>
                         </div>
 
@@ -44,33 +44,33 @@
 
                     <!-- ----------Messages Dropdown Menu---------- -->
                     <div class="internship">
-                        <a href="">
-                            <img src="img\internship-symbol.png" alt="" height="22px">
+                        <a asp-controller="Internshipjob" asp-action="Internship">
+                            <img src="~/img/internship-symbol.png" alt="" height="22px">
                             <p>Internship</p>
                         </a>
                     </div>
                     <div class="forms">
                         <a href="">
-                            <img src="img\forms-symbol.png" alt="" height="27px">
+                            <img src="~/img/forms-symbol.png" alt="" height="27px">
                             <p>Forms</p>
                         </a>
                     </div>
                     <div class="guide">
                         <a href="">
-                            <img src="img\guide-symbol.png" alt="" height="23px">
+                            <img src="~/img/guide-symbol.png" alt="" height="23px">
                             <p>Guide</p>
                         </a>
                     </div>
                     <div class="logout-support">
                         <div class="logout">
-                            <a href="Login.html">
-                                <img src="img\logout-symbol.png" alt="" height="27px">
+                        <a asp-controller="Internshipjob" asp-action="Upsert" >
+                                <img src="~/img/logout-symbol.png" alt="" height="27px">
                                 <p>Logout</p>
                             </a>
                         </div>
                         <div class="support">
                             <a href="Support.html">
-                                <img src="img\support-symbol.png" alt="">
+                                <img src="~/img/support-symbol.png" alt="">
                                 <p>Support</p>
                             </a>
                         </div>
@@ -100,7 +100,7 @@
                                 </div>
 
                                 <button class="status-info" id="startButton">
-                                    <img src="img/support-symbol.png"
+                                    <img src="~/img/support-symbol.png"
                                          alt="">
                                 </button>
                             </div>
@@ -108,10 +108,10 @@
 
 
                         <div class="call-to-action-btns">
-                            <a href=""><img src="img/messages.png" alt="" height="32px"></a>
-                            <a href=""><img src="img/Notification.png" alt="" height="35px"></a>
+                        <a href=""><img src="~/img/messages.png" alt="" height="32px"></a>
+                        <a href=""><img src="~/img/Notification.png" alt="" height="35px"></a>
                             <a class="Account" href="Account.html">
-                                <img src="img/Account.png" alt="" height="60px">
+                            <img src="~/img/Account.png" alt="" height="60px">
                                 <div class="Account-Text">
                                     <p>John Doe</p>
                                     <p>200209476</p>
@@ -141,6 +141,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="// cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

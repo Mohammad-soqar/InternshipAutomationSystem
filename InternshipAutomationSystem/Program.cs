@@ -1,4 +1,6 @@
-using InternshipAutomationSystem.Data;
+using Internship.DataAccess.Data;
+using Internship.DataAccess.Repository.IRepository;
+using Internship.DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
  builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 var app = builder.Build();

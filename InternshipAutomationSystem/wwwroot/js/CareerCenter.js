@@ -59,19 +59,20 @@ $('#copyBtn').on('click', function () {
     /* $('#copyBtn').append('<img src="img/.png" height="15px">') */
 });
 
-
 $(document).ready(function () {
-    var backLeftBtn = $('<button id="backButton">Back</button>');
-    $('#next-btn').text('Next');
+    var backLeftBtn = $('<div id="backButton">Back</div>');
+
 
     $('#second-slide').hide();
+    $('#post-btn').hide();
 
     $('#next-btn').on('click', function () {
 
         $('#first-slide').fadeOut(200, function () {
             $('.backButton').append(backLeftBtn);
             $('#second-slide').fadeIn(200);
-            $('#next-btn').text('Post');
+            $('#next-btn').hide();
+            $('#post-btn').fadeIn(200);
         });
 
 
@@ -84,11 +85,11 @@ $(document).ready(function () {
 
         $('#second-slide').fadeOut(200, function () {
             backLeftBtn.remove();
-            $('#next-btn').text('Next');
+            $('#next-btn').fadeIn(200);
+            $('#post-btn').hide();
 
             $('#first-slide').fadeIn(200);
         });
 
     });
 });
-

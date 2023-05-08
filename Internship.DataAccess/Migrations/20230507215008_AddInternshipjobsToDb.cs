@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace InternshipAutomationSystem.Migrations
+namespace Internship.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddInternshipjobsToDb : Migration

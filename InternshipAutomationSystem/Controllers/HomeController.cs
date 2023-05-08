@@ -1,4 +1,4 @@
-﻿using InternshipAutomationSystem.Models;
+﻿using Internship.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

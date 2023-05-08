@@ -1,4 +1,4 @@
-namespace InternshipAutomationSystem.Models
+namespace Internship.Models
 {
     public class ErrorViewModel
     {

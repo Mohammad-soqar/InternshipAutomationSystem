@@ -1,7 +1,7 @@
-﻿using InternshipAutomationSystem.Models;
+﻿using Internship.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InternshipAutomationSystem.Data
+namespace Internship.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -9,5 +9,11 @@ namespace InternshipAutomationSystem.Data
         {
     }
         public DbSet<InternshipJob> InternshipJobs { get; set; }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<InternshipJob>().HasData(
+        //        new InternshipJob
+        //        );
+        //}
     }
 }

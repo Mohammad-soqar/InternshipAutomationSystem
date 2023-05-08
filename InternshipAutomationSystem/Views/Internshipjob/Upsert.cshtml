@@ -1,0 +1,372 @@
+﻿@model Internship.Models.ViewModels.InternshipVM
+
+<head>
+    <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+
+</head>
+
+<div id="back-buttons"></div>
+
+<section class="CareerCenter-Content">
+
+    <div class="left-section both-sides">
+        <div class="widget-left-side widgets-shared">
+
+            <div class="widgetHeader">
+                <div class="Icon-text">
+                    <img src="img/CareerCenter/HealthInsurance.png" height="45px" alt="">
+                    <p>Health Insurance</p>
+                </div>
+                <div class="check-all-btn">
+                    <button id="check-all">Check all &#x2192;</button>
+                    <input type="text" id="searchInput" placeholder="Search...">
+                </div>
+
+            </div>
+            <div class="DataTable">
+
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">
+                                Student Name
+
+                                <img id="nameSort" class="sort rotateImage"
+                                     src="img/CareerCenter/arrowUp.png" alt="">
+                            </th>
+
+                            <th onclick="sortTable(1)">
+                                Student ID
+
+                                <img class="sort rotateImage" id="idSort"
+                                     src="img/CareerCenter/arrowUp.png" alt="">
+
+                            </th>
+
+                            <th onclick="sortTable(2)">
+                                State
+                                <img id="stateSort" class="sort rotateImage"
+                                     src="img/CareerCenter/arrowUp.png" alt="">
+                            </th>
+                            <th class="center">Upload</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dwayne Johnson</td>
+                            <td>200111111</td>
+                            <td class=" center state pending">
+                                <div>Pending</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Ryan Reynolds</td>
+                            <td>200111112</td>
+                            <td class=" center state pending">
+                                <div>Pending</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Adele Adkins Adele Adkins Adele Adkins</td>
+                            <td>200111113</td>
+                            <td class="center state pending">
+                                <div>Pending</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ryan Reynolds</td>
+                            <td>200111114</td>
+                            <td class=" center state completed">
+                                <div>Completed</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="right-widgets" class="right-section-widgets both-sides">
+
+        <div class="widgets-shared" id="widget1">
+            <div id="Add-User-btn" class="widget-right-side">
+                <p>Add User</p>
+                <img src="img/CareerCenter/AddUser.png" height="45px" alt="">
+            </div>
+            <form class="Add-User-Form-invisible" id="Add-User-Form">
+                <div class="Two-Inputs-line">
+                    <div>
+                        <label for="">Full Name</label>
+                        <input type="text">
+                    </div>
+
+                    <div>
+                        <label for="">Email</label>
+                        <input type="text">
+                    </div>
+
+                </div>
+                <div class="Two-Inputs-line">
+                    <div>
+                        <label for="">password</label>
+                        <input type="text" id="passwordField">
+                        <button class="password-btn" type="button" id="generateBtn">Generate</button>
+                        <button class="password-btn copyBtn" type="button" id="copyBtn">Copy</button>
+
+                    </div>
+
+                    <div>
+                        <label for="">Role</label>
+                        <select name="" id="">
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="">Internship Coordinator</option>
+                            <option value="">Career Center</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="sendButton Add">
+                    <button>Confirm</button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="widgets-shared" id="widget2">
+            <div id="old-HealthI-btn" class="widget-right-side">
+                <p>Old Health Insurance</p>
+                <img src="img/CareerCenter/HealthInsurance.png" height="45px" alt="">
+            </div>
+
+
+            <div id="datatable" class="DataTable Add-User-Form-invisible">
+
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">
+                                Student Name
+
+                                <img id="nameSort" class="sort rotateImage"
+                                     src="img/CareerCenter/arrowUp.png" alt="">
+                            </th>
+
+                            <th onclick="sortTable(1)">
+                                Student ID
+
+                                <img class="sort rotateImage" id="idSort"
+                                     src="img/CareerCenter/arrowUp.png" alt="">
+
+                            </th>
+
+                            <th onclick="sortTable(2)">
+                                State
+                                <img id="stateSort" class="sort rotateImage"
+                                     src="img/CareerCenter/arrowUp.png" alt="">
+                            </th>
+                            <th class="center">Upload</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dwayne Johnson</td>
+                            <td>200111111</td>
+                            <td class=" center state pending">
+                                <div>Pending</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ryan Reynolds</td>
+                            <td>200111112</td>
+                            <td class=" center state pending">
+                                <div>Pending</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Adele Adkins Adele Adkins Adele Adkins</td>
+                            <td>200111113</td>
+                            <td class="center state pending">
+                                <div>Pending</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ryan Reynolds</td>
+                            <td>200111114</td>
+                            <td class=" center state completed">
+                                <div>Completed</div>
+                            </td>
+                            <td class="center">
+                                <img src="img/CareerCenter/Upload.png" alt="Upload"
+                                     class="upload-icon">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="widgets-shared" id="widget3">
+            <div id="Add-Announcement-btn" class="widget-right-side">
+                <p>Add New Announcement</p>
+                <img src="img/CareerCenter/Notification.png" height="45px" alt="">
+            </div>
+            <form class="Add-User-Form-invisible" id="Add-User-Form">
+                <div class="Two-Inputs-line">
+                    <div>
+                        <label for="">Full Name</label>
+                        <input type="text">
+                    </div>
+
+                    <div>
+                        <label for="">Email</label>
+                        <input type="text">
+                    </div>
+
+                </div>
+
+                <div>
+                    <label for="">password</label>
+                    <textarea name="" id="" cols="30" rows="5"></textarea>
+
+                </div>
+
+                <button>Confirm</button>
+            </form>
+        </div>
+
+        <div class="widgets-shared" id="widget4">
+            <div id="Add-Job-btn" class="widget-right-side">
+                <p>Add Internship opportunity</p>
+              
+                <img src="img/CareerCenter/SuitCase.png" height="45px" alt="">
+            </div>
+            <form method="post" class="WebForm" asp-action="Upsert" enctype="multipart/form-data">
+                <input asp-for="InternshipJob.Id" hidden />
+                <input asp-for="InternshipJob.ImageUrl" hidden />
+                <div class="Add-User-Form-invisible" id="Add-User-Form">
+                    <div class="inputs">
+
+                        <div id="first-slide">
+                            <div class="Two-Inputs-line">
+                                <div>
+                                    <label for="">Job title</label>
+                                    <input asp-for="InternshipJob.JobTitle" type="text" placeholder="Job title">
+
+                                </div>
+                                <div>
+                                    <label for="">Company Name</label>
+                                    <input asp-for="InternshipJob.CompanyName" type="text" placeholder="Company Name">
+                                </div>
+
+                                <div>
+                                    <label for="">Location</label>
+                                    <select asp-for="InternshipJob.Location" >
+                                        <option disabled selected>Choose location</option>
+                                        <option>Istanbul</option>
+                                        <option>Ankara</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="Two-Inputs-line">
+
+                                <div>
+                                    <label for="">Job Type</label>
+                                    <select asp-for="InternshipJob.type">
+                                        <option disabled selected>Choose type</option>
+                                        <option>Part-Time</option>
+                                        <option>Full-Time</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="">On-site/Remote</label>
+                                    <select asp-for="InternshipJob.Site">
+                                        <option disabled selected>Choose On-site or Remote</option>
+                                        <option>On-site</option>
+                                        <option>Remote</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="second-slide">
+                            <div class="Two-Inputs-line">
+                                <div>
+                                    <label for="">DatePosted</label>
+                                    <input asp-for="InternshipJob.DatePosted" type="datetime-local" placeholder="Company Name">
+                                </div>
+                                <div>
+                                    <label for="">SkillsReq</label>
+                                    <input asp-for="InternshipJob.SkillsReq" type="text" placeholder="Company Name">
+                                </div>
+
+
+                            </div>
+                            <div class="Two-Inputs-line nomargin">
+                                <div>
+                                    <label for="">Description</label>
+                                    <textarea asp-for="InternshipJob.Description" placeholder="Company Email"></textarea>
+                                </div>
+                                <div>
+                                    <label for="">Image</label>
+                                    <input asp-for="InternshipJob.ImageUrl" type="file" name="file" placeholder="Company Name">
+                                 </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="sendButton">
+                        <div class="backButton">
+                        </div>
+                        <div class="post-btn" id="next-btn">Next</div>
+                        <button type="submit" id="post-btn" class="post-btn">Post</button>
+                    </div>
+                </div>
+            </form>
+         
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.tiny.cloud/1/17ey362kygya3onsmqifoumhul549v4sc5s58njdpa731on7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
