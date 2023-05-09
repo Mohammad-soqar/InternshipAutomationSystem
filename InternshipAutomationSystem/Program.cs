@@ -2,6 +2,7 @@ using Internship.DataAccess.Data;
 using Internship.DataAccess.Repository.IRepository;
 using Internship.DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
  builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -29,6 +33,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
