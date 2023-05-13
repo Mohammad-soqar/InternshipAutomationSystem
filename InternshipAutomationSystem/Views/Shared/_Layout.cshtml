@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Internship.Utility;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
         <link rel="icon" href="img/webIcon.png">
@@ -14,18 +19,84 @@
   
         <main class="container">
             <section class="side-bar">
+
+            @if (User.IsInRole(SD.Role_User_Student))
+            {
+                <div class="logo">
+                    <a asp-action="Index" asp-controller="Home" asp-area="Student">
+                        <img src="~/img/logo.png" alt="" height="120rem">
+                    </a>
+                </div>
+
+            }
+            else if (User.IsInRole(SD.Role_Career_Center))
+            {
+                <div class="logo">
+                    <a asp-action="Index" asp-controller="Careercenter" asp-area="CareerCenter">
+                        <img src="~/img/logo.png" alt="" height="120rem">
+                    </a>
+                </div>
+
+            }
+            else if (User.IsInRole(SD.Role_Admin))
+            {
                 <div class="logo">
                     <a href="">
                         <img src="~/img/logo.png" alt="" height="120rem">
                     </a>
                 </div>
-                <div class="icons">
-                    <div class="home">
-                        <a href="">
+
+            }
+            else if (User.IsInRole(SD.Role_User_Coordinator))
+            {
+                <div class="logo">
+                    <a href="">
+                        <img src="~/img/logo.png" alt="" height="120rem">
+                    </a>
+                </div>
+
+            }
+               
+          
+            <div class="icons">
+
+                @if (User.IsInRole(SD.Role_User_Student))
+                {
+                     <div class="home">
+                        <a asp-action="Index" asp-controller="Home" asp-area="Student">
                             <img src="~/img/home-symbol.png" alt="" height="27px">
                             <p>Home</p>
                         </a>
                     </div>
+                }
+                else if (User.IsInRole(SD.Role_Career_Center))
+                {
+                    <div class="home">
+                        <a asp-action="Index" asp-controller="Careercenter" asp-area="CareerCenter">
+                            <img src="~/img/home-symbol.png" alt="" height="27px">
+                            <p>Home</p>
+                        </a>
+                    </div>
+                }
+                else if (User.IsInRole(SD.Role_Admin))
+                {
+                    <div class="home">
+                        <a asp-action="" asp-controller="" asp-area="">
+                            <img src="~/img/home-symbol.png" alt="" height="27px">
+                            <p>Home</p>
+                        </a>
+                    </div>
+                }
+                else if (User.IsInRole(SD.Role_User_Coordinator))
+                {
+                    <div class="home">
+                        <a asp-action="" asp-controller="" asp-area="">
+                            <img src="~/img/home-symbol.png" alt="" height="27px">
+                            <p>Home</p>
+                        </a>
+                    </div>
+                }
+                   
                     <!-- ----------Messages Dropdown Menu---------- -->
 
                     <div class="Messages">
@@ -44,17 +115,21 @@
 
                     <!-- ----------Messages Dropdown Menu---------- -->
                     <div class="internship">
-                        <a asp-controller="Internshipjob" asp-action="Internship">
+                    <a asp-area="User" asp-controller="Home" asp-action="Internship">
                             <img src="~/img/internship-symbol.png" alt="" height="22px">
                             <p>Internship</p>
                         </a>
                     </div>
+                @if (User.IsInRole(SD.Role_User_Student) || User.IsInRole(SD.Role_User_Coordinator))
+                {
                     <div class="forms">
                         <a href="">
                             <img src="~/img/forms-symbol.png" alt="" height="27px">
                             <p>Forms</p>
                         </a>
                     </div>
+                }
+               
                     <div class="guide">
                         <a href="">
                             <img src="~/img/guide-symbol.png" alt="" height="23px">
@@ -63,10 +138,9 @@
                     </div>
                     <div class="logout-support">
                         <div class="logout">
-                        <a asp-controller="Internshipjob" asp-action="Upsert" >
-                                <img src="~/img/logout-symbol.png" alt="" height="27px">
-                                <p>Logout</p>
-                            </a>
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                            <button type="submit" class="nav-link btn btn-link text-dark"> <img src="~/img/logout-symbol.png" alt="" height="27px"> Logout</button>
+                        </form>
                         </div>
                         <div class="support">
                             <a href="Support.html">
@@ -86,6 +160,8 @@
                 <div class="contents">
 
                     <section class="nav-bar">
+                    @if (User.IsInRole(SD.Role_User_Student))
+                    {
                         <div>
                             <h3>Status</h3>
                             <div class="status">
@@ -105,19 +181,74 @@
                                 </button>
                             </div>
                         </div>
+                    }
 
 
-                        <div class="call-to-action-btns">
-                        <a href=""><img src="~/img/messages.png" alt="" height="32px"></a>
-                        <a href=""><img src="~/img/Notification.png" alt="" height="35px"></a>
-                            <a class="Account" href="Account.html">
-                            <img src="~/img/Account.png" alt="" height="60px">
-                                <div class="Account-Text">
-                                    <p>John Doe</p>
-                                    <p>200209476</p>
+
+
+                    <div class="call-to-action-btns">
+                        <button id="MessagesButton"><img src="~/img/messages.png" alt="" height="32px"></button>
+                        <div class="messagingboxContiner">
+                            <div class="messageingbox">
+                                <div class="message1">
+                                    <span>Message #1</span>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and </p>
+                                    <div class="eyeImg">
+                                        <img src="~/img/eye-symbol.png" alt="">
+                                    </div>
                                 </div>
-                            </a>
+                                <div class="message2">
+                                    <span>Message #2</span>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and </p>
+                                    <div class="eyeImg">
+                                        <img src="~/img/eye-symbol.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="message3">
+                                    <span>Message #3</span>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and </p>
+                                    <div class="eyeImg">
+                                        <img src="~/img/eye-symbol.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <button id="NotificationButton"><img src="~/img/Notification.png" alt="" height="35px"></button>
+                        <div class="notificationContiner">
+                            <div class="notification">
+                                <div class="notification1">
+                                    <span>Notification #1</span>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and </p>
+                                    <div class="eyeImg">
+                                        <img src="~/img/eye-symbol.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="notification2">
+                                    <span>Notification #2</span>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum is simply dummy text of the printing andLorem Ipsum is simply dummy text of the printing andLorem Ipsum is simply dummy text of the printing andLorem Ipsum is simply dummy text of the printing and </p>
+                                    <div class="eyeImg">
+                                        <img src="~/img/eye-symbol.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="notification3">
+                                    <span>Notification #3</span>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and </p>
+                                    <div class="eyeImg">
+                                        <img src="~/img/eye-symbol.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="Account" href="Account.html">
+                            <img src="~/img/Account.png" alt="" height="60px">
+                            <div class="Account-Text">
+                                <p>John Doe</p>
+                                <p>200209476</p>
+                            </div>
+                        </a>
+                    </div>
                     </section>
 
 
@@ -132,12 +263,49 @@
         </main>
 
         
-  
+  <script>
+
+        $(document).click(function (e) {
+            var notificationContainer = $(".notificationContiner");
+            if (!notificationContainer.is(e.target) && notificationContainer.has(e.target).length === 0) {
+                notificationContainer.hide();
+            }
+        });
+
+        $("#NotificationButton").click(function (e) {
+            e.stopPropagation();
+            if ($(".notificationContiner").css("display") === "none") {
+                $(".notificationContiner").show();
+            } else if ($(".notificationContiner").is(":visible")) {
+                $(".notificationContiner").hide();
+            }
+        });
+
+
+        // Messages box on click
+
+        $(document).click(function (e) {
+            var notificationContainer = $(".messagingboxContiner");
+            if (!notificationContainer.is(e.target) && notificationContainer.has(e.target).length === 0) {
+                notificationContainer.hide();
+            }
+        });
+
+        $("#MessagesButton").click(function (e) {
+            e.stopPropagation();
+            if ($(".messagingboxContiner").css("display") === "none") {
+                $(".messagingboxContiner").show();
+            } else if ($(".messagingboxContiner").is(":visible")) {
+                $(".messagingboxContiner").hide();
+            }
+        });
+
+  </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="~/JS/app.js"></script>
     <script src="~/JS/DataTable.js"></script>
-    <script src="~/JS/CareerCenter.js"></script>
+   <script src="~/JS/CareerCenter.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
