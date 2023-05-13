@@ -8,5 +8,9 @@ namespace Internship.Utility
 {
     public static class SD
     {
+        public const string Role_User_Student = "Student";
+        public const string Role_User_Coordinator = "Coordinator";
+        public const string Role_Career_Center = "CC";
+        public const string Role_Admin = "Admin";
     }
 }
