@@ -1,0 +1,22 @@
+﻿.accessdenied {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 20px 0px 20px
+}
+
+    .accessdenied img {
+        box-shadow: 0 -2px 16px 0 #ff2e62;
+    }
+
+.text-danger {
+    text-align: center;
+    color: #585858;
+    margin: 14px 0px;
+    font-size: 22px;
+    font-family: 'Inter';
+}
+
+.footerSection {
+    margin: 70px 0px 0px 0px !important;
+}

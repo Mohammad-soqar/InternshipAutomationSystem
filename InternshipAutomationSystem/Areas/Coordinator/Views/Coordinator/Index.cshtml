@@ -1,0 +1,51 @@
+﻿
+<head>
+    <link rel="stylesheet" href="~/css/Style.css asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Coordinator.css" asp-append-version="true" />
+
+    <title>Coordinator</title>
+</head>
+
+
+<section class="inter-coordin">
+
+    <div class="left-side">
+        <a class="afa left-side-w" asp-action="AFA" asp-controller="Coordinator">
+            <img src="~/img/1.png" height="55px" id="let1">
+
+            <h3>Application Form Approval</h3>
+        </a>
+        <a class="letter-req left-side-w" asp-action="AFA" asp-controller="Coordinator">
+            <img src="~/img/3.png" height="50px" id="mail1">
+
+            <h3>Letter Request</h3>
+        </a>
+    </div>
+
+
+
+    <div class="containerIntern">
+        <h3>Announcements</h3>
+
+        <div class="announcements">
+            <a class="announcement1-block text" href="Announ1.html" id="ann1">
+                <h2>Announcement Title</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fuga sed mollitia?</p>
+            </a>
+            <a href="Announ2.html" class="announcement2-block text" id="ann2">
+                <h2>Announcement Title</h2>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fuga sed mollitia?</p>
+            </a>
+            <a href="Announ3.html" class="announcement3-block text" id="ann3">
+                <h2>Announcement Title</h2>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fuga sed mollitia?</p>
+            </a>
+        </div>
+
+
+
+        <li><a asp-action="Announcements" asp-controller="Coordinator" id="checkall">Check all --> </a></li>
+    </div>
+</section>

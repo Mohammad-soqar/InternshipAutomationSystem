@@ -1,0 +1,47 @@
+﻿@using Internship.Utility;
+@model IEnumerable<InternshipOpportunity>
+
+
+@foreach (var InternshipJob in Model)
+{
+
+    <div class="job-header">
+        <div class="Title-Details">
+            <h3>@InternshipJob.</h3>
+            <p>@InternshipJob.CompanyName - @InternshipJob.Location - @InternshipJob.DatePosted -  applications</p>
+        </div>
+
+        <div class="Type-Skills">
+            <div class="Filters">
+                <img src="~/img/suitCase.png" height="30px" alt="">
+                <p>@InternshipJob.type</p>
+            </div>
+
+            <div class="Filters">
+                <img src="~/img/CheckList.png" height="30px" alt="">
+                <p>Skills: @InternshipJob.SkillsReq</p>
+            </div>
+        </div>
+
+        <div class="call-to-action-btn">
+            @if (User.IsInRole(SD.Role_User_Student))
+            {
+                <a href="">Apply</a>
+            }
+            else
+            {
+                <a style="filter:blur(2px) ;cursor: no-drop;">Apply</a>
+            }
+
+            <button>
+                <p>Save</p>
+                <img src="~/img/save-symbol-gray.png" height="16px" alt="">
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div class="About-job">
+        <h4>About the job:</h4>
+        <p>@InternshipJob.Description</p>
+    </div>
+}

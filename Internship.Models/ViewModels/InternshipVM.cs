@@ -9,7 +9,7 @@ namespace Internship.Models.ViewModels
 {
     public class InternshipVM
     {
-        public InternshipJob InternshipJob { get; set; }
+        public InternshipOpportunity InternshipOpportunities { get; set; }
 
     }
 }

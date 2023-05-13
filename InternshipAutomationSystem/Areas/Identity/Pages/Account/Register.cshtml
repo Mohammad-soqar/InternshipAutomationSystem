@@ -1,0 +1,135 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-floating py-2 col-6">
+                <select id="Input_Role" asp-for="Input.Role" asp-items="@Model.Input.RoleList" class=form-select>
+                    <option disabled selected>-Select Role-</option>
+                </select>
+
+            </div>
+
+
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.Name" class="form-control" />
+                <label asp-for="Input.Name">Name</label>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <label asp-for="Input.PhoneNumber">Phone Number</label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div id="studentInputs" style="display: none;">
+                <div class="form-floating">
+                    <input asp-for="Input.TC" class="form-control" />
+                    <label asp-for="Input.TC">TC</label>
+                    <span asp-validation-for="Input.TC" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating">
+                    <input asp-for="Input.Faculty" class="form-control" />
+                    <label asp-for="Input.Faculty">Faculty</label>
+                    <span asp-validation-for="Input.Faculty" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating">
+                    <input asp-for="Input.Department" class="form-control" />
+                    <label asp-for="Input.Department">Department</label>
+                    <span asp-validation-for="Input.Department" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating">
+                    <input asp-for="Input.Class" class="form-control" />
+                    <label asp-for="Input.Class">Class</label>
+                    <span asp-validation-for="Input.Class" class="text-danger"></span>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Input.IsApproved" />
+                    <label class="form-check-label" asp-for="Input.IsApproved">Is Approved</label>
+                    <span asp-validation-for="Input.IsApproved" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-6">
+                    <select asp-for="Input.CoordinatorList" asp-items="@Model.Input.CoordinatorList" class=form-select>
+                        <option disabled selected>-Select Role-</option>
+                    </select>
+
+                </div>
+                <input class="form-check-input" type="checkbox" asp-for="Input.HasTakenFirstInternship">
+                <label class="form-check-label" asp-for="Input.HasTakenFirstInternship"></label>
+
+                <input class="form-check-input" type="checkbox" asp-for="Input.HasTakenSecondInternship">
+                <label class="form-check-label" asp-for="Input.HasTakenSecondInternship"></label>
+
+            </div>
+           
+
+            <div class="form-floating">
+                <input asp-for="Input.UserType" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.UserType"></label>
+                <span asp-validation-for="Input.UserType" class="text-danger"></span>
+            </div>
+
+          
+
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+    
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(document).ready(function () {
+            $('#Input_Role').change(function () {
+                var selection = $('#Input_Role Option:Selected').text();
+                if (selection != 'Student') {
+                    $('#studentInputs').hide();
+                }
+                else {
+                    $('#studentInputs').show();
+                }
+            })
+        })
+    </script>
+}

@@ -8,7 +8,8 @@ namespace Internship.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
-        IInternshipJobRepository InternshipJobs { get; }
+        IInternshipOpportunityRepository InternshipOpportunities { get; }
+        ICoordinatorRepository Coordinators { get; }
 
         void Save();
     }

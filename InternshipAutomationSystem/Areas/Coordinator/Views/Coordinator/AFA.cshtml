@@ -1,0 +1,103 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+
+    <title>Events list</title>
+</head>
+<section class="CareerCenter-Content">
+    <div class="back">
+        <a asp-action="Index" asp-controller="Coordinator" id="back">
+            <h4> <-- Back </h4>
+        </a>
+    </div>
+    <div class="table-container" style="    background: #fff;
+    padding: 2rem;
+    border-radius: 27px;">
+        <h3>Application Form Approval</h3>
+        <div class="widgetHeader">
+
+            <div class="search">
+                <input type="text" id="searchInput" placeholder="Search...">
+            </div>
+
+        </div>
+
+        <div class="DataTable">
+
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">
+                            Student Name
+
+                            <img id="nameSort" class="sort rotateImage"
+                                 src="~/img/CareerCenter/arrowUp.png" alt="">
+                        </th>
+
+                        <th onclick="sortTable(1)">
+                            Student ID
+
+                            <img class="sort rotateImage" id="idSort"
+                                 src="~/img/CareerCenter/arrowUp.png" alt="">
+
+                        </th>
+
+                        <th onclick="sortTable(2)">
+                            State
+                            <img id="stateSort" class="sort rotateImage"
+                                 src="~/img/CareerCenter/arrowUp.png" alt="">
+                        </th>
+                        <th class="center">Upload</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dwayne Johnson</td>
+                        <td>200111111</td>
+                        <td class=" center state pending">
+                            <div>Pending</div>
+                        </td>
+                        <td class="center">
+                            <img src="~/img/CareerCenter/Upload.png" alt="Upload"
+                                 class="upload-icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ryan Reynolds</td>
+                        <td>200111112</td>
+                        <td class=" center state pending">
+                            <div>Pending</div>
+                        </td>
+                        <td class="center">
+                            <img src="~/img/CareerCenter/Upload.png" alt="Upload"
+                                 class="upload-icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Adele Adkins Adele Adkins Adele Adkins</td>
+                        <td>200111113</td>
+                        <td class="center state pending">
+                            <div>Pending</div>
+                        </td>
+                        <td class="center">
+                            <img src="~/img/CareerCenter/Upload.png" alt="Upload"
+                                 class="upload-icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ryan Reynolds</td>
+                        <td>200111114</td>
+                        <td class=" center state completed">
+                            <div>Completed</div>
+                        </td>
+                        <td class="center">
+                            <img src="~/img/CareerCenter/Upload.png" alt="Upload"
+                                 class="upload-icon">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

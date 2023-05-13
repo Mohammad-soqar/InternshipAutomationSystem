@@ -2,9 +2,23 @@
 @model AccessDeniedModel
 @{
     ViewData["Title"] = "Access denied";
+    Layout = null;
 }
+<head>
+    <link rel="stylesheet" href="~/css/AccessDenied.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="description" content="Access Denied">
+    <meta name="keywords" content="Access Denied">
+    <title>Access Denied!</title>
 
+</head>
 <header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
+    <section class="accessdenied">
+        <img src="~/img/accessdenied.jpg" height="420px" />
+        <h1 class="text-danger">@ViewData["Title"]</h1>
+        <p class="text-danger">You do not have access to this resource.</p>
+    </section>
+
 </header>

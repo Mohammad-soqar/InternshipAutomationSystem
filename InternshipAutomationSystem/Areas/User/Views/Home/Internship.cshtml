@@ -1,0 +1,243 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model IEnumerable<InternshipOpportunity>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ;
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/Internshipjob.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    @if (!User.IsInRole(SD.Role_User_Student))
+    {
+        <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
+
+    }
+
+
+</head>
+
+<section class="Internships">
+    <!-- Internship Search and filters -->
+
+    <div class="Filter-Internship">
+        @if (!User.IsInRole(SD.Role_User_Student))
+        {
+            <div class="Student-view">
+                <p><strong>Student view!</strong></p>
+
+            </div>
+           
+
+        }
+        <div class="Search-Input">
+            <img src="~/img/SearchIcon.png" height="16px" alt="SearchIcon">
+            <input type="text" id="search-input" placeholder="Search by title, skill, or company">
+        </div>
+
+        <div>
+            <select name="jobTypeFilter" id="jobTypeFilter">
+                <option value="" disabled selected>Job Type</option>
+                <option value="">Part-Time</option>
+                <option value="">Full-Stack</option>
+            </select>
+        </div>
+
+        <div>
+            <select name="locationFilter" id="locationFilter">
+                <option value="" disabled selected>On-Site/Remote</option>
+                <option value="">On-Site</option>
+                <option value="">Remote</option>
+                <option value="">Hybrid</option>
+            </select>
+        </div>
+       
+       
+
+    </div>
+
+
+
+</section>
+    </div>
+
+<div>
+    <!-- Content Container -->
+    <div class="Internship-Container">
+        <!-- All Internship offers left side -->
+        <div class="Left-Internship-Links">
+
+            @foreach (var InternshipJob in Model.OrderByDescending(p => p.DatePosted).ToList())
+            {
+                <div id="Internship-Link" class="Internship-Link" data-internship-id="@InternshipJob.Id">
+
+                    <div class="Title-img">
+                        <img src="@InternshipJob.ImageUrl" height="40px" alt="">
+                        <div class="text-img">
+                            <h3>@InternshipJob.JobTitle</h3>
+                            <p>@InternshipJob.CompanyName</p>
+                        </div>
+                    </div>
+                    @if (User.IsInRole(SD.Role_Career_Center))
+                    {
+                        <div>
+                            <a class="delete-link" data-internship-id="@InternshipJob.Id">Delete</a>
+                        </div>
+                    }
+
+                    <div class="location-img">
+                        <img src="~/img/location-symbol.png" alt="">
+                        <p class="text-img">@InternshipJob.Location</p>
+                    </div>
+                </div>
+                <hr>
+            }
+
+        </div>
+
+        <!-- Internship Description-->
+        <div class="Internship-Details">
+            <div class="Internship-Details-Margin">
+                <div class="job-header">
+                    <div class="Title-Details">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+
+
+                    <div class="Type-Skills">
+
+                        <div class="Filters type">
+                            <img src="~/img/suitCase.png" height="30px" alt="">
+                            <p>Full-Time</p>
+                        </div>
+
+                        <div class="Filters skills">
+                            <img src="~/img/CheckList.png" height="30px" alt="">
+                            <p></p>
+                        </div>
+
+                    </div>
+
+                    <div class="call-to-action-btn">
+                        @if (User.IsInRole(SD.Role_User_Student))
+                        {
+                            <a href="">Apply</a>
+
+                        }
+                        else
+                        {
+                            <a style="filter:blur(1.5px) ;cursor: no-drop;">Apply</a>
+
+                        }
+
+                        <button>
+                            <p>Save </p> <img src="~/img/save-symbol-gray.png" height="16px" alt="">
+                        </button>
+
+                    </div>
+
+                </div>
+                <hr>
+                <div class="About-job">
+                    <h4>About the job:</h4>
+                    <p>
+                     
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.Left-Internship-Links').on('click', '.Internship-Link', function () {
+         
+                var internshipId = $(this).data('internship-id');
+                $.ajax({
+                    url: '/User/Home/GetInternshipDetails',
+                    type: 'GET',
+                    data: { id: internshipId },
+                    success: function (response) {
+                        $('.Internship-Details .Title-Details h3').text(response.jobTitle);
+                        $('.Internship-Details .Title-Details p').text(response.companyName + ' - ' + response.location + ' - ' + response.site);
+                        $('.Internship-Details .skills p').text(response.skillsReq);
+                        $('.Internship-Details .type p').text(response.type);
+                        $('.Internship-Details .About-job p').text(response.description);
+                        // Update other elements with relevant data
+                      
+                        // You can handle additional data and update more elements as needed
+                    },
+                    error: function () {
+                        // Handle error, if any
+                    }
+                });
+            });
+            $('.Internship-Link:first').click();
+            //$('#jobTypeFilter, #locationFilter').change(function () {
+            //    var jobType = $('#jobTypeFilter').val().toLowerCase();
+            //    var location = $('#locationFilter').val().toLowerCase();
+
+            //    // Show all internship links
+            //    $('.Internship-Link').show();
+
+            //    // Filter internship links based on the selected filters
+            //    if (jobType !== '') {
+            //        $('.Internship-Link').each(function () {
+            //            var jobTypeFilter = $(this).data('type').toLowerCase();
+            //            if (jobTypeFilter !== jobType) {
+            //                $(this).hide();
+            //            }
+            //        });
+            //    }
+
+            //    if (location !== '') {
+            //        $('.Internship-Link').each(function () {
+            //            var locationFilter = $(this).data('location').toLowerCase();
+            //            if (locationFilter !== location) {
+            //                $(this).hide();
+            //            }
+            //        });
+            //    }
+            //});
+
+            $('.delete-link').click(function (event) {
+                event.preventDefault(); // Prevent default link behavior
+                alert("hello")
+                var internshipId = $(this).data('internship-id');
+
+                // Make an AJAX request to delete the internship
+                $.ajax({
+                    url: '/CareerCenter/Careercenter/DeletePost_Internship/' + internshipId,
+                    type: 'POST',
+                    success: function (response) {
+                        // Handle success response
+                        // For example, you can remove the deleted element from the DOM
+                        $('#Internship-Link[data-internship-id="' + internshipId + '"]').remove();
+                    },
+                    error: function () {
+                        // Handle error, if any
+                    }
+                });
+            });
+        });
+       
+
+
+    </script>
+}

@@ -17,14 +17,16 @@ namespace Internship.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            InternshipJobs = new InternshipJobRepository(_db);
-           
+            InternshipOpportunities = new InternshipOpportunityRepository(_db);
+            Coordinators = new CoordinatorRepository(_db);
+
 
         }
 
-        public IInternshipJobRepository InternshipJobs { get; private set; }
+        public IInternshipOpportunityRepository InternshipOpportunities { get; private set; }
+        public ICoordinatorRepository Coordinators { get; private set; }
 
-       
+
 
         public void Save()
         {
