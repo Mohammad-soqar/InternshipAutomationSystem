@@ -21,9 +21,12 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+
+        public LoginModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
+            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -109,13 +112,32 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+
+                    if (await _userManager.IsInRoleAsync(user, "Student"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "Student" });
+                    }
+                    else if (await _userManager.IsInRoleAsync(user, "Coordinator"))
+                    {
+                        return RedirectToAction("Index", "Coordinator", new { area = "Coordinator" });
+
+                    }
+                    else if (await _userManager.IsInRoleAsync(user, "CC"))
+                    {
+                        return RedirectToAction("Index", "Careercenter", new { area = "CareerCenter" });
+                    }
+                    else if (await _userManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        return RedirectToPage("/Account/Register");
+
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
