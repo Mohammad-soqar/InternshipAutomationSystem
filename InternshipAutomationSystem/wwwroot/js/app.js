@@ -476,6 +476,8 @@ $(document).ready(function () {
     $('#search-input').keyup(function () {
         const searchQuery = $(this).val().toLowerCase();
 
+       
+
         $('#list li').each(function () {
             const text = $(this).text().toLowerCase();
             const match = text.indexOf(searchQuery) !== -1;
@@ -484,5 +486,15 @@ $(document).ready(function () {
         });
     });
 });
+
+
+$(document).click(function (e) {
+    var notificationContainer = $(".notificationContiner");
+    if (!notificationContainer.is(e.target) && notificationContainer.has(e.target).length === 0) {
+        notificationContainer.hide();
+    }
+});
+
+// Messages box on click
 
 
