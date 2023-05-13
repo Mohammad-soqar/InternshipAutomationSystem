@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace Internship.DataAccess.Repository
 {
-    public class InternshipJobRepository : Repository<InternshipJob>, IInternshipJobRepository
+    public class InternshipOpportunityRepository : Repository<InternshipOpportunity>, IInternshipOpportunityRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public InternshipJobRepository(ApplicationDbContext db) : base(db)
+        public InternshipOpportunityRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
 
         }
 
 
-        public void Update(InternshipJob obj)
+        public void Update(InternshipOpportunity obj)
         {
-            var objFromDb = _db.InternshipJobs.FirstOrDefault(u => u.Id == obj.Id);
+            var objFromDb = _db.InternshipOpportunities.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDb != null)
             {
                 objFromDb.CompanyName = obj.CompanyName;

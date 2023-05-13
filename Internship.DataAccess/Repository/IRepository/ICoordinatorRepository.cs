@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Internship.DataAccess.Repository.IRepository
 {
-    public interface IInternshipJobRepository : IRepository<InternshipJob>
+    public interface ICoordinatorRepository : IRepository<InternshipCoordinator_User>
     {
-        void Update(InternshipJob obj);
+        void Update(InternshipCoordinator_User obj);
     }
 }
