@@ -1,0 +1,119 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Internship.Models.ViewModels.InternshipVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<head>
+    <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+
+</head>
+
+
+<section class="CareerCenter-Content">
+
+        <div class="widgets-shared" id="widget4">
+            <div id="Add-Job-btn" class="widget-right-side">
+                <p>Add Internship opportunity</p>
+
+                <img src="img/CareerCenter/SuitCase.png" height="45px" alt="">
+            </div>
+            <form method="post" class="WebForm" asp-action="Upsert_Internship" enctype="multipart/form-data">
+            <input asp-for="@Model.InternshipOpportunities.Id" hidden />
+            <input asp-for="@Model.InternshipOpportunities.ImageUrl" hidden />
+                <div class="Add-User-Form-invisible Add-User-Form" id="Add-User-Form">
+                    <div class="inputs">
+
+                        <div id="first-slide">
+                            <div class="Two-Inputs-line">
+                                <div>
+                                    <label for="">Job title</label>
+                                    <input asp-for="@Model.InternshipOpportunities.JobTitle" type="text" placeholder="Job title">
+
+                                </div>
+                                <div>
+                                    <label for="">Company Name</label>
+                                    <input asp-for="@Model.InternshipOpportunities.CompanyName" type="text" placeholder="Company Name">
+                                </div>
+
+                                <div>
+                                    <label for="">Location</label>
+                                    <select asp-for="@Model.InternshipOpportunities.Location">
+                                        <option disabled selected>Choose location</option>
+                                        <option>Istanbul</option>
+                                        <option>Ankara</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="Two-Inputs-line">
+
+                                <div>
+                                    <label for="">Job Type</label>
+                                    <select asp-for="@Model.InternshipOpportunities.type">
+                                        <option disabled selected>Choose type</option>
+                                        <option>Part-Time</option>
+                                        <option>Full-Time</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="">On-site/Remote</label>
+                                    <select asp-for="@Model.InternshipOpportunities.Site">
+                                        <option disabled selected>Choose On-site or Remote</option>
+                                        <option>On-site</option>
+                                        <option>Remote</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="second-slide">
+                            <div class="Two-Inputs-line">
+                                <div>
+                                    <label for="">DatePosted</label>
+                                    <input asp-for="@Model.InternshipOpportunities.DatePosted" type="datetime-local" placeholder="Company Name">
+                                </div>
+                                <div>
+                                    <label for="">SkillsReq</label>
+                                    <input asp-for="@Model.InternshipOpportunities.SkillsReq" type="text" placeholder="Company Name">
+                                </div>
+
+
+                            </div>
+                            <div class="Two-Inputs-line nomargin">
+                                <div>
+                                    <label for="">Description</label>
+                                    <textarea asp-for="@Model.InternshipOpportunities.Description" placeholder="Company Email"></textarea>
+                                </div>
+                                <div>
+                                    <label for="">Image</label>
+                                    <input asp-for="@Model.InternshipOpportunities.ImageUrl" type="file" name="file" placeholder="Company Name">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="sendButton">
+                        <div class="backButton">
+                        </div>
+                        <div class="post-btn" id="next-btn">Next</div>
+                        <button type="submit" id="post-btn" class="post-btn">Post</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</section>

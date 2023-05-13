@@ -1,0 +1,167 @@
+﻿
+
+.home p {
+    color: #FFD504 !important;
+}
+
+.studentpage {
+    width: 100%;
+}
+
+.internshipSide {
+    margin: 3rem 0rem 0rem 0rem;
+}
+
+.internships {
+    display: flex;
+    justify-content: space-between;
+}
+
+.companyLogo img{
+    border-radius: 50%;
+}
+
+.checkAll {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 2rem 0;
+}
+
+    .checkAll h2 {
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: #585858;
+    }
+
+    .checkAll a {
+        color: #888888;
+    }
+
+.firstInternship,
+.secondInternship,
+.thirdInternship {
+    background-color: #FFFFFF;
+    width: 30.7%;
+    border-radius: 27px;
+    box-shadow: 2px 2px 30px 2px #00000015;
+}
+
+.companySave button {
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
+.firstInternship a, .secondInternship a, .thirdInternship a {
+    display: flex;
+    padding: 8% 8% 0% 8%;
+    margin: 0 0 8% 0;
+    width: 84%;
+    height: 90%;
+    flex-direction: column;
+}
+
+.companySave {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 .5rem 0;
+}
+
+.companyLogo {
+    display: flex;
+    align-items: center;
+}
+
+    .companyLogo h3 {
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .companyLogo img {
+        margin: 0 .2rem 0 0;
+    }
+
+.job h3 {
+    margin: 0 0 .5rem 0;
+    font-weight: 500;
+}
+
+.job h5 {
+    color: #585858;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    margin: .7rem 0 0 0;
+}
+
+
+
+    .location img {
+        margin: 0 .5rem 0 0;
+    }
+
+.howWork {
+    margin: 3rem 0rem 0rem 0rem;
+}
+
+.how {
+    margin: 0 0 2rem 0;
+}
+
+    .how h2 {
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: #585858;
+    }
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+}
+
+.step1 {
+    background-color: #FFFFFF;
+    width: 30.7%;
+    height: 13rem;
+    padding: 0.5rem;
+    border-radius: 27px;
+    box-shadow: 2px 2px 30px 2px #00000015;
+}
+
+.step1-content {
+    height: 90%;
+    margin: 1rem 5% 2rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .step1-content h3 {
+        margin: .5rem 0 0 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #585858;
+    }
+
+    .step1-content p {
+        font-size: 12px;
+        text-align: justify;
+        line-height: 1.5;
+        color: #585858;
+    }
+
+    .step1-content button {
+        font-size: 1rem;
+        padding: 0.5rem 0rem;
+        text-align: center;
+        border-radius: 27px;
+        border: none;
+        color: #FFFFFF;
+        background-color: #FFD504;
+    }
