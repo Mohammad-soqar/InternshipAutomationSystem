@@ -4,6 +4,7 @@
 
 .Filter-Internship {
     display: flex;
+    align-items:center;
 }
 
     .Filter-Internship div {
@@ -18,10 +19,22 @@
         font-size: 12px;
         padding: 0.5rem;
     }
+.Student-view p{
+    font-weight:600;
 
-    .Filter-Internship select {
-        width: 8rem;
-    }
+
+}
+
+.Title-img img{
+    border-radius:50%;
+}
+
+.Student-view {
+    border: none !important;
+}
+.Filter-Internship select {
+    width: 8rem;
+}
 
     .Filter-Internship option {
         font-size: 12px;
