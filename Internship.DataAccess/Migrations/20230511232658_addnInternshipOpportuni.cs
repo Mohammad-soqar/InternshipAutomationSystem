@@ -5,14 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Internship.DataAccess.Migrations
 {
-    /// <inheritdoc />
-    public partial class AddInternshipjobsToDb : Migration
+    public partial class addnInternshipOpportuni : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "InternshipJobs",
+                name: "InternshipOpportunities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -29,15 +27,14 @@ namespace Internship.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InternshipJobs", x => x.Id);
+                    table.PrimaryKey("PK_InternshipOpportunities", x => x.Id);
                 });
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "InternshipJobs");
+                name: "InternshipOpportunities");
         }
     }
 }
