@@ -1,18 +1,46 @@
-﻿.Two-Inputs-line {
-    display: flex;
-    width: 100%;
-    align-items: flex-end;
+﻿
+.Input-title{
+    margin-bottom: 1rem;
 }
-
-    .Two-Inputs-line div {
-        width: 50%;
-        margin: 1rem;
-    }
 
 .inputs label {
     display: block;
     margin: 0 0 .5rem 0;
 }
+.tox-tinymce {
+    margin: 0px !important;
+    height: 250px !important;
+}
+
+.three-inputs-left-one-input-right {
+    display: flex;
+    gap: 10px;
+    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
+}
+
+
+
+.multiple-inputs-line > div {
+    flex: 1;
+}
+
+.multiple-inputs-line label {
+    flex: 0 0 100px; /* Adjust the width of the labels as needed */
+}
+
+.multiple-inputs-line input[type="text"] {
+    flex: 1;
+}
+
+
+.multiple-inputs-line {
+    margin: 1rem 0.5rem;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
+}
+
 
 .inputs input,
 select {
@@ -22,6 +50,14 @@ select {
     padding: 10px 10px;
     width: 80%;
 }
+
+.three-inputs-left {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 
 option {
     background-color: #FFF8D4;
@@ -36,7 +72,6 @@ option {
 }
 
     .sendButton button, #next-btn, .backButton div {
-        margin: 3rem 3rem 0 0;
         padding: .5rem 3rem;
         border: none;
         border-radius: 27px;

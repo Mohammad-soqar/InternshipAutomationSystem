@@ -99,7 +99,7 @@
 }
 
 .widget-right-side {
-    padding: 1.5rem 2rem;
+    padding: 2.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -157,14 +157,8 @@
         padding: 10px 15px;
     }
 
-.nomargin {
-    margin: 0rem 1rem 0rem 1rem !important;
-}
 
-textarea {
-    resize: none;
-    height: 63px;
-}
+
 
 .password-btn {
     color: #fff;
@@ -184,7 +178,7 @@ textarea {
 .Add-User-Form {
     display: flex;
     flex-wrap: wrap;
-    padding: 2rem 2rem 3rem 2rem;
+    padding: 0.5rem 2rem 1rem 2rem;
     gap: 10px;
 }
 
@@ -194,23 +188,6 @@ textarea {
 }
 
 
-.Two-Inputs-line {
-    display: flex;
-    gap: 10px;
-    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
-}
-
-    .Two-Inputs-line > div {
-        flex: 1;
-    }
-
-    .Two-Inputs-line label {
-        flex: 0 0 100px; /* Adjust the width of the labels as needed */
-    }
-
-    .Two-Inputs-line input[type="text"] {
-        flex: 1;
-    }
 
 .Add-User-Form > div {
     flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
