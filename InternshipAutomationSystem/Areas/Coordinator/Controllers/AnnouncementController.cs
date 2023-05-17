@@ -9,13 +9,13 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
 {
     [Area("Coordinator")]
     [Authorize(Roles = SD.Role_User_Coordinator)]
-    public class CoordinatorController : Controller
+    public class AnnouncementController : Controller
     {
-        private readonly ILogger<CoordinatorController> _logger;
+        private readonly ILogger<AnnouncementController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _env;
 
-        public CoordinatorController(ILogger<CoordinatorController> logger, IUnitOfWork unitOfWork, IWebHostEnvironment env)
+        public AnnouncementController(ILogger<AnnouncementController> logger, IUnitOfWork unitOfWork, IWebHostEnvironment env)
         {
 
             _logger = logger;
@@ -23,16 +23,11 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
             _env = env;
         }
 
-
-        public IActionResult Index()
+       
+        public IActionResult Announcements()
         {
             IEnumerable<Announcement> AnnouncementList = _unitOfWork.Announcements.GetAll();
             return View(AnnouncementList);
         }
-        public IActionResult AFA()
-        {
-            return View();
-        }
-       
     }
 }
