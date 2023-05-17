@@ -43,7 +43,7 @@
             @foreach (var Internship in Model.OrderByDescending(p => p.DatePosted).ToList().Take(3))
             {
                 <div class="firstInternship">
-                    <a href="User/Home/Details?id=@Internship.Id">
+                    <a asp-action="Internship" asp-area="User" asp-controller="Home">
                         <div class="companySave">
                             <div class="companyLogo">
                                 <img src="@Internship.ImageUrl" alt="" width="36px" height="36">

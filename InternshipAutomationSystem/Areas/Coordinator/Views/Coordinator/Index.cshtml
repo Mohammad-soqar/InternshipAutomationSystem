@@ -1,4 +1,10 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model IEnumerable<Announcement>
+
+
 <head>
     <link rel="stylesheet" href="~/css/Style.css asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Coordinator.css" asp-append-version="true" />
@@ -28,20 +34,26 @@
         <h3>Announcements</h3>
 
         <div class="announcements">
-            <a class="announcement1-block text" href="Announ1.html" id="ann1">
-                <h2>Announcement Title</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fuga sed mollitia?</p>
-            </a>
-            <a href="Announ2.html" class="announcement2-block text" id="ann2">
-                <h2>Announcement Title</h2>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fuga sed mollitia?</p>
-            </a>
-            <a href="Announ3.html" class="announcement3-block text" id="ann3">
-                <h2>Announcement Title</h2>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fuga sed mollitia?</p>
-            </a>
+            @foreach (var Announcements in Model.OrderByDescending(p => p.DatePosted).ToList().Take(3))
+            {
+                <a class="announcement1-block text" href="Announ1.html" id="ann1">
+                    <h2>@Announcements.Subject</h2>
+                    <p class="myParagraph">
+                        @if (Announcements.Content.Length > 36)
+                        {
+                            @Html.Raw(Announcements.Content.Substring(0, 36)+"..")
+                            
+                            }
+                        else
+                        {
+                            @Html.Raw(Announcements.Content)
+                        }
+                    </p>
+                </a>
+            }
+            
+           
         </div>
 
 
@@ -49,3 +61,9 @@
         <li><a asp-action="Announcements" asp-controller="Coordinator" id="checkall">Check all --> </a></li>
     </div>
 </section>
+
+@section Scripts {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+}

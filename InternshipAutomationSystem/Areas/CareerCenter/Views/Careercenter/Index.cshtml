@@ -114,49 +114,7 @@
 
     <div id="right-widgets" class="right-section-widgets both-sides">
 
-        <div class="widgets-shared" id="widget1">
-            <div id="Add-User-btn" class="widget-right-side">
-                <p>Add User</p>
-                <img src="~/img/CareerCenter/AddUser.png" height="45px" alt="">
-            </div>
-            <form class="Add-User-Form-invisible" id="Add-User-Form">
-                <div class="Two-Inputs-line">
-                    <div>
-                        <label for="">Full Name</label>
-                        <input type="text">
-                    </div>
-
-                    <div>
-                        <label for="">Email</label>
-                        <input type="text">
-                    </div>
-
-                </div>
-                <div class="Two-Inputs-line">
-                    <div>
-                        <label for="">password</label>
-                        <input type="text" id="passwordField">
-                        <button class="password-btn" type="button" id="generateBtn">Generate</button>
-                        <button class="password-btn copyBtn" type="button" id="copyBtn">Copy</button>
-
-                    </div>
-
-                    <div>
-                        <label for="">Role</label>
-                        <select name="" id="">
-                            <option value="" disabled selected>Select Role</option>
-                            <option value="">Internship Coordinator</option>
-                            <option value="">Career Center</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="sendButton Add">
-                    <button>Confirm</button>
-                </div>
-
-            </form>
-        </div>
-
+      
 
         <div class="widgets-shared" id="widget2">
             <div id="old-HealthI-btn" class="widget-right-side">
@@ -244,37 +202,16 @@
 
         </div>
 
-        <div class="widgets-shared" id="widget3">
+        
+        <a asp-controller="Announcements" asp-action="Upsert_Announcement" class="widgets-shared" id="widget4">
             <div id="Add-Announcement-btn" class="widget-right-side">
                 <p>Add New Announcement</p>
                 <img src="~/img/CareerCenter/Notification.png" height="45px" alt="">
             </div>
-            <form class="Add-User-Form-invisible" id="Add-User-Form">
-                <div class="Two-Inputs-line">
-                    <div>
-                        <label for="">Full Name</label>
-                        <input type="text">
-                    </div>
-
-                    <div>
-                        <label for="">Email</label>
-                        <input type="text">
-                    </div>
-
-                </div>
-
-                <div>
-                    <label for="">password</label>
-                    <textarea name="" id="" cols="30" rows="5"></textarea>
-
-                </div>
-
-                <button>Confirm</button>
-            </form>
-        </div>
+        </a>
 
 
-        <a asp-controller="Careercenter" asp-action="Upsert_Internship" class="widgets-shared" id="widget4">
+        <a asp-controller="Internship" asp-action="Upsert_Internship" class="widgets-shared" id="widget4">
             <div  class="widget-right-side">
                 <p>Add Internship opportunity</p>
 

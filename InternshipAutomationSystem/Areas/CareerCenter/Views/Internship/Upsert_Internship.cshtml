@@ -29,18 +29,18 @@
                     <div class="inputs">
 
                         <div id="first-slide">
-                            <div class="Two-Inputs-line">
-                                <div>
+                            <div class="multiple-inputs-line">
+                            <div class="Input-title">
                                     <label for="">Job title</label>
                                     <input asp-for="@Model.InternshipOpportunities.JobTitle" type="text" placeholder="Job title">
 
                                 </div>
-                                <div>
+                            <div class="Input-title">
                                     <label for="">Company Name</label>
                                     <input asp-for="@Model.InternshipOpportunities.CompanyName" type="text" placeholder="Company Name">
                                 </div>
 
-                                <div>
+                            <div class="Input-title">
                                     <label for="">Location</label>
                                     <select asp-for="@Model.InternshipOpportunities.Location">
                                         <option disabled selected>Choose location</option>
@@ -52,9 +52,9 @@
                             </div>
 
 
-                            <div class="Two-Inputs-line">
+                            <div class="multiple-inputs-line">
 
-                                <div>
+                            <div class="Input-title">
                                     <label for="">Job Type</label>
                                     <select asp-for="@Model.InternshipOpportunities.type">
                                         <option disabled selected>Choose type</option>
@@ -62,7 +62,7 @@
                                         <option>Full-Time</option>
                                     </select>
                                 </div>
-                                <div>
+                            <div class="Input-title">
                                     <label for="">On-site/Remote</label>
                                     <select asp-for="@Model.InternshipOpportunities.Site">
                                         <option disabled selected>Choose On-site or Remote</option>
@@ -75,28 +75,36 @@
 
 
                         <div id="second-slide">
-                            <div class="Two-Inputs-line">
-                                <div>
+                            <div class="three-inputs-left-one-input-right">
+                                <div class="three-inputs-left">
+                                <div class="Input-title">
                                     <label for="">DatePosted</label>
                                     <input asp-for="@Model.InternshipOpportunities.DatePosted" type="datetime-local" placeholder="Company Name">
                                 </div>
-                                <div>
+
+                                <div class="Input-title">
                                     <label for="">SkillsReq</label>
                                     <input asp-for="@Model.InternshipOpportunities.SkillsReq" type="text" placeholder="Company Name">
                                 </div>
-
-
-                            </div>
-                            <div class="Two-Inputs-line nomargin">
-                                <div>
-                                    <label for="">Description</label>
-                                    <textarea asp-for="@Model.InternshipOpportunities.Description" placeholder="Company Email"></textarea>
-                                </div>
-                                <div>
+                               
+                                <div class="Input-title">
                                     <label for="">Image</label>
                                     <input asp-for="@Model.InternshipOpportunities.ImageUrl" type="file" name="file" placeholder="Company Name">
                                 </div>
+
+                                </div>
+
+                            <div>
+
+                                <label>Description</label>
+                                <textarea asp-for="@Model.InternshipOpportunities.Description" rows="3" placeholder="Description"></textarea>
+                                <span asp-validation-for="@Model.InternshipOpportunities.Description" class="alert-warning"></span>
                             </div>
+
+                            </div>
+                        
+
+                            
 
                         </div>
 
@@ -117,3 +125,12 @@
 
     </div>
 </section>
+
+<script src="https://cdn.tiny.cloud/1/17ey362kygya3onsmqifoumhul549v4sc5s58njdpa731on7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+</script>

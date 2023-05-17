@@ -1,0 +1,84 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Internship.Models.ViewModels.AnnouncementVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var errors = ViewData.ModelState.Values.SelectMany(v => v.Errors);
+}
+
+@if (errors.Any())
+{
+    <div class="error-container">
+        <ul class="error-list">
+            @foreach (var error in errors)
+            {
+                <li class="error-item">@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+
+</head>
+
+
+<section class="CareerCenter-Content">
+
+    <div class="widgets-shared" id="widget4">
+        <div id="Add-Job-btn" class="widget-right-side">
+            <p>Add Announcement</p>
+
+            <img src="img/CareerCenter/SuitCase.png" height="45px" alt="">
+        </div>
+        <form method="post" class="WebForm" asp-action="Upsert_Announcement" enctype="multipart/form-data">
+            <input asp-for="@Model.Announcements.Id" hidden />
+            <input asp-for="@Model.Announcements.CareerCenterId"  hidden />
+            <div class="Add-User-Form-invisible Add-User-Form" id="Add-User-Form">
+                <div class="inputs">
+                    <div id="first-slide">
+                        <div class="multiple-inputs-line">
+                            <div class="Input-title">
+                                <label for="">Job title</label>
+                                <input asp-for="@Model.Announcements.Subject" type="text" placeholder="Job title">
+                                <span asp-validation-for="@Model.Announcements.Subject" ></span>
+
+                            </div>
+                            <div class="Input-title">
+                                <label for="">DatePosted</label>
+                                <input asp-for="@Model.Announcements.DatePosted" type="datetime-local" placeholder="Company Name">
+                            </div>
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <textarea asp-for="@Model.Announcements.Content" rows="3" placeholder="Description"></textarea>
+                            <span asp-validation-for="@Model.Announcements.Content" ></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sendButton">
+                    <button type="submit"  class="post-btn">Post</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    </div>
+</section>
+
+<script src="https://cdn.tiny.cloud/1/17ey362kygya3onsmqifoumhul549v4sc5s58njdpa731on7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+</script>

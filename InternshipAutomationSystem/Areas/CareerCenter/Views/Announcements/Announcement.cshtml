@@ -1,0 +1,70 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model IEnumerable<Announcement>
+
+
+
+<head>
+    <link rel="stylesheet" href="~/css/Style.css asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Announcements.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+
+    <title>Events list</title>
+</head>
+<section class="announcements">
+    <div class="annbox">
+        <h3>Announcements</h3>
+        <div class="announs">
+            @foreach (var Announcements in Model.OrderByDescending(p => p.DatePosted).ToList())
+            {
+                <div id="Announcements-Link" class="Announcements-Link" data-Announcements-id="@Announcements.Id">
+                    </div>
+
+                <a class="announ6" href="Announ3.html" id="announ6">
+                    <h2 class="title6">@Announcements.Subject</h2>
+                    <p class="text6" id="myParagraph">@Html.Raw(Announcements.Content)</p>
+                </a>
+                <div>
+                    <a class="delete-link" data-announcements-id="@Announcements.Id">Delete</a>
+                </div>
+
+            }
+
+
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.delete-link').click(function (event) {
+           
+            event.preventDefault(); 
+
+                var AnnouncementsId = $(this).data('announcements-id');
+                
+
+
+            $.ajax({
+
+                    url: 'CareerCenter/Announcements/DeletePost_Announcement/' + AnnouncementsId,
+                type: 'POST',
+                success: function (response) {
+
+                        $('#Announcements-Link[data-announcements-id="' + AnnouncementsId + '"]').remove();
+            
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
+        });
+    });
+</script>
+}

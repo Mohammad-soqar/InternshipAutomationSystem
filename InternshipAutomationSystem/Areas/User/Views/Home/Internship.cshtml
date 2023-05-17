@@ -178,52 +178,31 @@
                         $('.Internship-Details .Title-Details p').text(response.companyName + ' - ' + response.location + ' - ' + response.site);
                         $('.Internship-Details .skills p').text(response.skillsReq);
                         $('.Internship-Details .type p').text(response.type);
-                        $('.Internship-Details .About-job p').text(response.description);
-                        // Update other elements with relevant data
-                      
-                        // You can handle additional data and update more elements as needed
+                        $('.Internship-Details .About-job p').html(response.description);
+                       
                     },
                     error: function () {
-                        // Handle error, if any
+                     
                     }
                 });
             });
             $('.Internship-Link:first').click();
-            //$('#jobTypeFilter, #locationFilter').change(function () {
-            //    var jobType = $('#jobTypeFilter').val().toLowerCase();
-            //    var location = $('#locationFilter').val().toLowerCase();
+          
 
-            //    // Show all internship links
-            //    $('.Internship-Link').show();
 
-            //    // Filter internship links based on the selected filters
-            //    if (jobType !== '') {
-            //        $('.Internship-Link').each(function () {
-            //            var jobTypeFilter = $(this).data('type').toLowerCase();
-            //            if (jobTypeFilter !== jobType) {
-            //                $(this).hide();
-            //            }
-            //        });
-            //    }
 
-            //    if (location !== '') {
-            //        $('.Internship-Link').each(function () {
-            //            var locationFilter = $(this).data('location').toLowerCase();
-            //            if (locationFilter !== location) {
-            //                $(this).hide();
-            //            }
-            //        });
-            //    }
-            //});
+
+
+
 
             $('.delete-link').click(function (event) {
                 event.preventDefault(); // Prevent default link behavior
-                alert("hello")
+          
                 var internshipId = $(this).data('internship-id');
 
                 // Make an AJAX request to delete the internship
                 $.ajax({
-                    url: '/CareerCenter/Careercenter/DeletePost_Internship/' + internshipId,
+                    url: '/CareerCenter/Internship/DeletePost_Internship/' + internshipId,
                     type: 'POST',
                     success: function (response) {
                         // Handle success response

@@ -81,7 +81,7 @@
                 else if (User.IsInRole(SD.Role_Admin))
                 {
                     <div class="home">
-                        <a asp-action="" asp-controller="" asp-area="">
+                        <a asp-action="" asp-controller="Coordinator" asp-area="Coordinator">
                             <img src="~/img/home-symbol.png" alt="" height="27px">
                             <p>Home</p>
                         </a>
@@ -90,7 +90,7 @@
                 else if (User.IsInRole(SD.Role_User_Coordinator))
                 {
                     <div class="home">
-                        <a asp-action="" asp-controller="" asp-area="">
+                        <a asp-action="Index" asp-controller="Coordinator" asp-area="Coordinator">
                             <img src="~/img/home-symbol.png" alt="" height="27px">
                             <p>Home</p>
                         </a>
@@ -129,7 +129,26 @@
                         </a>
                     </div>
                 }
-               
+
+                @if ( User.IsInRole(SD.Role_User_Coordinator))
+                {
+                    <div class="guide">
+                        <a asp-area="Coordinator" asp-controller="Announcement" asp-action="Announcements">
+                            <img src="~/img/announcement.png" alt="" height="27px">
+                            <p>Announcements</p>
+                        </a>
+                    </div>
+                }
+                else if (User.IsInRole(SD.Role_Career_Center))
+                {
+                    <div class="guide">
+                        <a asp-area="CareerCenter" asp-controller="Announcements" asp-action="Announcement">
+                            <img src="~/img/announcement.png" alt="" height="27px">
+                            <p>Announcements</p>
+                        </a>
+                    </div>
+                }
+
                     <div class="guide">
                         <a href="">
                             <img src="~/img/guide-symbol.png" alt="" height="23px">
@@ -312,7 +331,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="// cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
