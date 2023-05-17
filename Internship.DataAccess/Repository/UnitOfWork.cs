@@ -19,12 +19,14 @@ namespace Internship.DataAccess.Repository
             _db = db;
             InternshipOpportunities = new InternshipOpportunityRepository(_db);
             Coordinators = new CoordinatorRepository(_db);
+            Announcements = new AnnouncementRepository(_db);
 
 
         }
 
         public IInternshipOpportunityRepository InternshipOpportunities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
+        public IAnnouncementRepository Announcements { get; private set; }
 
 
 

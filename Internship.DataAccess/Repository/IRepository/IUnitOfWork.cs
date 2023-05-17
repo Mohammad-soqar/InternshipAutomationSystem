@@ -10,6 +10,7 @@ namespace Internship.DataAccess.Repository.IRepository
     {
         IInternshipOpportunityRepository InternshipOpportunities { get; }
         ICoordinatorRepository Coordinators { get; }
+        IAnnouncementRepository Announcements { get; }
 
         void Save();
     }

@@ -8,13 +8,15 @@ namespace Internship.DataAccess.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-    }
+        }
         public DbSet<InternshipOpportunity> InternshipOpportunities { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DbSet<Student_User> Students { get; set; }
         public DbSet<InternshipCoordinator_User> Coordinators { get; set; }
         public DbSet<CareerCenter_User> CareerCenters { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+
         public DbSet<Admin_User> Admins { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,6 +53,8 @@ namespace Internship.DataAccess.Data
                 .HasOne(cc => cc.User)
                 .WithOne()
                 .HasForeignKey<CareerCenter_User>(cc => cc.UserId);
+
+
         }
     }
 }

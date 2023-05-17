@@ -54,6 +54,35 @@ namespace Internship.DataAccess.Migrations
                     b.ToTable("Admins");
                 });
 
+            modelBuilder.Entity("Internship.Models.Announcement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CareerCenterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CareerCenterId");
+
+                    b.ToTable("Announcements");
+                });
+
             modelBuilder.Entity("Internship.Models.CareerCenter_User", b =>
                 {
                     b.Property<int>("Id")
@@ -468,6 +497,15 @@ namespace Internship.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Internship.Models.Announcement", b =>
+                {
+                    b.HasOne("Internship.Models.CareerCenter_User", "CareerCenter")
+                        .WithMany()
+                        .HasForeignKey("CareerCenterId");
+
+                    b.Navigation("CareerCenter");
                 });
 
             modelBuilder.Entity("Internship.Models.CareerCenter_User", b =>
