@@ -1,6 +1,8 @@
-﻿namespace InternshipAutomationSystem.Hubs
+﻿using Microsoft.AspNetCore.SignalR;
+
+namespace InternshipAutomationSystem.Hubs
 {
-	public class UserHubs
+	public class UserHub : Hub
 	{
 	}
 }
