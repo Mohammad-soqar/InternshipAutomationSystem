@@ -1,0 +1,67 @@
+﻿@model Internship.Models.ViewModels.OfficialLetterVM
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Form</title>
+
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+</head>
+<body>
+    <h1>Application Form</h1>
+
+    <form method="post" class="WebForm" asp-action="Official_Letter_Upsert" enctype="multipart/form-data">
+        <input asp-for="@Model.OfficialLetters.Id" hidden />
+
+       
+        <div>
+            <label for="@Model.OfficialLetters.CompanyName"></label>
+            <input asp-for="@Model.OfficialLetters.CompanyName"  placeholder="ImageUrl" />
+        </div>
+        <div>
+            <label for="@Model.OfficialLetters.CompanyEmail"></label>
+            <input asp-for="@Model.OfficialLetters.CompanyEmail" placeholder="ImageUrl" />
+        </div>
+        <div>
+            <label for="@Model.OfficialLetters.ReceiverName"></label>
+            <input asp-for="@Model.OfficialLetters.ReceiverName" placeholder="ImageUrl" />
+        </div>
+        <div>
+            <label for="@Model.OfficialLetters.Department"></label>
+            <input asp-for="@Model.OfficialLetters.Department"  placeholder="ImageUrl" />
+        </div>
+        <div>
+            <label for="@Model.OfficialLetters.DatePosted"></label>
+            <input asp-for="@Model.OfficialLetters.DatePosted"  placeholder="ImageUrl" />
+        </div>
+        <div>
+            
+            <input hidden asp-for="@Model.OfficialLetters.OfficialLetterPDF" type="file" placeholder="ImageUrl" />
+        </div>
+        <div  class="inputQue">
+            <label>Category</label>
+            <select asp-for="@Model.OfficialLetters.StudentId" asp-items="@Model.StudentList" class="selectC">
+                <option disabled selected>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.OfficialLetters.StudentId" class="alert-warning"></span>
+
+        </div>
+
+        <div  class="inputQue">
+            <label>Category</label>
+            <select asp-for="@Model.OfficialLetters.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
+                <option disabled selected>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.OfficialLetters.InternshipCoordinatorId" class="alert-warning"></span>
+
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+

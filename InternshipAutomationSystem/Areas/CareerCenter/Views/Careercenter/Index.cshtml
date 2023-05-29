@@ -1,6 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@model Internship.Models.ViewModels.InternshipVM
+@model IEnumerable<HealthInsurance>
+
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,7 +27,7 @@
                     <p>Health Insurance</p>
                 </div>
                 <div class="check-all-btn">
-                    <button id="check-all">Check all &#x2192;</button>
+                    <a asp-action="Health_Insurance_Approval" asp-controller="Careercenter" id="check-all">Check all &#x2192;</a>
                     <input type="text" id="searchInput" placeholder="Search...">
                 </div>
 
@@ -36,14 +37,14 @@
                 <table id="studentTable">
                     <thead>
                         <tr>
-                            <th onclick="sortTable(0)">
+                            <th class="indexth-student" onclick="sortTable(0)">
                                 Student Name
 
                                 <img id="nameSort" class="sort rotateImage"
                                      src="~/img/CareerCenter/arrowUp.png" alt="">
                             </th>
 
-                            <th onclick="sortTable(1)">
+                            <th class="indexth-student" onclick="sortTable(1)">
                                 Student ID
 
                                 <img class="sort rotateImage" id="idSort"
@@ -51,61 +52,46 @@
 
                             </th>
 
-                            <th onclick="sortTable(2)">
+                            <th class="indexth" onclick="sortTable(2)">
                                 State
                                 <img id="stateSort" class="sort rotateImage"
                                      src="~/img/CareerCenter/arrowUp.png" alt="">
                             </th>
-                            <th class="center">Upload</th>
+                          @*  <th class="center">Upload</th>*@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Dwayne Johnson</td>
-                            <td>200111111</td>
-                            <td class=" center state pending">
-                                <div>Pending</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
+                        @foreach (var applicationForm in Model.Take(4))
+                        {
+                            <tr>
+                                <td>@applicationForm.Student.Name</td>
 
-                        <tr>
-                            <td>Ryan Reynolds</td>
-                            <td>200111112</td>
-                            <td class=" center state pending">
-                                <div>Pending</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Adele Adkins Adele Adkins Adele Adkins</td>
-                            <td>200111113</td>
-                            <td class="center state pending">
-                                <div>Pending</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ryan Reynolds</td>
-                            <td>200111114</td>
-                            <td class=" center state completed">
-                                <div>Completed</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
+                                <td>@applicationForm.Student.StudentId</td>
 
+                                <td class="center state @(applicationForm.Student.Status == "Pending" ? "NA" : (applicationForm.Student.Status == "Completed" ? "pending" : "NA"))">
+                                    <div>@(applicationForm.Student.Status == "Pending" ? "Awaiting Approval" : (applicationForm.Student.Status == "Completed" ? "Pending" : "N/A"))</div>
+                                </td>
+
+                                @*<td class="center">
+                                    @if (applicationForm.Student.Status == "Completed")
+                                    {
+                                        <a class="edit" href="/Coordinator/Coordinator/ApplicationForm_Approvel_Upsert?id=@applicationForm.Id">
+                                            <img src="~/img/upload.png" height="20px">
+                                        </a>
+
+                                        <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
+                                            <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
+                                        </a>
+                                    }
+                                    else if (applicationForm.Student.Status == "N/A")
+                                    {
+                                        <span>Not Submitted</span>
+                                    }
+
+                                </td>*@
+
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
