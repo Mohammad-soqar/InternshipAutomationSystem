@@ -17,9 +17,8 @@ namespace Internship.Models
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-
-
-
+        public ICollection<ApplicationForm> ApplicationForms { get; set; }
+  
 
     }
 }
