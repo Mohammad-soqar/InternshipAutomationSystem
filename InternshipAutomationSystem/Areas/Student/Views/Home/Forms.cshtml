@@ -1,0 +1,157 @@
+﻿@model Internship.Models.ViewModels.FormspageVM
+
+@using Internship.DataAccess.Data;
+@using Internship.Utility;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+
+
+@inject UserManager<ApplicationUser> UserManager
+
+@inject ApplicationDbContext DbContext
+
+@{
+    // Get the currently signed-in user
+    ApplicationUser user2 = await UserManager.GetUserAsync(User);
+
+    // Get the associated Student_User record from the Student_User table
+    Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
+ 
+    // Access the name of the student user
+    string studentTableStatus = studentUser?.Status;
+    
+}
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="icon" href="img/webIcon.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Account</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="~/css/Style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/forms.css" asp-append-version="true" />
+  
+
+</head>
+
+<body>
+  
+
+           
+                   
+
+                <section class="Account-Content">
+
+                    <div class="file1">
+                        <h3 class="title">Internship Application</h3>
+                        <p class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
+                            accusantium provident aliquam rem saepe, maxime numquam. Tempore ad inventore et vel quasi
+                            quibusdam, quisquam quis nesciunt assumenda corrupti?
+                        </p>
+                        <p class="deadline">Deadline : 31/09/2023</p>
+                        <div class="FilesLinks">
+                            <a href="#">
+                                <img src="img\support-symbol.png" alt="">
+                            </a>
+@*                <a id="LinkStartButton" asp-action="ApplicationForm_Final_Upsert" asp-area="Student" asp-controller="Application">Send the file</a>
+
+*@
+                @if (true)
+                {
+                    var user = await UserManager.GetUserAsync(User);
+
+                    if (user.Status.ToLower() == "notyet" && studentTableStatus.ToLower() != "pending")
+                    {
+                        <a id="LinkStartButton" asp-action="SubmitForm" asp-area="Student" asp-controller="Application">Start</a>
+
+                    }
+                    else if (studentTableStatus.ToLower() == "pending")
+                    {
+                        <a id="LinkStartButton" asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">Already Submitted</a>
+
+                    }
+                    else if (user.Status.ToLower() == "applicationsubmit")
+                    {
+                        <a id="LinkStartButton" asp-action="ApplicationForm_Final_Upsert" asp-area="Student" asp-controller="Application">Send the file</a>
+
+                    }
+                    else if (user.Status.ToLower() == "healthinsurance")
+                    {
+                        <a id="LinkStartButton" style="" asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">View Your Application</a>
+
+                    }
+                }
+
+
+                    
+
+               
+                        </div>
+                    </div>
+
+                    <div class="file2">
+                        <h3 class="title">Letter Request</h3>
+                        <p class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
+                            accusantium provident aliquam rem saepe, maxime numquam. Tempore ad inventore et vel quasi
+                            quibusdam, quisquam quis nesciunt assumenda corrupti?
+                        </p>
+                        <p class="deadline">Deadline : 31/09/2023</p>
+                        <div class="FilesLinks">
+                            <a href="#">
+                                <img src="img\support-symbol.png" alt="">
+                            </a>
+                     @if (true)         
+                {
+                var user = await UserManager.GetUserAsync(User);
+
+                    @if (studentTableStatus.ToLower() == "pending" || user.Status.ToLower() == "notyet")
+
+                {
+                        <a id="LinkStartButton"  asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Nope Not yet</a>
+
+                    }
+                    else
+                    {
+                        <a id="LinkStartButton" asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Start</a>
+
+                    }
+
+
+                }
+                        </div>
+                    </div>
+
+                    <div class="file3">
+                        <h3 class="title">#File 3</h3>
+                        <p class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
+                            accusantium provident aliquam rem saepe, maxime numquam. Tempore ad inventore et vel quasi
+                            quibusdam, quisquam quis nesciunt assumenda corrupti?
+                        </p>
+                        <p class="deadline">Deadline : 31/09/2023</p>
+                        <div class="FilesLinks">
+                            <a href="#">
+                                <img src="img\support-symbol.png" alt="">
+                            </a>
+                            <a id="LinkStartButton" href="#">Download</a>
+                        </div>
+                    </div>
+
+                </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="JS/app.js"></script>
+</body>
+
+</html>
