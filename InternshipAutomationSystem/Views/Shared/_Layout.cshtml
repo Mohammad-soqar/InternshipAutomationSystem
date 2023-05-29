@@ -1,7 +1,33 @@
-﻿@using Internship.Utility;
+﻿@using Internship.DataAccess.Data;
+@using Internship.Utility;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
+
+@inject ApplicationDbContext DbContext
+@inject UserManager<ApplicationUser> UserManager
+@{
+    // Get the currently signed-in user
+    ApplicationUser user2 = await UserManager.GetUserAsync(User);
+
+    // Get the associated Student_User record from the Student_User table
+    Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
+    InternshipCoordinator_User CoordinatorUser = DbContext.Coordinators.FirstOrDefault(s => s.UserId == user2.Id);
+    CareerCenter_User CareerCenterUser = DbContext.CareerCenters.FirstOrDefault(s => s.UserId == user2.Id);
+
+    // Access the name of the student user
+    string studentName = studentUser?.Name;
+    string studentId = studentUser?.StudentId.ToString();
+
+    string CoordinatorName = CoordinatorUser ?.Name;
+    string CoordinatorId = CoordinatorUser?.Id.ToString();
+
+    string CareerCenterName = CareerCenterUser?.Name;
+    string CareerCenterId = CareerCenterUser?.Id.ToString();
+
+    string OfficialLetterstatus = studentUser?.OfficialLetterId;
+}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -123,7 +149,7 @@
                 @if (User.IsInRole(SD.Role_User_Student) || User.IsInRole(SD.Role_User_Coordinator))
                 {
                     <div class="forms">
-                        <a href="">
+                        <a asp-action="Forms" asp-area="Student" asp-controller="Home">
                             <img src="~/img/forms-symbol.png" alt="" height="27px">
                             <p>Forms</p>
                         </a>
@@ -179,29 +205,157 @@
                 <div class="contents">
 
                     <section class="nav-bar">
+                  @*  @if (userStatus == "n/a")
+                    {*@
+                        
                     @if (User.IsInRole(SD.Role_User_Student))
                     {
-                        <div>
-                            <h3>Status</h3>
-                            <div class="status">
-                                <div class="progress-bar">
-                                    <div class="progress-circle"></div>
-                                    <div class="progress-line"></div>
-                                    <div class="progress-circle"></div>
-                                    <div class="progress-line"></div>
-                                    <div class="progress-circle"></div>
-                                    <div class="progress-line"></div>
-                                    <div class="progress-circle"></div>
+                        var user = await UserManager.GetUserAsync(User);
+
+                        @if (user.Status.ToLower() == "notyet" || user.Status.ToLower() == null && OfficialLetterstatus == null)
+                        {
+                            <div>
+                                <h3>Status</h3>
+                                <div class="status">
+                                    <div class="progress-bar">
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+                                        <div class="progress-circle"></div>
+
+                                    </div>
+
+                                    <a class="status-info" >
+                                        <img src="~/img/support-symbol.png"
+        alt="">
+                                    </a>
                                 </div>
-
-                                <button class="status-info" id="startButton">
-                                    <img src="~/img/support-symbol.png"
-                                         alt="">
-                                </button>
                             </div>
-                        </div>
-                    }
+                        }
+                        else if (user.Status.ToLower() == "applicationsubmit" && OfficialLetterstatus == null)
+                        {
+                            <div>
+                                <h3>Status</h3>
+                                <div class="status">
+                                    <div class="progress-bar">
+                                        <a asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Approved Application</div>
+                                            </div>
+                                        </a>
 
+                                        <div class="progress-line progress-animation2"></div>
+
+
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+                                        <div class="progress-circle"></div>
+
+                                    </div>
+
+                                    <a class="status-info">
+                                        <img src="~/img/support-symbol.png"
+        alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else if (user.Status.ToLower() == "healthinsurance" && OfficialLetterstatus == null)
+                        {
+                            <div>
+                                <h3>Status</h3>
+                                <div class="status">
+                                    <div class="progress-bar">
+
+                                        <a asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Approved Application</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+
+
+                                        <a asp-action="Health_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Health Insurance</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+
+
+                                        <div class="progress-circle"></div>
+
+                                    </div>
+
+                                    <a class="status-info">
+                                        <img src="~/img/support-symbol.png"
+        alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else if (user.Status.ToLower() == "officialletter" && OfficialLetterstatus != null)
+                        {
+                            <div>
+                                <h3>Status</h3>
+                                <div class="status">
+                                    <div class="progress-bar">
+
+                                        <a asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Approved Application</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+
+
+                                        <a asp-action="Health_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Health Insurance</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+                                        <a asp-action="Official_Letter_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Official Letter</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+
+
+                                        <div class="progress-circle"></div>
+
+                                    </div>
+
+                                    <a class="status-info">
+                                        <img src="~/img/support-symbol.png"
+                                             alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                      
+                        
+                    
+                    }
+                   
+                 
+                    
 
 
 
@@ -263,8 +417,21 @@
                         <a class="Account" href="Account.html">
                             <img src="~/img/Account.png" alt="" height="60px">
                             <div class="Account-Text">
-                                <p>John Doe</p>
-                                <p>200209476</p>
+                                @if (User.IsInRole(SD.Role_User_Student))
+                                {
+                                    <p>@studentName</p>
+                                    <p>@studentId</p>
+                                }
+                                else if (User.IsInRole(SD.Role_User_Coordinator))
+                                {
+                                    <p>@CoordinatorName</p>
+                                    <p>@CoordinatorId</p>
+                                }
+                                else if (User.IsInRole(SD.Role_Career_Center))
+                                {
+                                    <p>@CareerCenterName</p>
+                                    <p>@CareerCenterId</p>
+                                }
                             </div>
                         </a>
                     </div>
@@ -319,11 +486,13 @@
             }
         });
 
+
   </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="~/JS/app.js"></script>
     <script src="~/JS/DataTable.js"></script>
+
    <script src="~/JS/CareerCenter.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
