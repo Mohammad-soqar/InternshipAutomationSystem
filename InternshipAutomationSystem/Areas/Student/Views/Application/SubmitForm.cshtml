@@ -1,0 +1,215 @@
+﻿@model Internship.Models.ViewModels.ApplicationVM
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Form</title>
+
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form1.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar-form1">
+        <div class="step1" id="step">
+            <p id="stepNumber">step1</p>
+            <div class="progress-circle form step1Selected"></div>
+            <p class="step-info stepInfo1">Student Info</p>
+        </div>
+        <div class="progress-line form step1Selected"></div>
+        <div class="step2" id="step">
+            <p id="stepNumber">step2</p>
+            <div class="progress-circle form step2Selected"></div>
+            <p class="step-info stepInfo2">Type and duration</p>
+        </div>
+        <div class="progress-line form step2Selected"></div>
+        <div class="step3" id="step">
+            <p id="stepNumber">step3</p>
+            <div class="progress-circle form step3Selected"></div>
+            <p class="step-info stepInfo3">Institution Info</p>
+        </div>
+        <div class="progress-line form step3Selected"></div>
+        <div class="step4" id="step">
+            <p id="stepNumber">step4</p>
+            <div class="progress-circle form step4Selected"></div>
+            <p class="step-info stepInfo4">Download</p>
+        </div>
+    </div>
+
+    <div class="StudentInfo">
+        <div class="inputs" id="StudentInfoInputs">
+            <form method="post" class="WebForm" asp-action="SubmitForm" enctype="multipart/form-data">
+                <input asp-for="@Model.ApplicationForms.Id" hidden />
+
+                <div class="firstPageStudentInfoInputs">
+                    <div class="Two-Inputs-line">
+                        <div>
+                            <label for="">TR. Identity Number</label>
+                            <input asp-for="@Model.ApplicationForms.TC">
+                        </div>
+
+                        <div>
+                            <label for="">Phone Number</label>
+                            <input asp-for="@Model.ApplicationForms.PhoneNumber">
+                        </div>
+
+                    </div>
+                    <div class="Two-Inputs-line">
+                        <div>
+                            <label for="">Full Name</label>
+                            <input asp-for="@Model.ApplicationForms.Name">
+                        </div>
+                        <div>
+                            <label for="">Student Number</label>
+                            <input asp-for="@Model.ApplicationForms.SID">
+                        </div>
+                    </div>
+                    <div class="DropDownBoxes">
+
+                        <div>
+                            <label for="">Faculty</label>
+                            <select asp-for="@Model.ApplicationForms.Faculty">
+                                <option disabled selected>
+                                    e.g:Faculty of Engineering and Natural Sciences
+                                </option>
+                                <option value="Faculty of Engineering and Natural Sciences">Faculty of Engineering and Natural Sciences</option>
+                                <option value="">sdasd</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">Department</label>
+                            <select asp-for="@Model.ApplicationForms.Department">
+                                <option disabled selected>
+                                    e.g: Software Engineering Department
+                                </option>
+                                <option value="Software Engineering">Software Engineering</option>
+                                <option value="">sdasd</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">Class</label>
+                            <select asp-for="@Model.ApplicationForms.Class">
+                                <option disabled selected>Select</option>
+                                <option value="second">2nd</option>
+                                <option value="third">3rd</option>
+                                <option value="forth">4th</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="SecondPageStudentInfoInputs">
+                    <div class="Two-Inputs-line">
+                        <div>
+                            <label>Start Date</label>
+
+                            <input id="startDate" asp-for="@Model.ApplicationForms.StartDate">
+                        </div>
+
+                        <div>
+                            <label for="">End Date</label>
+                            <input id="endDate" asp-for="@Model.ApplicationForms.EndDate">
+                        </div>
+
+                    </div>
+                    <div class="Two-Inputs-line">
+                        <div>
+                            <label for="">Days of internship</label>
+                            <input id="numberOfDays" asp-for="@Model.ApplicationForms.NumberOfDays" readonly>
+                        </div>
+
+                        <div>
+                            <label for="">Type: </label>
+                            <select asp-for="@Model.ApplicationForms.Type">
+                                <option disabled selected> Select</option>
+                                <option disabled value="Full Semester">Full Semester</option>
+                                <option disabled value="Spring Semester">Spring Semester</option>
+                                <option value="Internship">Internship</option>
+                                <option disabled value="Voluntary Internship">Voluntary Internship</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="CkeckBoxType">
+                        <label for="">
+                            <input asp-for="@Model.ApplicationForms.DependendParent" />
+                            Are you dependent on your parents
+                        </label>
+                    </div>
+                </div>
+                <div class="ThiredPageStudentInfoInputs">
+                    <div class="Two-Inputs-line">
+                        <div>
+                            <label for="">Institution Name</label>
+                            <input asp-for="@Model.ApplicationForms.InstitutionName">
+                        </div>
+
+                        <div>
+                            <label for="">Phone Number</label>
+                            <input asp-for="@Model.ApplicationForms.InstitutionPhoneNumber">
+                        </div>
+
+                    </div>
+                    <div class="Two-Inputs-line">
+                        <div>
+                            <label for="">Address</label>
+                            <input asp-for="@Model.ApplicationForms.InstitutionAddress">
+                        </div>
+
+                        <div>
+                            <label for="">Authorized Person/Title</label>
+                            <input asp-for="@Model.ApplicationForms.InstitutionPerson">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="ForthPageStudentInfoInputs visable">
+                    <div class="submit-downloadButtons">
+                        <button class="DownloadPDF">Download PDF</button>
+                        <div class="inputQue">
+                            <label>Category</label>
+                            <select asp-for="@Model.ApplicationForms.StudentId" asp-items="@Model.StudentList" class="selectC">
+                                <option disabled selected>Select Category</option>
+                            </select>
+                            <span asp-validation-for="@Model.ApplicationForms.StudentId" class="alert-warning"></span>
+
+                        </div>
+
+                        <div class="inputQue">
+                            <label>Category</label>
+                            <select asp-for="@Model.ApplicationForms.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
+                                <option disabled selected>Select Category</option>
+                            </select>
+                            <span asp-validation-for="@Model.ApplicationForms.InternshipCoordinatorId" class="alert-warning"></span>
+
+                        </div>
+
+                        <button type="submit">Submit</button>
+                    </div>
+                    <img src="img/PDF-Symbol.png" alt="">
+                </div>
+                
+            </form>
+            <div class="Buttons">
+                <div>
+                    <button id="Back-Button">&#8592; Back</button>
+                </div>
+                <button id="Next-Button">Next &#8594;</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script src="~/JS/form1.js"></script>
+<script src="~/JS/app.js"></script>
+
+

@@ -1,0 +1,31 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model HealthInsurance
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Application Form Approval</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Css/DataTable.css">
+    <link rel="stylesheet" href="~/Css/Style.css">
+    <link rel="stylesheet" href="~/Css/form.css">
+</head>
+
+
+
+<h2>Application Form</h2>
+
+<embed src="@Url.Action("Health_GetPdf", "Application", new { HealthId = Model.Id })" width="100%" height="500px" type="application/pdf">
+@* <embed src="@Url.Action("GetPdf", "Coordinator", new { applicationFormId = Model.Id })" type="application/pdf" width="100%" height="800px" />*@
+
+
+
+
+
