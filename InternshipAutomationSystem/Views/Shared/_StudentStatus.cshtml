@@ -1,0 +1,46 @@
+﻿@model Student_User
+
+@if (Model.Status.ToLower() == "n/a")
+{
+    <div>
+        <h3>Status</h3>
+        <div class="status">
+            <div class="progress-bar">
+                <div class="progress-circle"></div>
+                <div class="progress-line"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-line"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-line"></div>
+                <div class="progress-circle"></div>
+            </div>
+
+            <button class="status-info" id="startButton">
+                <img src="~/img/support-symbol.png"
+                     alt="">
+            </button>
+        </div>
+    </div>
+}
+else if (Model.Status.ToLower() == "pending")
+{
+    <div>
+        <h3>Status</h3>
+        <div class="status">
+            <div class="progress-bar">
+                <div class="progress-circle progress-animation"></div>
+                <div class="progress-line progress-animation2"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-line"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-line"></div>
+                <div class="progress-circle"></div>
+            </div>
+
+            <button class="status-info" id="startButton">
+                <img src="~/img/support-symbol.png"
+                     alt="">
+            </button>
+        </div>
+    </div>
+}
