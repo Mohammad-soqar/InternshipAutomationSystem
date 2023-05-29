@@ -15,18 +15,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Internship.Utility;
+using Internship.Models;
 
 namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
 {
     
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        //private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
+        //private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-
-        public LoginModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -115,8 +117,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
 
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -140,6 +141,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
                         return RedirectToPage("/Account/Register");
 
                     }
+                    
                 }
                 if (result.RequiresTwoFactor)
                 {

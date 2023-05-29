@@ -34,10 +34,10 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
 
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserStore<ApplicationUser> _userStore;
+        private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -46,9 +46,9 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
 
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            IUserStore<ApplicationUser> userStore,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager,
@@ -143,6 +143,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
             [ValidateNever]
             public IEnumerable<SelectListItem> CoordinatorList { get; set; }
 
+         
         }
 
 
@@ -187,7 +188,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var userRole = Input.Role ?? SD.Role_User_Student;
-
+               
                 switch (userRole)
                 {
                     case SD.Role_User_Student:
@@ -202,22 +203,25 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
                             Faculty = Input.Faculty,
                             Class = Input.Class,
                             IsApproved = Input.IsApproved,
-                            CoordinatorId = 1,
+                            Status = "N/A",
+                            CoordinatorId = 3,
                             HasTakenFirstInternship = Input.HasTakenFirstInternship,
-                            HasTakenSecondInternship = Input.HasTakenSecondInternship
+                            HasTakenSecondInternship = Input.HasTakenSecondInternship,
+                         
                         };
 
-
+                        user.Status = "notyet";
                         _dbContext.Students.Add(student);
                         await _dbContext.SaveChangesAsync();
                         break;
 
                     case SD.Role_User_Coordinator:
-                        var coordinator = new InternshipCoordinator_User { 
+                        var coordinator = new InternshipCoordinator_User
+                        {
                             UserId = user.Id,
-                            Email= Input.Email,
-                            Name= Input.Name,
-                            PhoneNumber= Input.PhoneNumber,
+                            Email = Input.Email,
+                            Name = Input.Name,
+                            PhoneNumber = Input.PhoneNumber,
                         };
 
                         _dbContext.Coordinators.Add(coordinator);
@@ -225,7 +229,8 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
                         break;
 
                     case SD.Role_Career_Center:
-                        var careerCenter = new CareerCenter_User {
+                        var careerCenter = new CareerCenter_User
+                        {
                             UserId = user.Id,
                             Email = Input.Email,
                             Name = Input.Name,
@@ -319,27 +324,27 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
                 default: return string.Empty;
             }
         }
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
                     $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<IdentityUser> GetEmailStore()
+        private IUserEmailStore<ApplicationUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<IdentityUser>)_userStore;
+            return (IUserEmailStore<ApplicationUser>)_userStore;
         }
     }
 }
