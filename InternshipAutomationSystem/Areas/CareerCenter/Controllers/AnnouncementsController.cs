@@ -16,10 +16,10 @@ namespace InternshipAutomationSystem.Areas.CareerCenter.Controllers
 
     public class AnnouncementsController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
             private readonly IWebHostEnvironment _HostEnvironment;
-            public AnnouncementsController(UserManager<IdentityUser> userManager , IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+            public AnnouncementsController(UserManager<ApplicationUser> userManager , IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
             {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
