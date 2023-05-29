@@ -11,6 +11,12 @@ namespace Internship.DataAccess.Repository.IRepository
         IInternshipOpportunityRepository InternshipOpportunities { get; }
         ICoordinatorRepository Coordinators { get; }
         IAnnouncementRepository Announcements { get; }
+        IApplicationRepository Applications { get; }
+        IStudentRepository Students { get; }
+        ISubmittedApplicationFormsRepository SubmittedApplicationForms { get; }
+        IHealthInsuranceRepository HealthInsurances { get; }
+        ICareerCenterRepository CareerCenters { get; }
+        IOfficialLetterRepository OfficialLetters { get; }
 
         void Save();
     }
