@@ -1,0 +1,107 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model IEnumerable<HealthInsurance>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Application Form Approval</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Css/CareerCenter.css">
+    <link rel="stylesheet" href="~/Css/DataTable.css">
+    <link rel="stylesheet" href="~/Css/Style.css">
+    <link rel="stylesheet" href="~/Css/form.css">
+</head>
+
+<div class="back">
+    <a asp-action="Index" asp-controller="Careercenter" id="back">
+        <h4> <-- Back </h4>
+    </a>
+</div>
+<div class="table-container" style="    background: #fff;
+    padding: 2rem;
+    border-radius: 27px;">
+    <h3>Application Form Approval</h3>
+    <div class="widgetHeader">
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+
+    </div>
+    <div class="DataTable">
+
+
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">
+                        Student Name
+
+                        <img id="nameSort" class="sort rotateImage"
+                             src="img/CareerCenter/arrowUp.png" alt="">
+                    </th>
+
+                    <th onclick="sortTable(1)">
+                        Student ID
+
+                        <img class="sort rotateImage" id="idSort"
+                             src="img/CareerCenter/arrowUp.png" alt="">
+
+                    </th>
+
+                    <th onclick="sortTable(2)">
+                        State
+                        <img id="stateSort" class="sort rotateImage"
+                             src="img/CareerCenter/arrowUp.png" alt="">
+                    </th>
+                    <th class="center">Upload</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var applicationForm in Model)
+                {
+                    <tr>
+                        <td>@applicationForm.Student.Name</td>
+
+                        <td>@applicationForm.Student.StudentId</td>
+
+                        <td class="center state @(applicationForm.Student.Status == "Pending" ? "NA" : (applicationForm.Student.Status == "Completed" ? "pending" : "NA"))">
+                            <div>@(applicationForm.Student.Status == "Pending" ? "Not Approved Yet" : (applicationForm.Student.Status == "Completed" ? "Pending" : "N/A"))</div>
+                        </td>
+
+                        <td class="center">
+                            @if (applicationForm.Student.Status == "Completed")
+                            {
+                                <a class="edit" href="/CareerCenter/Careercenter/Health_Upsert?id=@applicationForm.Id">
+                                    <img src="~/img/upload.png" height="20px">
+                                </a>
+
+                                <a href="@Url.Action("Application_Form_View", "Careercenter", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
+                                    <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
+                                </a>
+                            }
+                            else if (applicationForm.Student.Status == "N/A")
+                            {
+                                <span>Not Submitted</span>
+                            }
+                           
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
