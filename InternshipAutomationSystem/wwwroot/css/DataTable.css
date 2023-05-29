@@ -32,6 +32,14 @@ th {
     text-overflow: ellipsis;
 }
 
+.indexth-student {
+    width: 120px !important
+}
+
+.indexth {
+    width: 200px !important
+}
+
 td {
     max-width: 100px !important;
     white-space: nowrap;
@@ -60,6 +68,12 @@ td {
     color: #AE9100;
     background-color: #FFF8D4 !important;
 }
+
+.NA div {
+    color: #B20000;
+    background-color: #FFDBDB !important;
+}
+
 
 .completed div {
     color: #007505;

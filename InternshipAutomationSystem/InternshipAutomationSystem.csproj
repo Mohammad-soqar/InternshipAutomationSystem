@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -32,6 +35,9 @@
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\Images\InternshipJobs\" />
+    <Folder Include="wwwroot\PDFCAN\Forms\" />
+    <Folder Include="wwwroot\PDFCAN\Health_Insurance\" />
+    <Folder Include="wwwroot\PDF\" />
   </ItemGroup>
 
 </Project>

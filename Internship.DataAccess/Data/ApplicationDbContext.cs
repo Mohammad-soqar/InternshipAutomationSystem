@@ -16,8 +16,14 @@ namespace Internship.DataAccess.Data
         public DbSet<InternshipCoordinator_User> Coordinators { get; set; }
         public DbSet<CareerCenter_User> CareerCenters { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
-
+        public DbSet<HealthInsurance> HealthInsurances { get; set; }
+        public DbSet<OfficialLetter> OfficialLetters { get; set; }
+        public DbSet<ApplicationForm> ApplicationForms { get; set; }
+        public DbSet<submittedApplicationForms> submittedApplicationForms { get; set; }
+        
+        
         public DbSet<Admin_User> Admins { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -54,6 +60,29 @@ namespace Internship.DataAccess.Data
                 .WithOne()
                 .HasForeignKey<CareerCenter_User>(cc => cc.UserId);
 
+            modelBuilder.Entity<Student_User>()
+      .HasOne(s => s.ApplicationForm)
+      .WithOne(a => a.Student)
+      .HasForeignKey<ApplicationForm>(a => a.StudentId)
+      .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<OfficialLetter>()
+          .HasOne(s => s.Student)
+          .WithMany()
+          .HasForeignKey(s => s.StudentId)
+          .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HealthInsurance>()
+          .HasOne(s => s.Student)
+          .WithMany()
+          .HasForeignKey(s => s.StudentId)
+          .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<submittedApplicationForms>()
+          .HasOne(s => s.Student)
+          .WithMany()
+          .HasForeignKey(s => s.StudentId)
+          .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

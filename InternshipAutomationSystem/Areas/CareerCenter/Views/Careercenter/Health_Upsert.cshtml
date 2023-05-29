@@ -1,0 +1,48 @@
+﻿@model Internship.Models.ViewModels.HealthVM
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Form</title>
+
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+</head>
+<body>
+    <h1>Application Form</h1>
+
+    <form method="post" class="WebForm" asp-action="Health_Upsert" enctype="multipart/form-data">
+        <input asp-for="@Model.HealthInsurances.Id" hidden />
+
+        <div>
+            <label for="@Model.HealthInsurances.HealthInsurancePDF"></label>
+            <input asp-for="@Model.HealthInsurances.HealthInsurancePDF" type="file" name="file" placeholder="ImageUrl" />
+        </div>
+
+
+        <div  class="inputQue">
+            <label>Category</label>
+            <select asp-for="@Model.HealthInsurances.StudentId" asp-items="@Model.StudentList" class="selectC">
+                <option disabled selected>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.HealthInsurances.StudentId" class="alert-warning"></span>
+
+        </div>
+
+        <div  class="inputQue">
+            <label>Category</label>
+            <select asp-for="@Model.HealthInsurances.CareerCenterId" asp-items="@Model.CareerCenterList" class="selectC">
+                <option disabled selected>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.HealthInsurances.CareerCenterId" class="alert-warning"></span>
+
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+

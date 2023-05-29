@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Internship.Models
 {
-    public class Student_User 
+    public class Student_User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,6 +34,25 @@ namespace Internship.Models
 
         public bool HasTakenFirstInternship { get; set; }
         public bool HasTakenSecondInternship { get; set; }
+        public ApplicationForm ApplicationForm { get; set; }
 
+
+        [ValidateNever]
+        public string? submittedApplicationFormId { get; set; }
+
+        public submittedApplicationForms? submittedApplicationForm { get; set; }
+
+        [ValidateNever]
+        public string? HealthInsuranceId { get; set; }
+
+        public HealthInsurance? HealthInsurance { get; set; }
+
+        [ValidateNever]
+        public string? OfficialLetterId { get; set; }
+
+        public OfficialLetter? OfficialLetter { get; set; }
+
+        public string Status { get; set; } = "N/A";
     }
+  
 }

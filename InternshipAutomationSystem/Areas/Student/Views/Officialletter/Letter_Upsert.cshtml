@@ -1,0 +1,111 @@
+﻿@model Internship.Models.ViewModels.OfficialLetterVM
+
+
+@using Internship.DataAccess.Data;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+
+@inject ApplicationDbContext DbContext
+@inject UserManager<ApplicationUser> UserManager
+@{
+    // Get the currently signed-in user
+    ApplicationUser user2 = await UserManager.GetUserAsync(User);
+
+    // Get the associated Student_User record from the Student_User table
+    Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
+   
+
+    // Access the name of the student user
+    string studentInternshipOne = studentUser?.HasTakenFirstInternship.ToString().ToLower();
+    string studentInternshipTwo = studentUser?.HasTakenSecondInternship.ToString().ToLower();
+  
+}
+
+<head>
+    <title>Official Letter Form</title>
+
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/OfficialLetter.css" asp-append-version="true" />
+</head>
+
+    <a href="forms.html" id="backButton">← Back</a>
+    <form method="post" class="WebForm OfficialLetterRequest" asp-action="Letter_Upsert" enctype="multipart/form-data">
+    <input asp-for="@Model.OfficialLetters.Id" hidden />
+
+        <h2>Official Letter Request</h2>
+        <div class="inputs">
+
+            <div class="Two-Inputs-line">
+                <div>
+                    <label for="">Company Name</label>
+                <input asp-for="@Model.OfficialLetters.CompanyName"  placeholder="Company Name">
+                </div>
+
+                <div>
+                    <label for="">Company Email</label>
+                <input asp-for="@Model.OfficialLetters.CompanyEmail" placeholder="Company Email">
+                </div>
+
+            </div>
+
+            <div class="Two-Inputs-line">
+                <div>
+                <label for="">Receiver Name</label>
+                <input asp-for="@Model.OfficialLetters.ReceiverName" placeholder="Reciver Name">
+                </div>
+                <div>
+                    <label for="">Department</label>
+                <select asp-for="@Model.OfficialLetters.Department">
+                    <option value="Software Engineering">Software Engineering</option>
+                        <option disabled value="">sdasd</option>
+                    <option disabled value="">sdasd</option>
+                    </select>
+                </div>
+            </div>
+
+        @if (studentInternshipOne == "true" && studentInternshipTwo == "true")
+        {
+           
+            <input asp-for="@Model.OfficialLetters.NumOfInternships" value="0" hidden >
+
+
+        }
+        else if (studentInternshipOne == "true" && studentInternshipTwo == "false")
+        {
+            <input asp-for="@Model.OfficialLetters.NumOfInternships" value="1" hidden>
+
+
+        }
+        else if (studentInternshipOne == "false" && studentInternshipTwo == "false")
+        {
+            <input asp-for="@Model.OfficialLetters.NumOfInternships" value="2" hidden >
+
+
+        }
+        <div class="inputQue">
+            <label>Category</label>
+            <select asp-for="@Model.OfficialLetters.StudentId" asp-items="@Model.StudentList" class="selectC">
+                <option disabled selected>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.OfficialLetters.StudentId" class="alert-warning"></span>
+
+        </div>
+
+        <div class="inputQue">
+            <label>Category</label>
+            <select asp-for="@Model.OfficialLetters.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
+                <option disabled selected>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.OfficialLetters.InternshipCoordinatorId" class="alert-warning"></span>
+
+        </div>
+        </div>
+        <div class="sendButton">
+            <button>Send</button>
+        </div>
+    </form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="~/JS/app.js"></script>

@@ -1,0 +1,120 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model IEnumerable<OfficialLetter>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Application Form Approval</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Css/CareerCenter.css">
+    <link rel="stylesheet" href="~/Css/DataTable.css">
+    <link rel="stylesheet" href="~/Css/Style.css">
+    <link rel="stylesheet" href="~/Css/form.css">
+</head>
+
+<div class="back">
+    <a asp-action="Index" asp-controller="Coordinator" id="back">
+        <h4> <-- Back </h4>
+    </a>
+</div>
+<div class="table-container" style="    background: #fff;
+    padding: 2rem;
+    border-radius: 27px;">
+    <h3>Application Form Approval</h3>
+    <div class="widgetHeader">
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+
+    </div>
+    <div class="DataTable">
+
+
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">
+                        Student Name
+
+                        <img id="nameSort" class="sort rotateImage"
+                             src="img/CareerCenter/arrowUp.png" alt="">
+                    </th>
+
+                    <th onclick="sortTable(1)">
+                        Student ID
+
+                        <img class="sort rotateImage" id="idSort"
+                             src="img/CareerCenter/arrowUp.png" alt="">
+
+                    </th>
+
+                    <th onclick="sortTable(2)">
+                        State
+                        <img id="stateSort" class="sort rotateImage"
+                             src="img/CareerCenter/arrowUp.png" alt="">
+                    </th>
+                    <th class="center">Upload</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var applicationForm in Model)
+                {
+                    <tr>
+                        <td>@applicationForm.Student.Name</td>
+
+                        <td>@applicationForm.Student.StudentId</td>
+                        @if (applicationForm.OfficialLetterPDF == null && applicationForm.Student.StudentId != null && applicationForm.Student.StudentId != 0)
+                        {
+                            <td class="center state pending">
+                                <div>Pending</div>
+                            </td>
+                        }
+                        else if (applicationForm.OfficialLetterPDF != null)
+                        {
+                            <td class="center state completed">
+                                <div>Completed</div>
+                            </td>
+                        }
+                        else if (applicationForm.Student.StudentId == 0)
+                        {
+                            <td class="center state completed">
+                                <div>Not Yet</div>
+                            </td>
+                        }
+
+                        <td class="center">
+                            @*@if (applicationForm.Student.Status == "Pending")
+                            {*@
+                            <a class="edit" href="/Coordinator/Coordinator/Official_Letter_Upsert?id=@applicationForm.Id">
+                                    <img src="~/img/upload.png" height="20px">
+                                </a>
+
+                                <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
+                                    <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
+                                </a>
+                          @*  }
+                            else if (applicationForm.Student.Status == "N/A")
+                            {
+                                <span>Not Submitted</span>
+                            }*@
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+

@@ -332,7 +332,7 @@ body {
 }
 
 .progress-line {
-    width: 7rem;
+    width: 5rem !important;
     height: 0.3rem !important;
     background-color: #ccc;
 }
@@ -505,3 +505,29 @@ body {
     background-color: #F7F7F7;
     margin: 0 .65rem;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+    .tooltip .tooltip-text {
+        opacity: 0;
+        visibility: hidden;
+        background-color: #ffd504e8;
+        color: #ffffff;
+        text-align: center;
+        padding: 4px 8px;
+        border-radius: 4px;
+        position: absolute;
+        z-index: 1;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: opacity 0.3s ease-in-out; /* Fade-in transition */
+    }
+
+    .tooltip:hover .tooltip-text {
+        opacity: 1;
+        visibility: visible;
+    }

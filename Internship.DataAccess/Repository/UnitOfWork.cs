@@ -20,6 +20,13 @@ namespace Internship.DataAccess.Repository
             InternshipOpportunities = new InternshipOpportunityRepository(_db);
             Coordinators = new CoordinatorRepository(_db);
             Announcements = new AnnouncementRepository(_db);
+            Applications = new ApplicationRepository(_db);
+            Students = new StudentRepository(_db);
+            SubmittedApplicationForms = new SubmittedApplicationFormsRepository(_db);
+            HealthInsurances = new HealthInsuranceRepository(_db);
+            CareerCenters = new CareerCenterRepository(_db);
+            OfficialLetters = new OfficialLetterRepository(_db);
+
 
 
         }
@@ -27,6 +34,12 @@ namespace Internship.DataAccess.Repository
         public IInternshipOpportunityRepository InternshipOpportunities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
         public IAnnouncementRepository Announcements { get; private set; }
+        public IApplicationRepository Applications { get; private set; }
+        public IStudentRepository Students { get; private set; }
+        public ISubmittedApplicationFormsRepository SubmittedApplicationForms { get; private set; }
+        public IHealthInsuranceRepository HealthInsurances { get; private set; }
+        public ICareerCenterRepository CareerCenters { get; private set; }
+        public IOfficialLetterRepository OfficialLetters { get; private set; }
 
 
 

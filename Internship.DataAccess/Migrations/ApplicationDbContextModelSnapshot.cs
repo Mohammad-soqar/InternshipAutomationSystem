@@ -83,6 +83,90 @@ namespace Internship.DataAccess.Migrations
                     b.ToTable("Announcements");
                 });
 
+            modelBuilder.Entity("Internship.Models.ApplicationForm", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Class")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DependendParent")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Faculty")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstitutionAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstitutionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstitutionPerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstitutionPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InternshipCoordinatorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InternshipCoordinatorId");
+
+                    b.HasIndex("StudentId")
+                        .IsUnique();
+
+                    b.ToTable("ApplicationForms");
+                });
+
             modelBuilder.Entity("Internship.Models.CareerCenter_User", b =>
                 {
                     b.Property<int>("Id")
@@ -123,14 +207,23 @@ namespace Internship.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CareerCenter_UserId")
+                    b.Property<int>("CareerCenterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HealthInsurancePDF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CareerCenter_UserId");
+                    b.HasIndex("CareerCenterId");
 
-                    b.ToTable("HealthInsurance");
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("HealthInsurances");
                 });
 
             modelBuilder.Entity("Internship.Models.InternshipCoordinator_User", b =>
@@ -213,6 +306,54 @@ namespace Internship.DataAccess.Migrations
                     b.ToTable("InternshipOpportunities");
                 });
 
+            modelBuilder.Entity("Internship.Models.OfficialLetter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CompanyEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InternshipCoordinatorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumOfInternships")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OfficialLetterPDF")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InternshipCoordinatorId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("OfficialLetters");
+                });
+
             modelBuilder.Entity("Internship.Models.Student_User", b =>
                 {
                     b.Property<int>("StudentId")
@@ -245,6 +386,12 @@ namespace Internship.DataAccess.Migrations
                     b.Property<bool>("HasTakenSecondInternship")
                         .HasColumnType("bit");
 
+                    b.Property<string>("HealthInsuranceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("HealthInsuranceId1")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
@@ -252,7 +399,17 @@ namespace Internship.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OfficialLetterId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OfficialLetterId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -264,14 +421,53 @@ namespace Internship.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("submittedApplicationFormId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("submittedApplicationFormId1")
+                        .HasColumnType("int");
+
                     b.HasKey("StudentId");
 
                     b.HasIndex("CoordinatorId");
 
+                    b.HasIndex("HealthInsuranceId1");
+
+                    b.HasIndex("OfficialLetterId1");
+
                     b.HasIndex("UserId")
                         .IsUnique();
 
+                    b.HasIndex("submittedApplicationFormId1");
+
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Internship.Models.submittedApplicationForms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("InternshipCoordinatorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PDFForm")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InternshipCoordinatorId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("submittedApplicationForms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -482,6 +678,10 @@ namespace Internship.DataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserType")
                         .HasColumnType("int");
 
@@ -508,6 +708,25 @@ namespace Internship.DataAccess.Migrations
                     b.Navigation("CareerCenter");
                 });
 
+            modelBuilder.Entity("Internship.Models.ApplicationForm", b =>
+                {
+                    b.HasOne("Internship.Models.InternshipCoordinator_User", "InternshipCoordinator")
+                        .WithMany("ApplicationForms")
+                        .HasForeignKey("InternshipCoordinatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Internship.Models.Student_User", "Student")
+                        .WithOne("ApplicationForm")
+                        .HasForeignKey("Internship.Models.ApplicationForm", "StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("InternshipCoordinator");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Internship.Models.CareerCenter_User", b =>
                 {
                     b.HasOne("Internship.Models.ApplicationUser", "User")
@@ -521,9 +740,21 @@ namespace Internship.DataAccess.Migrations
 
             modelBuilder.Entity("Internship.Models.HealthInsurance", b =>
                 {
-                    b.HasOne("Internship.Models.CareerCenter_User", null)
+                    b.HasOne("Internship.Models.CareerCenter_User", "CareerCenter")
                         .WithMany("HealthInsurances")
-                        .HasForeignKey("CareerCenter_UserId");
+                        .HasForeignKey("CareerCenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Internship.Models.Student_User", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CareerCenter");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Internship.Models.InternshipCoordinator_User", b =>
@@ -537,6 +768,25 @@ namespace Internship.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Internship.Models.OfficialLetter", b =>
+                {
+                    b.HasOne("Internship.Models.InternshipCoordinator_User", "InternshipCoordinator")
+                        .WithMany()
+                        .HasForeignKey("InternshipCoordinatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Internship.Models.Student_User", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("InternshipCoordinator");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Internship.Models.Student_User", b =>
                 {
                     b.HasOne("Internship.Models.InternshipCoordinator_User", "Coordinator")
@@ -545,15 +795,52 @@ namespace Internship.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("Internship.Models.HealthInsurance", "HealthInsurance")
+                        .WithMany()
+                        .HasForeignKey("HealthInsuranceId1");
+
+                    b.HasOne("Internship.Models.OfficialLetter", "OfficialLetter")
+                        .WithMany()
+                        .HasForeignKey("OfficialLetterId1");
+
                     b.HasOne("Internship.Models.ApplicationUser", "User")
                         .WithOne()
                         .HasForeignKey("Internship.Models.Student_User", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Internship.Models.submittedApplicationForms", "submittedApplicationForm")
+                        .WithMany()
+                        .HasForeignKey("submittedApplicationFormId1");
+
                     b.Navigation("Coordinator");
 
+                    b.Navigation("HealthInsurance");
+
+                    b.Navigation("OfficialLetter");
+
                     b.Navigation("User");
+
+                    b.Navigation("submittedApplicationForm");
+                });
+
+            modelBuilder.Entity("Internship.Models.submittedApplicationForms", b =>
+                {
+                    b.HasOne("Internship.Models.InternshipCoordinator_User", "InternshipCoordinator")
+                        .WithMany()
+                        .HasForeignKey("InternshipCoordinatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Internship.Models.Student_User", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("InternshipCoordinator");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -610,6 +897,17 @@ namespace Internship.DataAccess.Migrations
             modelBuilder.Entity("Internship.Models.CareerCenter_User", b =>
                 {
                     b.Navigation("HealthInsurances");
+                });
+
+            modelBuilder.Entity("Internship.Models.InternshipCoordinator_User", b =>
+                {
+                    b.Navigation("ApplicationForms");
+                });
+
+            modelBuilder.Entity("Internship.Models.Student_User", b =>
+                {
+                    b.Navigation("ApplicationForm")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
