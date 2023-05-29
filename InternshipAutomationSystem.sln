@@ -5,11 +5,16 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternshipAutomationSystem", "InternshipAutomationSystem\InternshipAutomationSystem.csproj", "{2170656C-2DCB-4303-B9D3-7F4F328CB1D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Internship.DataAccess", "Internship.DataAccess\Internship.DataAccess.csproj", "{3D373DE6-EB4E-45C6-97E3-DCCA8B80E747}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Internship.DataAccess", "Internship.DataAccess\Internship.DataAccess.csproj", "{3D373DE6-EB4E-45C6-97E3-DCCA8B80E747}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Internship.Models", "Internship.Models\Internship.Models.csproj", "{D6B9BCF2-303E-4173-8CE8-955A0B33A3F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Internship.Models", "Internship.Models\Internship.Models.csproj", "{D6B9BCF2-303E-4173-8CE8-955A0B33A3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Internship.Utility", "Internship.Utility\Internship.Utility.csproj", "{28C9BC02-877D-4A56-A61E-6EE4783531E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Internship.Utility", "Internship.Utility\Internship.Utility.csproj", "{28C9BC02-877D-4A56-A61E-6EE4783531E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C666D0D-37DA-40A0-8430-FE7781DEA8E7}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
