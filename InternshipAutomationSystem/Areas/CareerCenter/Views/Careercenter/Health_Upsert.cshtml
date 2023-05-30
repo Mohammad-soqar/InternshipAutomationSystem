@@ -24,18 +24,18 @@
 
 
         <div  class="inputQue">
-            <label>Category</label>
+            <label>Student</label>
             <select asp-for="@Model.HealthInsurances.StudentId" asp-items="@Model.StudentList" class="selectC">
-                <option disabled selected>Select Category</option>
+                <option disabled selected>Select Student</option>
             </select>
             <span asp-validation-for="@Model.HealthInsurances.StudentId" class="alert-warning"></span>
 
         </div>
 
         <div  class="inputQue">
-            <label>Category</label>
+            <label>CareerCenter</label>
             <select asp-for="@Model.HealthInsurances.CareerCenterId" asp-items="@Model.CareerCenterList" class="selectC">
-                <option disabled selected>Select Category</option>
+                <option disabled selected>Select CareerCenter</option>
             </select>
             <span asp-validation-for="@Model.HealthInsurances.CareerCenterId" class="alert-warning"></span>
 
