@@ -51,7 +51,7 @@ namespace Internship.DataAccess.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.Announcement", b =>
@@ -80,7 +80,7 @@ namespace Internship.DataAccess.Migrations
 
                     b.HasIndex("CareerCenterId");
 
-                    b.ToTable("Announcements");
+                    b.ToTable("Announcements", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.ApplicationForm", b =>
@@ -164,7 +164,7 @@ namespace Internship.DataAccess.Migrations
                     b.HasIndex("StudentId")
                         .IsUnique();
 
-                    b.ToTable("ApplicationForms");
+                    b.ToTable("ApplicationForms", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.CareerCenter_User", b =>
@@ -196,7 +196,7 @@ namespace Internship.DataAccess.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("CareerCenters");
+                    b.ToTable("CareerCenters", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.HealthInsurance", b =>
@@ -223,7 +223,7 @@ namespace Internship.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("HealthInsurances");
+                    b.ToTable("HealthInsurances", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.InternshipCoordinator_User", b =>
@@ -255,7 +255,7 @@ namespace Internship.DataAccess.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Coordinators");
+                    b.ToTable("Coordinators", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.InternshipOpportunity", b =>
@@ -303,7 +303,7 @@ namespace Internship.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InternshipOpportunities");
+                    b.ToTable("InternshipOpportunities", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.OfficialLetter", b =>
@@ -351,7 +351,7 @@ namespace Internship.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("OfficialLetters");
+                    b.ToTable("OfficialLetters", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.Student_User", b =>
@@ -440,7 +440,7 @@ namespace Internship.DataAccess.Migrations
 
                     b.HasIndex("submittedApplicationFormId1");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("Internship.Models.submittedApplicationForms", b =>
@@ -467,7 +467,7 @@ namespace Internship.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("submittedApplicationForms");
+                    b.ToTable("submittedApplicationForms", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

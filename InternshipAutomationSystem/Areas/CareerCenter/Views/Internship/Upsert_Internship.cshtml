@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 </head>
 
@@ -42,10 +44,20 @@
 
                             <div class="Input-title">
                                     <label for="">Location</label>
-                                    <select asp-for="@Model.InternshipOpportunities.Location">
+                                <select id="location"  class="select2" asp-for="@Model.InternshipOpportunities.Location">
                                         <option disabled selected>Choose location</option>
-                                        <option>Istanbul</option>
-                                        <option>Ankara</option>
+                                    <option value="Ankara">Ankara (Turkey)</option>
+                                    <option value="Istanbul">Istanbul (Turkey)</option>
+                                    <option value="Izmir">Izmir (Turkey)</option>
+                                    <option value="Abu Dhabi">Abu Dhabi (UAE)</option>
+                                    <option value="Dubai">Dubai (UAE)</option>
+                                    <option value="Cairo">Cairo (Egypt)</option>
+                                    <option value="Riyadh">Riyadh (Saudi)</option>
+                                    <option value="Paris">Paris (France)</option>
+                                    <option value="Rome">Rome (Italy)</option>
+                                    <option value="London">London (UK)</option>
+                                    <option value="Berlin">Berlin (Germany)</option>
+                                    <option value="Baghdad">Baghdad (Iraq)</option>
                                     </select>
                                 </div>
 
@@ -126,6 +138,20 @@
     </div>
 </section>
 
+
+@section Scripts {
+   
+   
+
+<script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: 'Search for a location',
+                allowClear: true
+            });
+        });
+</script>
+
 <script src="https://cdn.tiny.cloud/1/17ey362kygya3onsmqifoumhul549v4sc5s58njdpa731on7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
@@ -134,3 +160,4 @@
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
     });
 </script>
+}

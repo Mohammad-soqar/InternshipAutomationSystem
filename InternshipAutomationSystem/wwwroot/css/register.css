@@ -1,0 +1,52 @@
+﻿.containers {
+    background-color: #fff;
+    box-shadow: 2px 2px 30px 2px #00000015;
+    border-radius: 27px;
+}
+.Two-Inputs-line {
+    display: flex;
+    gap: 10px;
+    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
+}
+
+    .Two-Inputs-line > div {
+        flex: 1;
+    }
+
+    .Two-Inputs-line label {
+        flex: 0 0 100px; /* Adjust the width of the labels as needed */
+    }
+
+    .Two-Inputs-line input[type="text"] {
+        flex: 1;
+    }
+
+.RegisterForm {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 2rem 2rem 3rem 2rem;
+    gap: 10px;
+}
+
+.inputs input, select {
+    box-sizing: border-box;
+    border: solid #FFD504 2px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    width: 80%;
+}
+
+.Add-User-Form > div {
+    flex: 1 1 100%;
+    margin-top: 10px;
+}
+.sendButton {
+    text-align: end;
+}
+
+.Add {
+    display: flex !important;
+    justify-content: space-between !important;
+    flex-direction: row-reverse !important;
+}

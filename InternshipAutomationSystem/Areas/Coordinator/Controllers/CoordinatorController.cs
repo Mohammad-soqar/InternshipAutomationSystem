@@ -352,11 +352,11 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
 
                         if (studentUser.User.Status == "applicationsubmit")
                         {
-                            studentUser.User.Status = "HealthInsurance";
+                            studentUser.User.Status = "OfficialLetter";
                         }
                         else if (studentUser.User.Status == "HealthInsurance")
                         {
-                            studentUser.User.Status = "OfficialLetter";
+                            studentUser.User.Status = "Letter-Health";
                         }
                     }
                     else

@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="~/css/OfficialLetter.css" asp-append-version="true" />
 </head>
 
-    <a href="forms.html" id="backButton">← Back</a>
+<a asp-action="Forms" asp-area="Student" asp-controller="Home" id="backButton">← Back</a>
     <form method="post" class="WebForm OfficialLetterRequest" asp-action="Letter_Upsert" enctype="multipart/form-data">
     <input asp-for="@Model.OfficialLetters.Id" hidden />
 
@@ -83,24 +83,24 @@
 
 
         }
-        <div class="inputQue">
-            <label>Category</label>
+       @* <div class="inputQue">
+            <label>Student</label>
             <select asp-for="@Model.OfficialLetters.StudentId" asp-items="@Model.StudentList" class="selectC">
-                <option disabled selected>Select Category</option>
+                <option disabled selected>Select Student</option>
             </select>
             <span asp-validation-for="@Model.OfficialLetters.StudentId" class="alert-warning"></span>
 
         </div>
 
         <div class="inputQue">
-            <label>Category</label>
+            <label>Internship Coordinator</label>
             <select asp-for="@Model.OfficialLetters.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
-                <option disabled selected>Select Category</option>
+                <option disabled selected>Select Coordinator</option>
             </select>
             <span asp-validation-for="@Model.OfficialLetters.InternshipCoordinatorId" class="alert-warning"></span>
 
         </div>
-        </div>
+        </div>*@
         <div class="sendButton">
             <button>Send</button>
         </div>
