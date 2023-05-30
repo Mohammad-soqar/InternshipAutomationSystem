@@ -91,6 +91,12 @@ namespace InternshipAutomationSystem.Areas.Student.Controllers
 
         public IActionResult SubmitForm(ApplicationVM obj)
         {
+            ApplicationUser user = _userManager.GetUserAsync(User).Result;
+
+            Student_User studentUser = _dbContext.Students.FirstOrDefault(s => s.UserId == user.Id);
+            obj.ApplicationForms.StudentId = studentUser.StudentId;
+            obj.ApplicationForms.InternshipCoordinatorId = studentUser.CoordinatorId;
+
             string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ApplicationForm applicationForm = _dbContext.ApplicationForms.FirstOrDefault(f => f.Student.UserId == studentId);
 
@@ -198,6 +204,12 @@ namespace InternshipAutomationSystem.Areas.Student.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ApplicationForm_Final_Upsert(FinalApplicationVM obj, IFormFile file)
         {
+            ApplicationUser user2 = _userManager.GetUserAsync(User).Result;
+
+            Student_User studentUser = _dbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
+            obj.SubmittedApplicationForms.StudentId = studentUser.StudentId;
+            obj.SubmittedApplicationForms.InternshipCoordinatorId = studentUser.CoordinatorId;
+
             if (ModelState.IsValid)
             {
                 var user = _userManager.GetUserAsync(User).GetAwaiter().GetResult();

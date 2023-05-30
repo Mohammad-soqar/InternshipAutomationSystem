@@ -20,29 +20,29 @@
        
         <div>
             <label for="@Model.OfficialLetters.CompanyName"></label>
-            <input asp-for="@Model.OfficialLetters.CompanyName"  placeholder="ImageUrl" />
+            <input asp-for="@Model.OfficialLetters.CompanyName" placeholder="If these fileds are empty that means there is a tech problem please check with tech department" />
         </div>
         <div>
             <label for="@Model.OfficialLetters.CompanyEmail"></label>
-            <input asp-for="@Model.OfficialLetters.CompanyEmail" placeholder="ImageUrl" />
+            <input asp-for="@Model.OfficialLetters.CompanyEmail" placeholder="If these fileds are empty that means there is a tech problem please check with tech department" />
         </div>
         <div>
             <label for="@Model.OfficialLetters.ReceiverName"></label>
-            <input asp-for="@Model.OfficialLetters.ReceiverName" placeholder="ImageUrl" />
+            <input asp-for="@Model.OfficialLetters.ReceiverName" placeholder="If these fileds are empty that means there is a tech problem please check with tech department" />
         </div>
         <div>
             <label for="@Model.OfficialLetters.Department"></label>
-            <input asp-for="@Model.OfficialLetters.Department"  placeholder="ImageUrl" />
+            <input asp-for="@Model.OfficialLetters.Department"  placeholder="If these fileds are empty that means there is a tech problem please check with tech department"   />
         </div>
         <div>
             <label for="@Model.OfficialLetters.DatePosted"></label>
-            <input asp-for="@Model.OfficialLetters.DatePosted"  placeholder="ImageUrl" />
+            <input asp-for="@Model.OfficialLetters.DatePosted"  />
         </div>
         <div>
             
-            <input hidden asp-for="@Model.OfficialLetters.OfficialLetterPDF" type="file" placeholder="ImageUrl" />
+            <input hidden asp-for="@Model.OfficialLetters.OfficialLetterPDF" placeholder="ImageUrl" />
         </div>
-        <div  class="inputQue">
+        <div hidden class="inputQue">
             <label>Student</label>
             <select asp-for="@Model.OfficialLetters.StudentId" asp-items="@Model.StudentList" class="selectC">
                 <option disabled selected>Select Student</option>
@@ -51,7 +51,7 @@
 
         </div>
 
-        <div  class="inputQue">
+        <div hidden class="inputQue">
             <label>Internship Coordinator</label>
             <select asp-for="@Model.OfficialLetters.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
                 <option disabled selected>Select Coordinator</option>

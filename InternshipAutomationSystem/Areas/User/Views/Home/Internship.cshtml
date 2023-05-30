@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="~/css/CareerCenter.css" asp-append-version="true" />
 
     }
-
+  
 
 </head>
 
@@ -165,31 +165,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('.Left-Internship-Links').on('click', '.Internship-Link', function () {
+        //$(document).ready(function () {
+        //    $('.Left-Internship-Links').on('click', '.Internship-Link', function () {
          
-                var internshipId = $(this).data('internship-id');
-                $.ajax({
-                    url: '/User/Home/GetInternshipDetails',
-                    type: 'GET',
-                    data: { id: internshipId },
-                    success: function (response) {
-                        $('.Internship-Details .Title-Details h3').text(response.jobTitle);
-                        $('.Internship-Details .Title-Details p').text(response.companyName + ' - ' + response.location + ' - ' + response.site);
-                        $('.Internship-Details .skills p').text(response.skillsReq);
-                        $('.Internship-Details .type p').text(response.type);
-                        $('.Internship-Details .About-job p').html(response.description);
+        //        var internshipId = $(this).data('internship-id');
+        //        $.ajax({
+        //            url: '/User/Home/GetInternshipDetails',
+        //            type: 'GET',
+        //            data: { id: internshipId },
+        //            success: function (response) {
+        //                $('.Internship-Details .Title-Details h3').text(response.jobTitle);
+        //                $('.Internship-Details .Title-Details p').text(response.companyName + ' - ' + response.location + ' - ' + response.site);
+        //                $('.Internship-Details .skills p').text(response.skillsReq);
+        //                $('.Internship-Details .type p').text(response.type);
+        //                $('.Internship-Details .About-job p').html(response.description);
                        
-                    },
-                    error: function () {
+        //            },
+        //            error: function () {
                      
-                    }
+        //            }
+        //        });
+        //    });
+        //    $('.Internship-Link:first').click();
+
+
+         $(document).ready(function () {
+                $('.Left-Internship-Links').on('click', '.Internship-Link', function () {
+                    // Remove the 'active' class from all Internship-Link elements
+                    $('.Internship-Link').removeClass('active');
+
+                    // Add the 'active' class to the clicked Internship-Link
+                    $(this).addClass('active');
+
+                    var internshipId = $(this).data('internship-id');
+                    $.ajax({
+                        url: '/User/Home/GetInternshipDetails',
+                        type: 'GET',
+                        data: { id: internshipId },
+                        success: function (response) {
+                            $('.Internship-Details .Title-Details h3').text(response.jobTitle);
+                            $('.Internship-Details .Title-Details p').text(response.companyName + ' - ' + response.location + ' - ' + response.site);
+                            $('.Internship-Details .skills p').text(response.skillsReq);
+                            $('.Internship-Details .type p').text(response.type);
+                            $('.Internship-Details .About-job p').html(response.description);
+                        },
+                        error: function () {
+                            // Handle error, if any
+                        }
+                    });
                 });
-            });
+
             $('.Internship-Link:first').click();
-          
-
-
 
 
 

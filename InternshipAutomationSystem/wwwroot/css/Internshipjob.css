@@ -24,6 +24,12 @@
 
 
 }
+.Internship-Link.active {
+    background-color: #ebebeb; 
+    transition: 0.3s;
+}
+
+
 
 .Title-img img{
     border-radius:50%;
@@ -68,21 +74,24 @@
 }
 
 hr {
-    width: 99%;
+    width: 100%;
     color: #585858;
     height: 1px;
+    margin: 0 !important;
+    border: none;
+    background-color: #585858;
 }
 
 .Left-Internship-Links {
     display: flex;
     overflow-x: none !important;
-    padding: 1rem 0rem 0rem 0rem;
+
     flex-direction: column;
     width: 30%;
     overflow-y: scroll;
     max-height: calc(100vh - 13rem);
     flex: 1;
-    margin: 0rem 0rem 2rem 0rem;
+    margin: 0.3rem 0rem 2rem 0rem;
     overflow-y: auto;
 }
 
@@ -99,6 +108,7 @@ hr {
 .Internship-Link {
     background-color: #fff;
     display: flex;
+    padding:0rem 0rem 0.5rem 0rem;
     flex-direction: column;
 }
 

@@ -79,10 +79,11 @@ namespace InternshipAutomationSystem.Areas.Student.Controllers
             ApplicationUser user = _userManager.GetUserAsync(User).Result;
 
             Student_User studentUser = _dbContext.Students.FirstOrDefault(s => s.UserId == user.Id);
+            obj.OfficialLetters.StudentId = studentUser.StudentId;
+            obj.OfficialLetters.InternshipCoordinatorId = studentUser.CoordinatorId;
             var Student = _unitOfWork.Students.GetFirstOrDefault(u => u.StudentId == obj.OfficialLetters.StudentId);
             var InternshipCoordinator = _unitOfWork.Coordinators.GetFirstOrDefault(u => u.Id == obj.OfficialLetters.InternshipCoordinatorId);
-            obj.OfficialLetters.InternshipCoordinatorId = studentUser.StudentId;
-            obj.OfficialLetters.StudentId = studentUser.CoordinatorId;
+        
 
             if (ModelState.IsValid)
             {

@@ -26,6 +26,12 @@ namespace InternshipAutomationSystem.Areas.User.Controllers
         {
             return Redirect("/Identity/Account/Login");
         }
+
+        public IActionResult Support()
+        {
+            return View();
+        }
+
         public IActionResult InternshipOP()
         {
             return RedirectToAction("Index", "Internshipjob");
