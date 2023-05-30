@@ -60,7 +60,7 @@ $('#copyBtn').on('click', function () {
 });
 
 $(document).ready(function () {
-    var backLeftBtn = $('<div id="backButton">Back</div>');
+    var backLeftBtn = $('<div class="backButton" id="backButton">Back</div>');
 
 
     $('#second-slide').hide();
