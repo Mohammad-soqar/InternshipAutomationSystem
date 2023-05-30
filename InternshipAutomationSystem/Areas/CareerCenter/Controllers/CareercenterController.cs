@@ -141,7 +141,10 @@ namespace InternshipAutomationSystem.Areas.CareerCenter.Controllers
                         {
                             studentUser.User.Status = "HealthInsurance";
                         }
-
+                        else if (studentUser.User.Status == "OfficialLetter")
+                        {
+                            studentUser.User.Status = "Letter-Health";
+                        }
 
                     }
                     else
