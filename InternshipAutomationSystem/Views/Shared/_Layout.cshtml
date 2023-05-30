@@ -14,8 +14,9 @@
     Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
     InternshipCoordinator_User CoordinatorUser = DbContext.Coordinators.FirstOrDefault(s => s.UserId == user2.Id);
     CareerCenter_User CareerCenterUser = DbContext.CareerCenters.FirstOrDefault(s => s.UserId == user2.Id);
+    Admin_User AdminUser = DbContext.Admins.FirstOrDefault(s => s.UserId == user2.Id);
 
-    // Access the name of the student user
+  
     string studentName = studentUser?.Name;
     string studentId = studentUser?.StudentId.ToString();
 
@@ -24,15 +25,17 @@
 
     string CareerCenterName = CareerCenterUser?.Name;
     string CareerCenterId = CareerCenterUser?.Id.ToString();
+    string AdminUserName = AdminUser?.Name;
+    string AdminUserId = AdminUser?.Id.ToString();
 
-    string OfficialLetterstatus = studentUser?.OfficialLetterId;
+ 
 }
 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <link rel="icon" href="img/webIcon.png">
+        <link rel="icon" href="~/img/webIcon.png">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Account</title>
@@ -212,7 +215,7 @@
                     {
                         var user = await UserManager.GetUserAsync(User);
 
-                        @if (user.Status.ToLower() == "notyet" || user.Status.ToLower() == null && OfficialLetterstatus == null)
+                       @if (user.Status.ToLower() == "notyet" || user.Status.ToLower() == null )
                         {
                             <div>
                                 <h3>Status</h3>
@@ -235,7 +238,7 @@
                                 </div>
                             </div>
                         }
-                        else if (user.Status.ToLower() == "applicationsubmit" && OfficialLetterstatus == null)
+                        else if (user.Status.ToLower() == "applicationsubmit" )
                         {
                             <div>
                                 <h3>Status</h3>
@@ -265,7 +268,7 @@
                                 </div>
                             </div>
                         }
-                        else if (user.Status.ToLower() == "healthinsurance" && OfficialLetterstatus == null)
+                        else if (user.Status.ToLower() == "healthinsurance" )
                         {
                             <div>
                                 <h3>Status</h3>
@@ -304,7 +307,46 @@
                                 </div>
                             </div>
                         }
-                        else if (user.Status.ToLower() == "officialletter" && OfficialLetterstatus != null)
+                        else if (user.Status.ToLower() == "officialletter")
+                        {
+                            <div>
+                                <h3>Status</h3>
+                                <div class="status">
+                                    <div class="progress-bar">
+
+                                        <a asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Approved Application</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+
+
+                                        <a asp-action="Official_Letter_View" asp-area="Student" asp-controller="Application">
+                                            <div class="progress-circle tooltip progress-animation">
+                                                <div class="tooltip-text">Download Your Official Letter</div>
+                                            </div>
+                                        </a>
+                                        <div class="progress-line progress-animation2"></div>
+
+
+                                        <div class="progress-circle"></div>
+                                        <div class="progress-line"></div>
+
+
+                                        <div class="progress-circle"></div>
+
+                                    </div>
+
+                                    <a class="status-info">
+                                        <img src="~/img/support-symbol.png"
+                                             alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else if (user.Status.ToLower() == "letter-health")
                         {
                             <div>
                                 <h3>Status</h3>
@@ -350,7 +392,6 @@
                             </div>
                         }
                       
-                        
                     
                     }
                    
@@ -431,6 +472,11 @@
                                 {
                                     <p>@CareerCenterName</p>
                                     <p>@CareerCenterId</p>
+                                }
+                                else if (User.IsInRole(SD.Role_Admin))
+                                {
+                                    <p>@AdminUserName</p>
+                                    <p>@AdminUserId</p>
                                 }
                             </div>
                         </a>
