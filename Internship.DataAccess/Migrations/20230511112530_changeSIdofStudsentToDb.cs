@@ -8,6 +8,8 @@ namespace Internship.DataAccess.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.Sql("CREATE SEQUENCE dbo.StudentIDSeq AS INT START WITH 200209300 INCREMENT BY 1");
+
             migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
