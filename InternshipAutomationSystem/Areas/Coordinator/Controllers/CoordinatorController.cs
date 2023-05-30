@@ -149,6 +149,9 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ApplicationForm_Approvel_Upsert(FinalApplicationVM obj, IFormFile file)
         {
+       
+
+
             if (ModelState.IsValid)
             {
 
@@ -282,6 +285,30 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Official_Letter_Upsert(OfficialLetterVM obj, IFormFile file)
         {
+            var Student = _unitOfWork.Students.GetFirstOrDefault(u => u.StudentId == obj.OfficialLetters.StudentId);
+            var InternshipCoordinator = _unitOfWork.Coordinators.GetFirstOrDefault(u => u.Id == obj.OfficialLetters.InternshipCoordinatorId);
+            obj.OfficialLetters.InternshipCoordinator = InternshipCoordinator;
+            obj.OfficialLetters.Student = Student;
+            bool FirstInternship = obj.OfficialLetters.Student.HasTakenFirstInternship;
+            bool SecondInternship = obj.OfficialLetters.Student.HasTakenSecondInternship;
+
+            if (FirstInternship == false && SecondInternship == false)
+            {
+                obj.OfficialLetters.NumOfInternships = 1;
+            }
+            else if(FirstInternship == true && SecondInternship == false)
+            {
+                obj.OfficialLetters.NumOfInternships = 1;
+            }
+            else if (FirstInternship == false && SecondInternship == true)
+            {
+                obj.OfficialLetters.NumOfInternships = 1;
+            }
+            else
+            {
+                return NotFound();
+            }
+
             if (!ModelState.IsValid)
             {
                 OfficialLetter existingOfficialLetter = null;
@@ -293,10 +320,7 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
                 }
 
                
-                var Student = _unitOfWork.Students.GetFirstOrDefault(u => u.StudentId == obj.OfficialLetters.StudentId);
-                var InternshipCoordinator = _unitOfWork.Coordinators.GetFirstOrDefault(u => u.Id == obj.OfficialLetters.InternshipCoordinatorId);
-                obj.OfficialLetters.InternshipCoordinator = InternshipCoordinator;
-                obj.OfficialLetters.Student = Student;
+             
 
 
                 PdfGenerator pdfGenerator = new PdfGenerator(_HostEnvironment);
