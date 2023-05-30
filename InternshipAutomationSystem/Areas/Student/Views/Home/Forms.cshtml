@@ -19,6 +19,7 @@
     Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
 
     // Access the name of the student user
+    string user2status = user2?.Status;
     string studentTableStatus = studentUser?.Status;
     string studentOfficialLetter =studentUser?.OfficialLetterId ;
 
@@ -120,6 +121,10 @@
                 {
                         <a id="LinkStartButton">Nope Not yet</a>
 
+                    }
+                    else if (user2status.ToLower() == "applicationsubmit")
+                    {
+                        <a id="LinkStartButton" asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Start</a>
                     }
                     else if (studentOfficialLetter.ToLower() != null)
                     {

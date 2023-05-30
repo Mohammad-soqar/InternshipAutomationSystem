@@ -108,12 +108,12 @@
                         <div>
                             <label>Start Date</label>
 
-                            <input id="startDate" asp-for="@Model.ApplicationForms.StartDate">
+                            <input class="datetime" id="startDate" asp-for="@Model.ApplicationForms.StartDate">
                         </div>
 
                         <div>
                             <label for="">End Date</label>
-                            <input id="endDate" asp-for="@Model.ApplicationForms.EndDate">
+                            <input class="datetime" id="endDate" asp-for="@Model.ApplicationForms.EndDate">
                         </div>
 
                     </div>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="ForthPageStudentInfoInputs visable">
                     <div class="submit-downloadButtons">
-                        <button class="DownloadPDF">Download PDF</button>
+                       @* <button class="DownloadPDF">Download PDF</button>
                         <div class="inputQue">
                             <label>Student</label>
                             <select asp-for="@Model.ApplicationForms.StudentId" asp-items="@Model.StudentList" class="selectC">
@@ -187,7 +187,7 @@
                             </select>
                             <span asp-validation-for="@Model.ApplicationForms.InternshipCoordinatorId" class="alert-warning"></span>
 
-                        </div>
+                        </div>*@
 
                         <button type="submit">Submit</button>
                     </div>
@@ -208,7 +208,18 @@
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Get the current date and time
+        var currentDate = new Date();
 
+        // Format the date and time as a string in the format accepted by the input element
+        var dateString = currentDate.toISOString().slice(0, 16);
+
+        // Set the value of the input element to the current date and time
+        $(".datetime").val(dateString);
+    });
+</script>
 <script src="~/JS/form1.js"></script>
 <script src="~/JS/app.js"></script>
 
