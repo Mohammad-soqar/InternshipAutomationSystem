@@ -43,18 +43,18 @@
             <input hidden asp-for="@Model.OfficialLetters.OfficialLetterPDF" type="file" placeholder="ImageUrl" />
         </div>
         <div  class="inputQue">
-            <label>Category</label>
+            <label>Student</label>
             <select asp-for="@Model.OfficialLetters.StudentId" asp-items="@Model.StudentList" class="selectC">
-                <option disabled selected>Select Category</option>
+                <option disabled selected>Select Student</option>
             </select>
             <span asp-validation-for="@Model.OfficialLetters.StudentId" class="alert-warning"></span>
 
         </div>
 
         <div  class="inputQue">
-            <label>Category</label>
+            <label>Internship Coordinator</label>
             <select asp-for="@Model.OfficialLetters.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
-                <option disabled selected>Select Category</option>
+                <option disabled selected>Select Coordinator</option>
             </select>
             <span asp-validation-for="@Model.OfficialLetters.InternshipCoordinatorId" class="alert-warning"></span>
 

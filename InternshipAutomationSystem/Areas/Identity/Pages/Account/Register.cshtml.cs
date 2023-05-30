@@ -125,7 +125,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
             public int UserType { get; set; }
 
             public string? Role { get; set; }
-            public string? Coordinator { get; set; }
+            public string? CoordinatorId { get; set; }
             public string Name { get; set; }
 
             public string PhoneNumber { get; set; }
@@ -149,13 +149,13 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(SD.Role_Admin).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Career_Center)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Coordinator)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Student)).GetAwaiter().GetResult();
-            }
+            //if (!_roleManager.RoleExistsAsync(SD.Role_Admin).GetAwaiter().GetResult())
+            //{
+            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Career_Center)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Coordinator)).GetAwaiter().GetResult();
+            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Student)).GetAwaiter().GetResult();
+            //}
          
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -204,7 +204,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
                             Class = Input.Class,
                             IsApproved = Input.IsApproved,
                             Status = "N/A",
-                            CoordinatorId = 3,
+                            CoordinatorId = int.Parse(Input.CoordinatorId),
                             HasTakenFirstInternship = Input.HasTakenFirstInternship,
                             HasTakenSecondInternship = Input.HasTakenSecondInternship,
                          
