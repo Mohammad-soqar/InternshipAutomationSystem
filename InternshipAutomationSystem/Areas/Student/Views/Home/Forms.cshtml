@@ -17,10 +17,11 @@
 
     // Get the associated Student_User record from the Student_User table
     Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
- 
+
     // Access the name of the student user
     string studentTableStatus = studentUser?.Status;
-    
+    string studentOfficialLetter =studentUser?.OfficialLetterId ;
+
 }
 
 
@@ -117,7 +118,12 @@
                     @if (studentTableStatus.ToLower() == "pending" || user.Status.ToLower() == "notyet")
 
                 {
-                        <a id="LinkStartButton"  asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Nope Not yet</a>
+                        <a id="LinkStartButton">Nope Not yet</a>
+
+                    }
+                    else if (studentOfficialLetter.ToLower() != null)
+                    {
+                        <a id="LinkStartButton">You already submitted</a>
 
                     }
                     else
