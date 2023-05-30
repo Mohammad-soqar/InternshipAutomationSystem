@@ -1,0 +1,110 @@
+﻿.support p {
+    color: #FFD504 !important;
+}
+
+.questionBackground {
+    background-image: url(../img/have-a-Quastion-Backgroind.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 11.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 21px;
+    margin: 2rem 0 0 0;
+}
+
+.question {
+    margin: 5.5rem 0 0 0;
+    text-align: center;
+}
+
+    .question p {
+        font-size: 3.5rem;
+        font-weight: 500;
+    }
+
+    .question span {
+        font-weight: 700;
+    }
+
+.writeQuestion {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 12.51px;
+    padding: 0px 20px;
+    margin: 3rem 0 0 0;
+    box-shadow: 2px 2px 30px 2px #00000015;
+}
+
+    .search-bar input {
+        background: transparent;
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 1rem 1rem;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .search-bar img {
+        width: 25px;
+    }
+
+    .search-bar button {
+        border: none;
+        width: 25px;
+        height: 25px;
+        background-color: #FFFFFF;
+        cursor: pointer;
+    }
+/*----------- Dropdown Questions---------*/
+.wholeDropDownWithTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem 0 0 0;
+}
+
+.dropdownQuestions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+    height: 17rem;
+    overflow-y: scroll;
+    width: 100%;
+    border-radius: 21px;
+}
+
+.Frequently {
+    font-size: 2rem !important;
+    margin: 0 0 3rem 0 !important;
+}
+
+.question-and-answer1, .question-and-answer2, .question-and-answer3, .question-and-answer4 {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 21px;
+    width: 100%;
+    margin: .5rem 0;
+}
+
+.question1, .question2, .question3, .question4 {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.answer1, .answer2, .answer3, .answer4 {
+    margin: 1rem 1rem;
+    display: none;
+    line-height: 1.5;
+}
