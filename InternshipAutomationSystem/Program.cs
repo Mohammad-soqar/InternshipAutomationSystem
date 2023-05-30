@@ -9,6 +9,7 @@ using InternshipAutomationSystem;
 using Internship.Models;
 using Internship.DataAccess.DbInitializer;
 using CodyleOffical.DataAccess.DbInitializer;
+using Internship.Utility.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
  builder.Configuration.GetConnectionString("DefaultConnection")
     ));
-
-
 
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -35,12 +34,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(o => {
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI();
 
-
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddScoped<PdfGenerator>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-
 builder.Services.AddRazorPages();
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -49,6 +46,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LogoutPath = $"/Identity/Account/Logout";
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,18 +59,15 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 SeedDatabase();
-
 app.UseAuthentication();;
-
 app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
-
+app.MapHub<ChatHub>("/hubs/chat");
 app.Run();
 
 void SeedDatabase()
