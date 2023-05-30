@@ -7,6 +7,8 @@ using CodyleOffical.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using InternshipAutomationSystem;
 using Internship.Models;
+using Internship.DataAccess.DbInitializer;
+using CodyleOffical.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(o => {
+
+    o.Password.RequireDigit = false;
+    o.Password.RequireLowercase = false;
+    o.Password.RequireUppercase = false;
+    o.Password.RequireNonAlphanumeric = false;
+    o.Password.RequiredLength = 6;
+})
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI();
@@ -30,6 +39,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddScoped<PdfGenerator>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
 builder.Services.AddRazorPages();
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -52,6 +63,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+SeedDatabase();
+
 app.UseAuthentication();;
 
 app.UseAuthorization();
@@ -61,3 +74,12 @@ app.MapControllerRoute(
     pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
