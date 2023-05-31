@@ -9,7 +9,7 @@ using InternshipAutomationSystem;
 using Internship.Models;
 using Internship.DataAccess.DbInitializer;
 using CodyleOffical.DataAccess.DbInitializer;
-using Internship.Utility.Hubs;
+using Internship.DataAccess.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 

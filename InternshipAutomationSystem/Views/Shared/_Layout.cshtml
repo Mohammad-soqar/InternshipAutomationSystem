@@ -126,23 +126,14 @@
                     </div>
                 }
                    
-                    <!-- ----------Messages Dropdown Menu---------- -->
-
-                    <div class="Messages">
-                        <div id="dropdown-messages-student">
-                            <img src="~/img/messages-symbol.png" alt="" width="27px " height="22px">
-                            <p>
-                                Messages <img id="down-arrow-home-student" src="~/img/Dowm-arrow.png" alt="" height="10px">
-                            </p>
-                        </div>
-
-                        <ul class="Messagesslide">
-                            <li><a href="#">Inbox</a></li>
-                            <li><a href="#">Compose Message</a></li>
-                        </ul>
+                    <!-- ----------Messages---------- -->
+                <div class="Messages" id="Messages">
+                    <a asp-action="Messages" asp-controller="Home" asp-area="User" style="display: flex; align-items: center;">
+                        <img src="~/img/messages-symbol.png" alt="" width="27px " height="22px"><p> Messages </p>
+                        </a>
                     </div>
+                    <!-- ----------Messages---------- -->
 
-                    <!-- ----------Messages Dropdown Menu---------- -->
                     <div class="internship">
                     <a asp-area="User" asp-controller="Home" asp-action="Internship">
                             <img src="~/img/internship-symbol.png" alt="" height="22px">
@@ -496,7 +487,7 @@
 
         
   <script>
-
+      /*
         $(document).click(function (e) {
             var notificationContainer = $(".notificationContiner");
             if (!notificationContainer.is(e.target) && notificationContainer.has(e.target).length === 0) {
@@ -531,7 +522,7 @@
                 $(".messagingboxContiner").hide();
             }
         });
-
+        */
 
   </script>
 

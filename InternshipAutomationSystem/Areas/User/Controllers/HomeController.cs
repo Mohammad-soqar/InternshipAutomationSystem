@@ -52,18 +52,20 @@ namespace InternshipAutomationSystem.Areas.User.Controllers
 
         public IActionResult GetInternshipDetails(int id)
         {
-
             var internship = GetInternshipById(id);
-
-
             return Json(internship);
         }
 
         private InternshipOpportunity GetInternshipById(int id)
         {
             var internship = _unitOfWork.InternshipOpportunities.GetFirstOrDefault(i => i.Id == id);
-
             return internship;
         }
+
+        public IActionResult Messages()
+        {
+            return View();
+        }
+
     }
 }

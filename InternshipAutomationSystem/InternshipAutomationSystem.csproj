@@ -35,7 +35,6 @@
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\Images\InternshipJobs\" />
-    <Folder Include="wwwroot\lib\microsoft\signalr\dist\browser\" />
     <Folder Include="wwwroot\PDFCAN\Forms\" />
     <Folder Include="wwwroot\PDFCAN\Health_Insurance\" />
     <Folder Include="wwwroot\PDF\" />
