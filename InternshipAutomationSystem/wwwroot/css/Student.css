@@ -17,8 +17,10 @@
     justify-content: space-between;
 }
 
-.companyLogo img{
+.companyLogo img {
     border-radius: 50%;
+    height: 2.4rem;
+    width: 2.4rem;
 }
 
 .checkAll {
@@ -47,11 +49,30 @@
     box-shadow: 2px 2px 30px 2px #00000015;
 }
 
+
+.firstInternship2 {
+    background-color: #FFFFFF !important;
+    width: 90.7%;
+    border-radius: 27px;
+    box-shadow: 2px 2px 30px 2px #00000015;
+}
+
+    .firstInternship2 a {
+        display: flex;
+        padding: 8% 8% 0% 8%;
+        margin: 0 0 8% 0;
+        width: 84%;
+        height: 90%;
+        flex-direction: column;
+    }
+
 .companySave button {
     background-color: #FFFFFF;
     border: none;
     cursor: pointer;
 }
+
+
 
 .firstInternship a, .secondInternship a, .thirdInternship a {
     display: flex;

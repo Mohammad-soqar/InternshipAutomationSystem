@@ -1,0 +1,171 @@
+﻿.Account-Content {
+    background-color: #ffffff;
+    box-shadow: 2px 2px 30px 2px #00000015;
+    border-radius: 21px;
+    padding: 2rem;
+    display: flex;
+    margin: 2rem 0 0 0;
+}
+
+h1,h2,hr{
+    display:none;
+}
+
+
+#line {
+    width: 2px;
+    background-color: #F4F4F4;
+}
+
+.Account-Links {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+    .Account-Links a {
+        padding: 1rem 0 1rem 1rem;
+    }
+
+#selected {
+    background-color: #FFD504;
+}
+
+.right-side-panel {
+    padding: 0rem 2rem;
+    width: 100%;
+}
+
+.MyProfile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .MyProfile h3 {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+#AccountSettings {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.PersonalInforamtion {
+    background-color: #F4F4F4;
+    margin: 1rem 0 0 0;
+    padding: 1rem;
+    border-radius: 17px;
+}
+
+.PersonalInforamtion-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+    .PersonalInforamtion-button button {
+        background-color: #FFD504;
+        border: none;
+        border-radius: 27px;
+        color: #F4F4F4;
+        width: 6rem;
+        padding: .5rem 0;
+        text-align: center;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: space-around;
+        cursor: pointer;
+    }
+
+.PersonalInforamtion-button {
+    font-size: 1.5rem;
+}
+
+.EmailAddress2,
+.PhoneNumber {
+    display: flex;
+    flex-direction: column;
+}
+
+.PhoneNumber {
+    margin-top: .5rem;
+}
+
+    .EmailAddress2 p,
+    .PhoneNumber p {
+        margin: .5rem 0 1rem 0;
+    }
+
+input[type=text] {
+    width: 45%;
+    padding: 10px 10px;
+    border: solid #FFD504 2px;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+}
+
+.sendButton {
+    text-align: end;
+    display: none;
+}
+
+.PhoneNumber button,
+#saveButton2 {
+    background-color: #FFD504;
+    border: none;
+    border-radius: 27px;
+    color: #F4F4F4;
+    width: 6rem;
+    padding: .5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.AddressDistrict p {
+    margin: .5rem 0 1rem 0;
+}
+
+.sendButton2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#saveButton2 {
+    display: none;
+}
+
+.Adress {
+    background-color: #F4F4F4;
+    margin: 1rem 0 0 0;
+    padding: 1rem;
+    border-radius: 17px;
+}
+
+.textboxAndPinDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    background-color: #F7F7F7;
+}
+
+.call-to-action-btns button {
+    margin: 0rem 1rem;
+}
+
+/*Notıfıcatıon box*/
+.notificationContiner {
+    top: 7%;
+    right: 9.5%;
+}
+/* messages box */
+.messagingboxContiner {
+    top: 7% !important;
+    right: 13.5% !important;
+}

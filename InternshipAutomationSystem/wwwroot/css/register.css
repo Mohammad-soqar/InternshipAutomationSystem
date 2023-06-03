@@ -1,52 +1,121 @@
-﻿.containers {
+﻿
+
+.containers {
     background-color: #fff;
     box-shadow: 2px 2px 30px 2px #00000015;
     border-radius: 27px;
 }
-.Two-Inputs-line {
-    display: flex;
-    gap: 10px;
-    flex: 1 1 100%; /* Flexbox 1:1:100% to stretch to available space */
-}
-
-    .Two-Inputs-line > div {
-        flex: 1;
-    }
-
-    .Two-Inputs-line label {
-        flex: 0 0 100px; /* Adjust the width of the labels as needed */
-    }
-
-    .Two-Inputs-line input[type="text"] {
-        flex: 1;
-    }
 
 .RegisterForm {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     padding: 2rem 2rem 3rem 2rem;
-    gap: 10px;
+    flex-direction: column;
 }
 
-.inputs input, select {
+.Two-Inputs-line {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.widget-right-side {
+    padding: 2.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin: 0 0 .5rem 0;
+}
+
+.inputs input,
+.inputs select {
     box-sizing: border-box;
     border: solid #FFD504 2px;
     border-radius: 10px;
     padding: 10px 10px;
-    width: 80%;
+    width: 100%;
+    margin: .5rem 0 0 0;
 }
 
-.Add-User-Form > div {
-    flex: 1 1 100%;
-    margin-top: 10px;
+.form-floating {
+    margin: 2% 0 0 0;
+    width: 90%;
 }
+
+.Two-Inputs-line .form-floating {
+    width: 45%;
+    margin: 2% 10% 0 0;
+}
+
+.RegisterForm button {
+    padding: 0.5rem 2rem;
+    font-size: 18px;
+    color: #fff !important;
+    border: none !important;
+    background-color: #FFD504 !important;
+    border-radius: 21px;
+    cursor: pointer;
+}
+
+/* .registerSubmit,
+ */
+.widget-right-side {
+    padding: 2rem 2rem 1rem 2rem;
+    font-size: 20px;
+    font-family: inter;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+}
+
 .sendButton {
-    text-align: end;
+    margin: 1rem 0 0 0;
 }
 
-.Add {
-    display: flex !important;
-    justify-content: space-between !important;
-    flex-direction: row-reverse !important;
+#second-slide {
+    display: none;
+}
+
+#next-btn {
+    display: none;
+}
+
+.form-check input {
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    width: 14px;
+    margin: 0;
+}
+
+.form-check {
+    margin: 1rem 0 0 0;
+    display: flex;
+}
+
+.sendButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#Back-Button1 {
+    display: flex;
+    justify-content: flex-start !important;
+    margin: 1rem 0 0 0;
+}
+
+.backButton,
+.post-btn {
+    padding: 0.5rem 2rem;
+    font-size: 18px;
+    color: #fff !important;
+    border: none !important;
+    background-color: #FFD504 !important;
+    border-radius: 21px;
+    cursor: pointer;
+    width: 3rem;
 }
