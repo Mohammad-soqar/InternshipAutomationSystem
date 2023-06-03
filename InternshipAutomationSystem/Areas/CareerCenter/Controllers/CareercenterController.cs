@@ -57,6 +57,22 @@ namespace InternshipAutomationSystem.Areas.CareerCenter.Controllers
             return View(applicationFormsList);
         }
 
+        public IActionResult Old_Health_Insurance_Approval()
+        {
+
+            IEnumerable<Student_User> students = _unitOfWork.Students.GetAll();
+
+            var applicationFormsList = students.Select(student => new HealthInsurance
+            {
+                Student = student,
+                StudentId = student.StudentId,
+                Id = student.HealthInsuranceId != null ? int.Parse(student.HealthInsuranceId) : 0,
+                HealthInsurancePDF = student.HealthInsurance != null ? student.HealthInsurance.HealthInsurancePDF : null,
+            }); ;
+
+            return View(applicationFormsList);
+        }
+
         public IActionResult Health_Upsert(int? Id)
         {
 
@@ -134,24 +150,32 @@ namespace InternshipAutomationSystem.Areas.CareerCenter.Controllers
                     if (student != null)
                     {
                         Student_User studentUser = _dbContext.Students
-             .Include(s => s.User)
-             .FirstOrDefault(s => s.UserId == student.UserId);
+                            .Include(s => s.User)
+                            .FirstOrDefault(s => s.UserId == student.UserId);
 
-                        if (studentUser.User.Status == "applicationsubmit")
+                        if (studentUser.HealthInsuranceStatus.ToLower() == "pending")
                         {
-                            studentUser.User.Status = "HealthInsurance";
+                            studentUser.HealthInsuranceStatus = "completed";
+                           
                         }
-                        else if (studentUser.User.Status == "OfficialLetter")
+                        else
                         {
-                            studentUser.User.Status = "Letter-Health";
+                            return NotFound();
                         }
-
+                        if (studentUser.User.Status == "approved")
+                        {
+                            studentUser.User.Status = "health_insurance";
+                        }
+                        else if (studentUser.User.Status == "official-letter")
+                        {
+                            studentUser.User.Status = "health-letter";
+                        }
                     }
                     else
                     {
                         return NotFound();
                     }
-                      
+
 
                 }
                 
