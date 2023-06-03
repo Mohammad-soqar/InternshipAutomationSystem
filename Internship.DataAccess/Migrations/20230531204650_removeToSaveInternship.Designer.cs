@@ -4,6 +4,7 @@ using Internship.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Internship.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531204650_removeToSaveInternship")]
+    partial class removeToSaveInternship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -384,39 +386,12 @@ namespace Internship.DataAccess.Migrations
                     b.ToTable("Reports");
                 });
 
-            modelBuilder.Entity("Internship.Models.SavedInternship", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("InternshipOpportunityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InternshipOpportunityId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("SavedInternships");
-                });
-
             modelBuilder.Entity("Internship.Models.Student_User", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("NEXT VALUE FOR dbo.StudentIDSeq");
-
-                    b.Property<string>("ApplicationFormStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Class")
                         .IsRequired()
@@ -449,10 +424,6 @@ namespace Internship.DataAccess.Migrations
                     b.Property<int?>("HealthInsuranceId1")
                         .HasColumnType("int");
 
-                    b.Property<string>("HealthInsuranceStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("InternshipOpportunityId")
                         .HasColumnType("int");
 
@@ -469,10 +440,6 @@ namespace Internship.DataAccess.Migrations
                     b.Property<int?>("OfficialLetterId1")
                         .HasColumnType("int");
 
-                    b.Property<string>("OfficialLetterStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -482,10 +449,6 @@ namespace Internship.DataAccess.Migrations
 
                     b.Property<int?>("ReportId1")
                         .HasColumnType("int");
-
-                    b.Property<string>("ReportStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -888,25 +851,6 @@ namespace Internship.DataAccess.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Internship.Models.SavedInternship", b =>
-                {
-                    b.HasOne("Internship.Models.InternshipOpportunity", "InternshipOpportunity")
-                        .WithMany()
-                        .HasForeignKey("InternshipOpportunityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Internship.Models.Student_User", "Student")
-                        .WithMany("SavedInternships")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("InternshipOpportunity");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("Internship.Models.Student_User", b =>
                 {
                     b.HasOne("Internship.Models.InternshipCoordinator_User", "Coordinator")
@@ -1043,8 +987,6 @@ namespace Internship.DataAccess.Migrations
                 {
                     b.Navigation("ApplicationForm")
                         .IsRequired();
-
-                    b.Navigation("SavedInternships");
                 });
 #pragma warning restore 612, 618
         }

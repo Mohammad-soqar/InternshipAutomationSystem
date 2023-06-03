@@ -13,10 +13,12 @@ namespace Internship.DataAccess.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DbSet<Student_User> Students { get; set; }
+        public DbSet<Report> Reports { get; set; }
         public DbSet<InternshipCoordinator_User> Coordinators { get; set; }
         public DbSet<CareerCenter_User> CareerCenters { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<HealthInsurance> HealthInsurances { get; set; }
+        public DbSet<SavedInternship> SavedInternships { get; set; }
         public DbSet<OfficialLetter> OfficialLetters { get; set; }
         public DbSet<ApplicationForm> ApplicationForms { get; set; }
         public DbSet<submittedApplicationForms> submittedApplicationForms { get; set; }
@@ -73,6 +75,12 @@ namespace Internship.DataAccess.Data
           .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<HealthInsurance>()
+          .HasOne(s => s.Student)
+          .WithMany()
+          .HasForeignKey(s => s.StudentId)
+          .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Report>()
           .HasOne(s => s.Student)
           .WithMany()
           .HasForeignKey(s => s.StudentId)

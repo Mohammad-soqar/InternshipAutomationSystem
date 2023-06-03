@@ -4,6 +4,7 @@ using Internship.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Internship.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531204851_addIdToSaveInternship")]
+    partial class addIdToSaveInternship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -414,10 +416,6 @@ namespace Internship.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("NEXT VALUE FOR dbo.StudentIDSeq");
 
-                    b.Property<string>("ApplicationFormStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Class")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -449,10 +447,6 @@ namespace Internship.DataAccess.Migrations
                     b.Property<int?>("HealthInsuranceId1")
                         .HasColumnType("int");
 
-                    b.Property<string>("HealthInsuranceStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("InternshipOpportunityId")
                         .HasColumnType("int");
 
@@ -469,10 +463,6 @@ namespace Internship.DataAccess.Migrations
                     b.Property<int?>("OfficialLetterId1")
                         .HasColumnType("int");
 
-                    b.Property<string>("OfficialLetterStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -482,10 +472,6 @@ namespace Internship.DataAccess.Migrations
 
                     b.Property<int?>("ReportId1")
                         .HasColumnType("int");
-
-                    b.Property<string>("ReportStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
