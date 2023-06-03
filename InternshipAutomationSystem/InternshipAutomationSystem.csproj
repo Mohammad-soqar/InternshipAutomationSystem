@@ -37,6 +37,7 @@
     <Folder Include="wwwroot\Images\InternshipJobs\" />
     <Folder Include="wwwroot\PDFCAN\Forms\" />
     <Folder Include="wwwroot\PDFCAN\Health_Insurance\" />
+    <Folder Include="wwwroot\PDFCAN\Reports\" />
     <Folder Include="wwwroot\PDF\" />
   </ItemGroup>
 

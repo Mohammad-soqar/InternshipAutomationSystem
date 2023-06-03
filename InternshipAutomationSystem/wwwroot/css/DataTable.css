@@ -1,8 +1,15 @@
 ﻿.DataTable {
     width: 100%;
     background-color: #fff;
+    overflow-y: scroll !important;
+    height: 65vh !important;
 }
 
+.DataTable {
+    width: 100%;
+    background-color: #fff;
+ 
+}
 table {
     width: 100%;
     border-collapse: collapse;

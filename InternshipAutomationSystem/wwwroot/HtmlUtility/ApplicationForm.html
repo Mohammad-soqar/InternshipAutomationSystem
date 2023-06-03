@@ -1,93 +1,137 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>Application Form</title>
-    <style>
-        /* CSS styles for the PDF template */
-        /* ... */
-    </style>
-</head>
-<body>
-    <h1>Application Form</h1>
+﻿<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
 
-    <div>
-        <label>TC:</label>
-        <span>{{TC}}</span>
-    </div>
+    h1 {
+        text-align: center;
+    }
 
-    <div>
-        <label>Name:</label>
-        <span>{{Name}}</span>
-    </div>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
-    <div>
-        <label>SID:</label>
-        <span>{{SID}}</span>
-    </div>
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
 
-    <div>
-        <label>Phone Number:</label>
-        <span>{{PhoneNumber}}</span>
-    </div>
+        td input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+</style>
 
-    <div>
-        <label>Faculty:</label>
-        <span>{{Faculty}}</span>
-    </div>
+<a style="display: flex; justify-content: center;">
+    <img height="120px"
+         src="https://i.ibb.co/wswZk1y/uskudar-logo.png" alt="uuyayinlari" border="0"/>
+</a>
+<br />
+<br />
 
-    <div>
-        <label>Class:</label>
-        <span>{{Class}}</span>
-    </div>
+<h1><strong>INTERNSHIP/PRACTICE LOCATION and ACCEPTANCE FORM</strong></h1>
 
-    <div>
-        <label>Department:</label>
-        <span>{{Department}}</span>
-    </div>
 
-    <div>
-        <label>Start Date:</label>
-        <span>{{StartDate}}</span>
-    </div>
 
-    <div>
-        <label>End Date:</label>
-        <span>{{EndDate}}</span>
-    </div>
+<p>
+    The identity information of our student *, who will perform her/his internship/practice in your institution, is below
+    within the framework of the principles set out in the Üsküdar University Associate, Undergraduate, and Graduate
+    Internship Directives. In the event that its acceptance is deemed appropriate, I kindly request that the form to be
+    arranged and delivered to the student. ............................................... (Title, Name, Surname,
+    Signature (To be signed by your Internship Coordinator) * Insurance Premiums of the Occupational Accidents And
+    Professional Diseases will be covered by our university between the dates the student performs the
+    internship/practice. The student does not have an internship in a different institution concurrently with the
+    application made to you.
+</p>
+<table>
+    <tr>
+        <th colspan="2">STUDENT INFORMATION</th>
+    </tr>
+    <tr>
+        <td>1. TR. IDENTITY NUMBER   <span>{{TC}}</span></td>
+        <td>2. CELL PHONE NUMBER    <span>{{PhoneNumber}}</span></td>
+    </tr>
+    <tr>
+        <td>3. Name   <span>{{Name}}</span></td>
+        <td>4. Student Number   <span>{{SID}}</span> </td>
+    </tr>
+    <tr>
+        <td>5. FACULTY   <span>{{Faculty}}</span></td>
+        <td>6. DEPARTMENT   <span>{{Department}}</span></td>
+    </tr>
+    <tr>
+        <td>7. CLASS  <span>{{Class}}</span></td>
+        <td></td>
+    </tr>
+</table>
 
-    <div>
-        <label>Number of Days:</label>
-        <span>{{NumberOfDays}}</span>
-    </div>
+<table>
+    <tr>
+        <th colspan="2">INTERNSHIP / PRACTICE TYPE AND DURATION</th>
+    </tr>
+    <tr>
+        <td>PRACTICE IN FALL SEMESTER (COMPULSORY)  <img style="margin-left: 14rem;" src="https://i.ibb.co/F8L2mbn/Rectanglssade-2490.png" height="20px" alt="" /></td>
+        <td>PRACTICE IN SPRING SEMESTER (COMPULSORY) <img style="margin-left: 14rem;" src="https://i.ibb.co/F8L2mbn/Rectanglssade-2490.png" height="20px" alt="" /></td>
+    </tr>
+    <tr>
+        <td>INTERNSHIP (<span>{{NumberOfDays}}</span> workdays) (COMPULSORY)  <img style="margin-left: 6rem;" src="https://i.ibb.co/7y92F12/Rectangle-2490.png" height="20px" alt="" /></td>
+        <td>VOLUNTARY INTERNSHIP <img style="margin-left: 14rem;" src="https://i.ibb.co/F8L2mbn/Rectanglssade-2490.png" height="20px" alt="" /></td>
+    </tr>
+</table>
 
-    <div>
-        <label>Type:</label>
-        <span>{{Type}}</span>
-    </div>
+<table>
+    <tr>
+    </tr>
+    <tr>
+        <td>1. INTERNSHIP / PRACTICE DATES</td>
+        <td>Start Date: ___{{StartDate}}___ End Date: ____{{EndDate}}___</td>
+    </tr>
+    <tr>
+        <td>2. DAYS FOR INTERNSHIP / PRACTICE</td>
+        <td>_______{{NumberOfDays}}______</td>
+    </tr>
+    <tr>
+        <td>3. Is she/he dependent on parents?</td>
+        <td>______{{DependendParent}}________</td>
+    </tr>
+</table>
 
-    <div>
-        <label>Dependent Parent:</label>
-        <span>{{DependendParent}}</span>
-    </div>
+<table>
+    <tr>
+        <th colspan="2">INSTITUTION INFORMATION FOR INTERNSHIP </th>
+    </tr>
+    <tr>
+        <td>1. INSTITUTION NAME</td>
+        <td>______{{InstitutionName}}_____</td>
+    </tr>
+    <tr>
+        <td>2. ADDRESS</td>
+        <td>_____{{InstitutionAddress}}_____</td>
+    </tr>
+    <tr>
+        <td>3. PHONE NUMBER</td>
+        <td>____{{InstitutionPhoneNumber}}____</td>
+    </tr>
+    <tr>
+        <td>4. AUTHORIZED PERSON/TITLE</td>
+        <td>_____{{InstitutionPerson}}____</td>
+    </tr>
+</table>
 
-    <div>
-        <label>Institution Name:</label>
-        <span>{{InstitutionName}}</span>
-    </div>
 
-    <div>
-        <label>Institution Address:</label>
-        <span>{{InstitutionAddress}}</span>
-    </div>
+<p>
+    A copy of this approved form will remain with the student and the original form will be submitted to the Career
+    Center Directorate at the latest 5 working days before starting the internship. It is the student's responsibility
+    to obtain a copy of the approved form. Approved ............................................... (Authorized
+    Institution, Signature, Stamp)
+</p>
 
-    <div>
-        <label>Institution Person:</label>
-        <span>{{InstitutionPerson}}</span>
-    </div>
-
-    <div>
-        <label>Institution Phone Number:</label>
-        <span>{{InstitutionPhoneNumber}}</span>
-    </div>
-</body>
-</html>
+<p>
+    We declare that all personal data shared in this form will be stored, processed and compiled within the framework of
+    the Law no. 6698 and Üsküdar University Clarification Text. For detailed information, you can visit <a href="https://uskudar.edu.tr/tr/kisisel-verilerin-korunmasi">https://uskudar.edu.tr/tr/kisisel-verilerin-korunmasi</a>
+    . ÜÜ.FR.284 Revision No: 0 (02.07.2021)
+</p>

@@ -22,5 +22,14 @@ namespace Internship.Models
         [ValidateNever]
         public string ImageUrl { get; set; }//
         public string Description { get; set; }//
+
+        private ICollection<Student_User> _savedByStudents;
+
+        [ValidateNever]
+        public ICollection<Student_User> SavedByStudents
+        {
+            get => _savedByStudents ??= new List<Student_User>();
+            set => _savedByStudents = value;
+        }
     }
 }

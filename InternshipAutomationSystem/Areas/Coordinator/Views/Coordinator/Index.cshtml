@@ -26,31 +26,31 @@
 
             <h3>Letter Request</h3>
         </a>
+        <a class="letter-req left-side-w" asp-action="Report_Approval" asp-controller="Coordinator">
+            <img src="~/img/report.png" height="50px" id="mail1">
+
+            <h3>Report Approval</h3>
+        </a>
     </div>
 
 
 
     <div class="containerIntern">
-        <h3>Announcements</h3>
+        <h3>Announcements</h3>  
 
         <div class="announcements">
 
             @foreach (var Announcements in Model.OrderByDescending(p => p.DatePosted).ToList().Take(3))
             {
-                <a class="announcement1-block text" href="Announ1.html" id="ann1">
-                    <h2>@Announcements.Subject</h2>
+                <div style="color:#585858 !important; margin-top:1rem; " class="announcement1-block text" href="Announ1.html" id="ann1">
+                    <h2 style="color:#585858 !important;">@Announcements.Subject</h2>
                     <p class="myParagraph">
-                        @if (Announcements.Content.Length > 36)
-                        {
-                            @Html.Raw(Announcements.Content.Substring(0, 36)+"..")
-                            
-                            }
-                        else
-                        {
+                      
                             @Html.Raw(Announcements.Content)
-                        }
+                            
+                          
                     </p>
-                </a>
+                </div>
             }
             
            

@@ -1,0 +1,48 @@
+﻿@model Internship.Models.ViewModels.ReportVM
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report Form</title>
+
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+</head>
+<body>
+    <h1>Report Form</h1>
+
+    <form method="post" class="WebForm" asp-action="Report_Approvel_Upsert" enctype="multipart/form-data">
+        <input asp-for="@Model.Reports.Id" hidden />
+
+        <div>
+            <label for="@Model.Reports.ReportPdf"></label>
+            <input asp-for="@Model.Reports.ReportPdf" type="file" name="file" placeholder="ImageUrl" />
+        </div>
+
+
+        <div hidden class="inputQue">
+            <label>Student</label>
+            <select asp-for="@Model.Reports.StudentId" asp-items="@Model.StudentList" class="selectC">
+                <option disabled selected>Select Student</option>
+            </select>
+            <span asp-validation-for="@Model.Reports.StudentId" class="alert-warning"></span>
+
+        </div>
+
+        <div hidden class="inputQue">
+            <label>Internship Coordinator</label>
+            <select asp-for="@Model.Reports.InternshipCoordinatorId" asp-items="@Model.CoordinatorList" class="selectC">
+                <option disabled selected>Select Coordinator</option>
+            </select>
+            <span asp-validation-for="@Model.Reports.InternshipCoordinatorId" class="alert-warning"></span>
+
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+

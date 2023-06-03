@@ -1,11 +1,62 @@
 ﻿@page
+@using Internship.DataAccess.Data;
+@using Internship.Models;
+@using Internship.Utility;
 @model IndexModel
 @{
     ViewData["Title"] = "Profile";
-    ViewData["ActivePage"] = ManageNavPages.Index;
+    //ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
+
+@inject ApplicationDbContext DbContext
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+@{
+    // Get the currently signed-in user
+    ApplicationUser user2 = await UserManager.GetUserAsync(User);
+
+    // Get the associated Student_User record from the Student_User table
+    Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
+    InternshipCoordinator_User CoordinatorUser = DbContext.Coordinators.FirstOrDefault(s => s.UserId == user2.Id);
+    CareerCenter_User CareerCenterUser = DbContext.CareerCenters.FirstOrDefault(s => s.UserId == user2.Id);
+    Admin_User AdminUser = DbContext.Admins.FirstOrDefault(s => s.UserId == user2.Id);
+
+
+    string studentName = studentUser?.Name;
+    string studentId = studentUser?.StudentId.ToString();
+    string studentNum = studentUser?.PhoneNumber.ToString();
+
+    string CoordinatorName = CoordinatorUser ?.Name;
+    string CoordinatorId = CoordinatorUser?.Id.ToString();
+    string CoordinatorNum = CoordinatorUser?.PhoneNumber.ToString();
+
+
+    string CareerCenterName = CareerCenterUser?.Name;
+    string CareerCenterId = CareerCenterUser?.Id.ToString();
+    string CareerCenterNum = CareerCenterUser?.PhoneNumber.ToString();
+
+
+    string AdminUserName = AdminUser?.Name;
+    string AdminUserId = AdminUser?.Id.ToString();
+    string AdminUserNum = AdminUser?.PhoneNumber.ToString();
+
+
+    string studentOfficialLetter = studentUser?.OfficialLetterId ?? string.Empty;
+    string HealthInsurance = studentUser?.HealthInsuranceId ?? string.Empty;
+}
+
+<head>
+    <link href="~/css/hideaccount.css" rel="stylesheet" />
+    <link href="~/css/account.css" rel="stylesheet" />
+    <link href="~/css/Style.css" rel="stylesheet" />
+</head>
+
+
+@*<h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">
@@ -23,7 +74,236 @@
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>
     </div>
+</div>*@
+
+<section class="Account-Content">
+<div class="Account-Links">
+    @if (User.IsInRole(SD.Role_User_Student))
+    {
+            <a id="selected" href="Account.html"> My profile</a>
+
+     
+            <a asp-area="Student" asp-action="Report_View" asp-controller="Application">Health Insurance</a>
+            <a asp-area="Student" asp-action="View_Saved_Internship" asp-controller="Home">Saved Internships</a>
+
+            <ul class="nav nav-pills flex-column">
+             
+                <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+                @if (hasExternalLogins)
+                {
+                    <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+                }
+                <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+            </ul>
+
+
+    }
+    else if (User.IsInRole(SD.Role_Career_Center))
+    {
+            <a id="selected" href="Account.html"> My profile</a>
+
+
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+                @if (hasExternalLogins)
+                {
+                    <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+                }
+                <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+            </ul>
+    }
+    else if (User.IsInRole(SD.Role_Admin))
+    {
+            <a id="selected" href="Account.html"> My profile</a>
+
+
+            <ul class="nav nav-pills flex-column">
+               
+                <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+                @if (hasExternalLogins)
+                {
+                    <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+                }
+                <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+            </ul>
+    }
+    else if (User.IsInRole(SD.Role_User_Coordinator))
+    {
+            <a id="selected" href="Account.html"> My profile</a>
+
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+                @if (hasExternalLogins)
+                {
+                    <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+                }
+                <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+                <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+            </ul>
+    }
+
+   
 </div>
+
+<div id="line"></div>
+
+<div class="right-side-panel">
+
+@if (User.IsInRole(SD.Role_User_Student))
+{
+        <div class="MyProfile">
+            <h3>My Profile</h3>
+            <a class="Account" href="Account.html">
+                <img src="~/img/Account.png" alt="" height="60px">
+                <div class="Account-Text">
+                    <p>@studentName</p>
+                    <p>@studentId</p>
+                </div>
+            </a>
+        </div>
+        <div class="PersonalInforamtion">
+            <div class="PersonalInforamtion-button">
+                <p>Personal Information</p>
+                  
+            </div>
+                <partial name="_StatusMessage" for="StatusMessage" />
+                <form id="profile-form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="EmailAddress2">
+                        <p class="email">@user2.Email</p>
+
+                    </div>
+                    <div class="PhoneNumber">
+                        <label  class="form-label">Phone Number</label>
+                        <input asp-for="@studentNum" class="phone" />
+                        <span asp-validation-for="@studentNum" class="text-danger"></span>
+                    </div>
+                    <div class="">
+                        <button id="update-profile-button" type="submit" class="">Save</button>
+                    </div>
+                    
+                </form>
+          @*  <form action="#">
+                <div class="EmailAddress2">
+                    <span>Email Address</span>
+                        <p class="email">@user2.Email</p>
+                </div>
+                <div class="PhoneNumber">
+                    <span>Phone Number</span>
+                    <p class="phone">@user2.PhoneNumber</p>
+                    <div class="sendButton">
+                        <button id="saveButton">save</button>
+                    </div>
+                </div>
+            </form>*@
+
+        </div>
+}
+else if (User.IsInRole(SD.Role_Career_Center))
+{
+
+            <div class="MyProfile">
+                <h3>My Profile</h3>
+                <a class="Account" href="Account.html">
+                    <img src="~/img/Account.png" alt="" height="60px">
+                    <div class="Account-Text">
+                        <p>@CareerCenterName</p>
+                        <p>@CareerCenterId</p>
+                    </div>
+                </a>
+            </div>
+            <div class="PersonalInforamtion">
+                <div class="PersonalInforamtion-button">
+                    <p>Personal Information</p>
+                    <button class="edit-button">Edit <img src="img/Edit.png" alt="" width="20px"></button>
+                </div>
+                <form action="#">
+                    <div class="EmailAddress2">
+                        <span>Email Address</span>
+                        <p class="email">@user2.Email</p>
+                    </div>
+                    <div class="PhoneNumber">
+                        <span>Phone Number</span>
+                        <p class="phone">@user2.PhoneNumber</p>
+                        <div class="sendButton">
+                            <button id="saveButton">save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+}
+else if (User.IsInRole(SD.Role_Admin))
+{
+
+
+}
+else if (User.IsInRole(SD.Role_User_Coordinator))
+{
+            <div class="MyProfile">
+                <h3>My Profile</h3>
+                <a class="Account" href="Account.html">
+                    <img src="~/img/Account.png" alt="" height="60px">
+                    <div class="Account-Text">
+                        <p>@CoordinatorName</p>
+                        <p>@CoordinatorId</p>
+                    </div>
+                </a>
+            </div>
+            <div class="PersonalInforamtion">
+                <div class="PersonalInforamtion-button">
+                    <p>Personal Information</p>
+                    <button class="edit-button">Edit <img src="img/Edit.png" alt="" width="20px"></button>
+                </div>
+                <form action="#">
+                    <div class="EmailAddress2">
+                        <span>Email Address</span>
+                        <p class="email">@user2.Email</p>
+                    </div>
+                    <div class="PhoneNumber">
+                        <span>Phone Number</span>
+                        <p class="phone">@user2.PhoneNumber</p>
+                        <div class="sendButton">
+                            <button id="saveButton">save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+}
+
+   
+    <div class="Adress">
+        <div class="PersonalInforamtion-button">
+            <p>Address</p>
+            <button class="edit-button2">Edit <img src="img/Edit.png" alt=""></button>
+        </div>
+
+        <div class="AddressDistrict">
+            <form action="#">
+                <div class="textboxAndPinDiv">
+                    <span>Address</span>
+                    <p class="district">Altunizada cihan 1 Sk.</p>
+                </div>
+                <div class="textboxAndPinDiv">
+                    <span>District</span>
+                    <p class="city">Uskudar</p>
+                </div>
+                <div class="sendButton2">
+                    <button id="saveButton2">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</section>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

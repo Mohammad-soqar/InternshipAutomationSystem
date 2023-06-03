@@ -17,6 +17,8 @@ namespace Internship.DataAccess.Repository.IRepository
         IHealthInsuranceRepository HealthInsurances { get; }
         ICareerCenterRepository CareerCenters { get; }
         IOfficialLetterRepository OfficialLetters { get; }
+        IReportRepository Reports { get; }
+        ISaveInternshipRepository SavedInternships { get; }
 
         void Save();
     }

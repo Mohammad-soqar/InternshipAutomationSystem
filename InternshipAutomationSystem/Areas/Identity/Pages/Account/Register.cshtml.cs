@@ -149,13 +149,7 @@ namespace InternshipAutomationSystem.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            //if (!_roleManager.RoleExistsAsync(SD.Role_Admin).GetAwaiter().GetResult())
-            //{
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Career_Center)).GetAwaiter().GetResult();
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Coordinator)).GetAwaiter().GetResult();
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Student)).GetAwaiter().GetResult();
-            //}
+           
          
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

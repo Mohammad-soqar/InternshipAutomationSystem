@@ -32,7 +32,7 @@
                 </div>
 
             </div>
-            <div class="DataTable">
+            <div class="DataTable2">
 
                 <table id="studentTable">
                     <thead>
@@ -68,27 +68,11 @@
 
                                 <td>@applicationForm.Student.StudentId</td>
 
-                                <td class="center state @(applicationForm.Student.Status == "Pending" ? "NA" : (applicationForm.Student.Status == "Completed" ? "pending" : "NA"))">
-                                    <div>@(applicationForm.Student.Status == "Pending" ? "Awaiting Approval" : (applicationForm.Student.Status == "Completed" ? "Pending" : "N/A"))</div>
+                                <td class="center state @(applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.HealthInsuranceStatus.ToLower() == "completed" ? "completed" : "NA"))">
+                                    <div>@(applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.HealthInsuranceStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
                                 </td>
 
-                                @*<td class="center">
-                                    @if (applicationForm.Student.Status == "Completed")
-                                    {
-                                        <a class="edit" href="/Coordinator/Coordinator/ApplicationForm_Approvel_Upsert?id=@applicationForm.Id">
-                                            <img src="~/img/upload.png" height="20px">
-                                        </a>
-
-                                        <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
-                                            <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
-                                        </a>
-                                    }
-                                    else if (applicationForm.Student.Status == "N/A")
-                                    {
-                                        <span>Not Submitted</span>
-                                    }
-
-                                </td>*@
+                               
 
                             </tr>
                         }
@@ -102,91 +86,14 @@
 
       
 
-        <div class="widgets-shared" id="widget2">
+        <a asp-action="Old_Health_Insurance_Approval"  asp-controller="CareerCenter" class="widgets-shared" id="widget2">
             <div id="old-HealthI-btn" class="widget-right-side">
                 <p>Old Health Insurance</p>
                 <img src="~/img/CareerCenter/HealthInsurance.png" height="45px" alt="">
             </div>
 
-
-            <div id="datatable" class="DataTable Add-User-Form-invisible">
-
-                <table id="studentTable">
-                    <thead>
-                        <tr>
-                            <th onclick="sortTable(0)">
-                                Student Name
-
-                                <img id="nameSort" class="sort rotateImage"
-                                     src="~/img/CareerCenter/arrowUp.png" alt="">
-                            </th>
-
-                            <th onclick="sortTable(1)">
-                                Student ID
-
-                                <img class="sort rotateImage" id="idSort"
-                                     src="~/img/CareerCenter/arrowUp.png" alt="">
-
-                            </th>
-
-                            <th onclick="sortTable(2)">
-                                State
-                                <img id="stateSort" class="sort rotateImage"
-                                     src="~/img/CareerCenter/arrowUp.png" alt="">
-                            </th>
-                            <th class="center">Upload</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Dwayne Johnson</td>
-                            <td>200111111</td>
-                            <td class=" center state pending">
-                                <div>Pending</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ryan Reynolds</td>
-                            <td>200111112</td>
-                            <td class=" center state pending">
-                                <div>Pending</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Adele Adkins Adele Adkins Adele Adkins</td>
-                            <td>200111113</td>
-                            <td class="center state pending">
-                                <div>Pending</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ryan Reynolds</td>
-                            <td>200111114</td>
-                            <td class=" center state completed">
-                                <div>Completed</div>
-                            </td>
-                            <td class="center">
-                                <img src="~/img/CareerCenter/Upload.png" alt="Upload"
-                                     class="upload-icon">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+            
+        </a>
 
         
         <a asp-controller="Announcements" asp-action="Upsert_Announcement" class="widgets-shared" id="widget4">

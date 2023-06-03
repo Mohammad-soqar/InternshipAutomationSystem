@@ -48,11 +48,33 @@ namespace Internship.Models
         public HealthInsurance? HealthInsurance { get; set; }
 
         [ValidateNever]
+        public string? ReportId { get; set; }
+
+        public Report? Report { get; set; }
+
+        [ValidateNever]
         public string? OfficialLetterId { get; set; }
 
         public OfficialLetter? OfficialLetter { get; set; }
 
         public string Status { get; set; } = "N/A";
+
+        [ValidateNever]
+        public ICollection<SavedInternship> SavedInternships { get; set; }
+
+        [ValidateNever]
+
+        public string ApplicationFormStatus { get; set; } = "N/A";
+        [ValidateNever]
+
+        public string OfficialLetterStatus { get; set; } = "N/A";
+        [ValidateNever]
+
+        public string ReportStatus { get; set; } = "N/A";
+        [ValidateNever]
+
+        public string HealthInsuranceStatus { get; set; } = "N/A";
+
     }
   
 }

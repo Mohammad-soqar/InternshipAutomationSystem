@@ -21,7 +21,7 @@
     // Access the name of the student user
     string user2status = user2?.Status;
     string studentTableStatus = studentUser?.Status;
-    string studentOfficialLetter =studentUser?.OfficialLetterId ;
+    string studentOfficialLetter = studentUser?.OfficialLetterId ?? string.Empty;
 
 }
 
@@ -51,113 +51,111 @@
                    
 
                 <section class="Account-Content">
+                    <div class="Files">
 
-                    <div class="file1">
-                        <h3 class="title">Internship Application</h3>
-                        <p class="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
-                            accusantium provident aliquam rem saepe, maxime numquam. Tempore ad inventore et vel quasi
-                            quibusdam, quisquam quis nesciunt assumenda corrupti?
-                        </p>
-                        <p class="deadline">Deadline : 31/09/2023</p>
-                        <div class="FilesLinks">
-                            <a href="#">
-                                <img src="img\support-symbol.png" alt="">
-                            </a>
-@*                <a id="LinkStartButton" asp-action="ApplicationForm_Final_Upsert" asp-area="Student" asp-controller="Application">Send the file</a>
+            <div class="file1">
+                <h3 class="title">Internship Application</h3>
+                <p class="text">
+                    The identity information of our student *, who will perform her/his internship/practice in your institution, is below within the framework of the principles set out in the Üsküdar University Associate,
+                </p>
+                <p class="deadline">Deadline : 31/09/2023</p>
+                <div class="FilesLinks">
+                    <a href="#">
+                        <img src="img\support-symbol.png" alt="">
+                    </a>
+                    @*                <a id="LinkStartButton" asp-action="ApplicationForm_Final_Upsert" asp-area="Student" asp-controller="Application">Send the file</a>
 
-*@
-                @if (true)
-                {
-                    var user = await UserManager.GetUserAsync(User);
-
-                    if (user.Status.ToLower() == "notyet" && studentTableStatus.ToLower() != "pending")
+                    *@
+                    @if (true)
                     {
-                        <a id="LinkStartButton" asp-action="SubmitForm" asp-area="Student" asp-controller="Application">Start</a>
+                        var user = await UserManager.GetUserAsync(User);
+
+                        if (user.Status.ToLower() == "notyet" && studentTableStatus.ToLower() != "pending")
+                        {
+                            <a id="LinkStartButton" asp-action="SubmitForm" asp-area="Student" asp-controller="Application">Start</a>
+
+                        }
+
+                        else if (user.Status.ToLower() == "filled")
+                        {
+                            <a id="LinkStartButton" asp-action="ApplicationForm_Final_Upsert" asp-area="Student" asp-controller="Application">Send the file</a>
+
+                        }
+                        else
+                        {
+                            <a id="LinkStartButton" style="" asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">View Your Application</a>
+
+                        }
+                    }
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="file2">
+                <h3 class="title">Letter Request</h3>
+                <p class="text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
+                    accusantium provident aliquam rem saepe, maxime numquam.
+                </p>
+                <p class="deadline">Deadline : 31/09/2023</p>
+                <div class="FilesLinks">
+                    <a href="#">
+                        <img src="img\support-symbol.png" alt="">
+                    </a>
+                    @if (true)
+                    {
+                        var user = await UserManager.GetUserAsync(User);
+
+                        @if (studentTableStatus.ToLower() == "pending" || user.Status.ToLower() == "notyet")
+
+                        {
+                            <a id="LinkStartButton">Nope Not yet</a>
+
+                        }
+                        else if (user2status.ToLower() == "applicationsubmit")
+                        {
+                            <a id="LinkStartButton" asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Start</a>
+                        }
+
+                        else if (!string.IsNullOrEmpty(studentOfficialLetter))
+                        {
+                            <a id="LinkStartButton">You already submitted</a>
+
+                        }
+                        else
+                        {
+                            <a id="LinkStartButton" asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Start</a>
+
+                        }
+
 
                     }
-                    else if (studentTableStatus.ToLower() == "pending")
+                </div>
+            </div>
+
+            <div class="file3">
+                <h3 class="title">Final Report</h3>
+                <p class="text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
+                    accusantium provident aliquam rem saepe, maxime numquam.
+                </p>
+                <p class="deadline">Deadline : 31/09/2023</p>
+                <div class="FilesLinks">
+                    @if (true)
                     {
-                        <a id="LinkStartButton" asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">Already Submitted</a>
+                        <a id="LinkStartButton" asp-action="Report_Upsert" asp-area="Student" asp-controller="Application">Submit</a>
 
+                        <a id="LinkStartButton" asp-action="Report_Download" asp-area="Student" asp-controller="Application">Download</a>
                     }
-                    else if (user.Status.ToLower() == "applicationsubmit")
-                    {
-                        <a id="LinkStartButton" asp-action="ApplicationForm_Final_Upsert" asp-area="Student" asp-controller="Application">Send the file</a>
+                </div>
+            </div>
 
-                    }
-                    else if (user.Status.ToLower() == "healthinsurance")
-                    {
-                        <a id="LinkStartButton" style="" asp-action="Application_Form_View" asp-area="Student" asp-controller="Application">View Your Application</a>
-
-                    }
-                }
-
-
-                    
-
-               
-                        </div>
                     </div>
-
-                    <div class="file2">
-                        <h3 class="title">Letter Request</h3>
-                        <p class="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
-                            accusantium provident aliquam rem saepe, maxime numquam. Tempore ad inventore et vel quasi
-                            quibusdam, quisquam quis nesciunt assumenda corrupti?
-                        </p>
-                        <p class="deadline">Deadline : 31/09/2023</p>
-                        <div class="FilesLinks">
-                            <a href="#">
-                                <img src="img\support-symbol.png" alt="">
-                            </a>
-                     @if (true)         
-                {
-                var user = await UserManager.GetUserAsync(User);
-
-                    @if (studentTableStatus.ToLower() == "pending" || user.Status.ToLower() == "notyet")
-
-                {
-                        <a id="LinkStartButton">Nope Not yet</a>
-
-                    }
-                    else if (user2status.ToLower() == "applicationsubmit")
-                    {
-                        <a id="LinkStartButton" asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Start</a>
-                    }
-                    else if (studentOfficialLetter.ToLower() != null)
-                    {
-                        <a id="LinkStartButton">You already submitted</a>
-
-                    }
-                    else
-                    {
-                        <a id="LinkStartButton" asp-action="Letter_Upsert" asp-area="Student" asp-controller="Officialletter">Start</a>
-
-                    }
-
-
-                }
-                        </div>
-                    </div>
-
-                    <div class="file3">
-                        <h3 class="title">#File 3</h3>
-                        <p class="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolorum iste
-                            accusantium provident aliquam rem saepe, maxime numquam. Tempore ad inventore et vel quasi
-                            quibusdam, quisquam quis nesciunt assumenda corrupti?
-                        </p>
-                        <p class="deadline">Deadline : 31/09/2023</p>
-                        <div class="FilesLinks">
-                            <a href="#">
-                                <img src="img\support-symbol.png" alt="">
-                            </a>
-                            <a id="LinkStartButton" href="#">Download</a>
-                        </div>
-                    </div>
-
+                   
                 </section>
 
 

@@ -4,10 +4,13 @@
 }
 
 .Account-Content {
-    display: flex;
+  
     margin: 6rem 0 0 0;
 }
-
+.Files {
+    display: flex;
+    align-items: stretch;
+}
 .file1,
 .file2,
 .file3 {
@@ -17,6 +20,8 @@
     border-radius: 27px;
     padding: 1rem;
     margin: 0 1rem;
+    width: 30%;
+    justify-content: space-around;
     box-shadow: 2px 2px 30px 2px #00000015;
 }
 
@@ -39,14 +44,14 @@
 
 .FilesLinks {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 1rem;
     align-items: center;
 }
 
 #LinkStartButton {
     padding: 0.5rem 2rem;
-    font-size: 18px;
+    font-size: 16px;
     color: #fff !important;
     border: none !important;
     background-color: #FFD504 !important;

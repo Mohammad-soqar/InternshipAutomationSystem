@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="~/Css/CareerCenter.css">
-    <link rel="stylesheet" href="~/Css/DataTable.css">
+    <link rel="stylesheet" href="~/Css/DataTable2.css">
     <link rel="stylesheet" href="~/Css/Style.css">
     <link rel="stylesheet" href="~/Css/form.css">
 </head>
@@ -66,37 +66,45 @@
             </tr>
         </thead>
             <tbody>
-                @foreach (var applicationForm in Model)
-                {
+
+                    @foreach (var applicationForm in Model)
+                    {
+                    
                     <tr>
                         <td>@applicationForm.Student.Name</td>
-                       
+
                         <td>@applicationForm.Student.StudentId</td>
 
-                        <td class="center state @(applicationForm.Student.Status == "Pending" ? "pending" : (applicationForm.Student.Status == "Completed" ? "completed" : "NA"))">
-                            <div>@(applicationForm.Student.Status == "Pending" ? "Pending" : (applicationForm.Student.Status == "Completed" ? "Completed" : "N/A"))</div>
+                        <td class="center state @(applicationForm.Student.ApplicationFormStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.ApplicationFormStatus.ToLower() == "completed" ? "completed" : "NA"))">
+                            <div>@(applicationForm.Student.ApplicationFormStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.ApplicationFormStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
                         </td>
 
                         <td class="center">
-                            @if (applicationForm.Student.Status == "Pending")
-                            {
-                                <a class="edit" href="/Coordinator/Coordinator/ApplicationForm_Approvel_Upsert?id=@applicationForm.Id">
-                                    <img src="~/img/upload.png" height="20px">
-                                </a>
+                            @if (applicationForm.Student.ApplicationFormStatus.ToLower() == "pending")
+                        {
+                            <a class="edit" href="/Coordinator/Coordinator/ApplicationForm_Approvel_Upsert?id=@applicationForm.Id">
+                                <img src="~/img/upload.png" height="20px">
+                            </a>
 
-                                <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
-                                    <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
-                                </a>
-                            }
-                            else if (applicationForm.Student.Status == "N/A")
-                            {
-                                <span>Not Submitted</span>
-                            }
+                            <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
+                                <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
+                            </a>
+                                  }
+                            else if (applicationForm.Student.ApplicationFormStatus.ToLower() == "n/a")
+                        {
+                        <span>Not Submitted</span>
+                        }
                         </td>
-                        
+
                     </tr>
-                }
+                    
+                    
+                      
+                   
+                    }
             </tbody>
+      
+            
 
     </table>
 

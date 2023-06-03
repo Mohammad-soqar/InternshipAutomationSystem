@@ -72,28 +72,13 @@
                         <td>@applicationForm.Student.Name</td>
 
                         <td>@applicationForm.Student.StudentId</td>
-                        @if (applicationForm.OfficialLetterPDF == null && applicationForm.Student.StudentId != null && applicationForm.Student.StudentId != 0)
-                        {
-                            <td class="center state pending">
-                                <div>Pending</div>
-                            </td>
-                        }
-                        else if (applicationForm.OfficialLetterPDF != null)
-                        {
-                            <td class="center state completed">
-                                <div>Completed</div>
-                            </td>
-                        }
-                        else if (applicationForm.Student.StudentId == 0)
-                        {
-                            <td class="center state completed">
-                                <div>Not Yet</div>
-                            </td>
-                        }
+                        <td class="center state @(applicationForm.Student.OfficialLetterStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.OfficialLetterStatus.ToLower() == "completed" ? "completed" : "NA"))">
+                            <div>@(applicationForm.Student.OfficialLetterStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.OfficialLetterStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
+                        </td>
 
                         <td class="center">
-                            @*@if (applicationForm.Student.Status == "Pending")
-                            {*@
+                            @if (applicationForm.Student.OfficialLetterStatus.ToLower() == "pending")
+                            {
                             <a class="edit" href="/Coordinator/Coordinator/Official_Letter_Upsert?id=@applicationForm.Id">
                                     <img src="~/img/upload.png" height="20px">
                                 </a>
@@ -101,11 +86,11 @@
                                 <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
                                     <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
                                 </a>
-                          @*  }
-                            else if (applicationForm.Student.Status == "N/A")
+                            }
+                            else if (applicationForm.Student.OfficialLetterStatus.ToLower() == "n/a")
                             {
                                 <span>Not Submitted</span>
-                            }*@
+                            }
                         </td>
 
                     </tr>

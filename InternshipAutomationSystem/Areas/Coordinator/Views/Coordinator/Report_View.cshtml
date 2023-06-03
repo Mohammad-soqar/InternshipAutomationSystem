@@ -1,0 +1,37 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Internship.Models;
+@using Internship.Utility;
+@model Report
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Report Approval</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Css/CareerCenter.css">
+    <link rel="stylesheet" href="~/Css/DataTable.css">
+    <link rel="stylesheet" href="~/Css/Style.css">
+    <link rel="stylesheet" href="~/Css/form.css">
+</head>
+
+<h2>Upload Details</h2>
+
+<a class="edit" href="/Coordinator/Coordinator/ApplicationForm_Approvel_Upsert?id=@Model.Id">
+    <img src="~/img/upload.png" height="20px">
+</a>
+
+
+<h2>Report Form</h2>
+
+<embed src="@Url.Action("Report_GetPdf", "Coordinator", new { ReportFormId = Model.Id })" width="100%" height="500px" type="application/pdf">
+@* <embed src="@Url.Action("GetPdf", "Coordinator", new { applicationFormId = Model.Id })" type="application/pdf" width="100%" height="800px" />*@
+
+
+
+
+

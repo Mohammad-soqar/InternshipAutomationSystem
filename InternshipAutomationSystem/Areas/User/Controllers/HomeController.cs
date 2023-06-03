@@ -1,6 +1,7 @@
 ﻿using Internship.DataAccess.Data;
 using Internship.DataAccess.Repository.IRepository;
 using Internship.Models;
+using Internship.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -32,6 +33,11 @@ namespace InternshipAutomationSystem.Areas.User.Controllers
             return View();
         }
 
+        public IActionResult Guide()
+        {
+            return View();
+        }
+
         public IActionResult InternshipOP()
         {
             return RedirectToAction("Index", "Internshipjob");
@@ -39,17 +45,21 @@ namespace InternshipAutomationSystem.Areas.User.Controllers
         }
         public IActionResult Internship()
         {
-            IEnumerable<InternshipOpportunity> InternshipList = _unitOfWork.InternshipOpportunities.GetAll();
-            return View(InternshipList);
+
+            SaveandinternshipVM mymodel = new SaveandinternshipVM();
+            mymodel.InternshipOpportunity = _unitOfWork.InternshipOpportunities.GetAll();
+            
+            return View(mymodel);
+
+        
         }
         public IActionResult Details(int id)
         {
-            // Retrieve the internship details based on the provided id
+           
             var internship = GetInternshipById(id);
 
             if (internship == null)
             {
-                // Handle the case where the internship with the given id is not found
                 return NotFound();
             }
 

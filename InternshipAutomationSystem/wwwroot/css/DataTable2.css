@@ -1,0 +1,95 @@
+﻿.DataTable {
+    width: 100%;
+    background-color: #fff;
+    overflow-y: scroll !important;
+    height: 65vh !important;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+thead {
+    background-color: #F5F5F5;
+}
+
+.center {
+    text-align: center;
+}
+
+th,
+td {
+    padding: 18px !important;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5 !important;
+}
+
+th {
+    cursor: pointer;
+    width: 100px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.indexth-student {
+    width: 120px !important
+}
+
+.indexth {
+    width: 200px !important
+}
+
+td {
+    max-width: 100px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sort {
+    margin-left: 5px;
+}
+
+
+#searchInput {
+    margin-bottom: 10px;
+}
+
+.rotateImage img {
+    transition: transform 0.5s;
+}
+
+.rotate {
+    transform: rotate(-180deg);
+}
+
+.pending div {
+    color: #AE9100;
+    background-color: #FFF8D4 !important;
+}
+
+.NA div {
+    color: #B20000;
+    background-color: #FFDBDB !important;
+}
+
+
+.completed div {
+    color: #007505;
+    background-color: #EBF8EC !important;
+}
+
+.state div {
+    padding: 0.3rem 0.6rem;
+    border-radius: 19px;
+    font-weight: 500;
+}
+
+#back-left {
+    background: transparent;
+    border: none;
+    color: transparent;
+}

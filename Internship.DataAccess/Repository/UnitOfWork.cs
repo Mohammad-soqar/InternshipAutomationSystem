@@ -26,8 +26,10 @@ namespace Internship.DataAccess.Repository
             HealthInsurances = new HealthInsuranceRepository(_db);
             CareerCenters = new CareerCenterRepository(_db);
             OfficialLetters = new OfficialLetterRepository(_db);
+            Reports = new ReportRepository(_db);
+            SavedInternships = new SaveInternshipRepository(_db);
 
-
+            
 
         }
 
@@ -40,6 +42,8 @@ namespace Internship.DataAccess.Repository
         public IHealthInsuranceRepository HealthInsurances { get; private set; }
         public ICareerCenterRepository CareerCenters { get; private set; }
         public IOfficialLetterRepository OfficialLetters { get; private set; }
+        public IReportRepository Reports { get; private set; }
+        public ISaveInternshipRepository SavedInternships { get; private set; }
 
 
 
