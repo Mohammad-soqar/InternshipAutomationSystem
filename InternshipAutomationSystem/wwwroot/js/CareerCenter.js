@@ -59,37 +59,37 @@ $('#copyBtn').on('click', function () {
     /* $('#copyBtn').append('<img src="img/.png" height="15px">') */
 });
 
-$(document).ready(function () {
-    var backLeftBtn = $('<div class="backButton" id="backButton">Back</div>');
+//$(document).ready(function () {
+//    var backLeftBtn = $('<div class="backButton" id="backButton">Back</div>');
 
 
-    $('#second-slide').hide();
-    $('#post-btn').hide();
+//    $('#second-slide').hide();
+//    $('#post-btn').hide();
 
-    $('#next-btn').on('click', function () {
+//    $('#next-btn').on('click', function () {
 
-        $('#first-slide').fadeOut(200, function () {
-            $('.backButton').append(backLeftBtn);
-            $('#second-slide').fadeIn(200);
-            $('#next-btn').hide();
-            $('#post-btn').fadeIn(200);
-        });
-
-
-    });
+//        $('#first-slide').fadeOut(200, function () {
+//            $('.backButton').append(backLeftBtn);
+//            $('#second-slide').fadeIn(200);
+//            $('#next-btn').hide();
+//            $('#post-btn').fadeIn(200);
+//        });
 
 
-    $('.backButton').on('click', function () {
+//    });
+
+
+//    $('.backButton').on('click', function () {
 
 
 
-        $('#second-slide').fadeOut(200, function () {
-            backLeftBtn.remove();
-            $('#next-btn').fadeIn(200);
-            $('#post-btn').hide();
+//        $('#second-slide').fadeOut(200, function () {
+//            backLeftBtn.remove();
+//            $('#next-btn').fadeIn(200);
+//            $('#post-btn').hide();
 
-            $('#first-slide').fadeIn(200);
-        });
+//            $('#first-slide').fadeIn(200);
+//        });
 
-    });
-});
+//    });
+//});
