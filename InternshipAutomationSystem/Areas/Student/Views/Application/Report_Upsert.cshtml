@@ -1,0 +1,29 @@
+﻿@model Internship.Models.ViewModels.ReportVM
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report</title>
+
+    <link rel="stylesheet" href="~/css/DataTable.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+</head>
+<body>
+    <h1>Report Form</h1>
+    <p>Please Do Not Forget To Fill All Pages Before You Submit</p>
+    <form method="post" class="WebForm" asp-action="Report_Upsert" enctype="multipart/form-data">
+        <input asp-for="@Model.Reports.Id" hidden />
+
+        <div>
+            <label for="@Model.Reports.ReportPdf"></label>
+            <input asp-for="@Model.Reports.ReportPdf" type="file" name="file" placeholder="ImageUrl" />
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
