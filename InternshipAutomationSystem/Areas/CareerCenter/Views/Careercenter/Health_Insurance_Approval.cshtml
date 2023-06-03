@@ -73,12 +73,12 @@
 
                         <td>@applicationForm.Student.StudentId</td>
 
-                        <td class="center state @(applicationForm.Student.Status == "Pending" ? "NA" : (applicationForm.Student.Status == "Completed" ? "pending" : "NA"))">
-                            <div>@(applicationForm.Student.Status == "Pending" ? "Not Approved Yet" : (applicationForm.Student.Status == "Completed" ? "Pending" : "N/A"))</div>
+                        <td class="center state @(applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.HealthInsuranceStatus.ToLower() == "completed" ? "completed" : "NA"))">
+                            <div>@(applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.HealthInsuranceStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
                         </td>
 
                         <td class="center">
-                            @if (applicationForm.Student.Status == "Completed")
+                            @if (applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending")
                             {
                                 <a class="edit" href="/CareerCenter/Careercenter/Health_Upsert?id=@applicationForm.Id">
                                     <img src="~/img/upload.png" height="20px">
@@ -88,7 +88,7 @@
                                     <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
                                 </a>
                             }
-                            else if (applicationForm.Student.Status == "N/A")
+                            else if (applicationForm.Student.HealthInsuranceStatus.ToLower() == "n/a")
                             {
                                 <span>Not Submitted</span>
                             }
