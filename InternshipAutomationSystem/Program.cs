@@ -33,9 +33,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(o => {
 })
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultUI();
+    .AddDefaultUI().AddSignInManager<SignInManager<ApplicationUser>>(); ;
 
-
+builder.Services.AddScoped<UserManager<ApplicationUser>>();
+builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddScoped<PdfGenerator>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
