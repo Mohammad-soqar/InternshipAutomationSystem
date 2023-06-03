@@ -2,7 +2,7 @@
 
 @using Internship.Models;
 @using Internship.Utility;
-@model IEnumerable<OfficialLetter>
+@model IEnumerable<HealthInsurance>
 
 
 
@@ -20,7 +20,7 @@
 </head>
 
 <div class="back">
-    <a asp-action="Index" asp-controller="Coordinator" id="back">
+    <a asp-action="Index" asp-controller="Careercenter" id="back">
         <h4> <-- Back </h4>
     </a>
 </div>
@@ -66,31 +66,33 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var applicationForm in Model)
+                @foreach (var applicationForm in Model.Where(form => form.Student.HealthInsuranceStatus.ToLower() == "completed"))
                 {
                     <tr>
                         <td>@applicationForm.Student.Name</td>
 
                         <td>@applicationForm.Student.StudentId</td>
-                        <td class="center state @(applicationForm.Student.OfficialLetterStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.OfficialLetterStatus.ToLower() == "completed" ? "completed" : "NA"))">
-                            <div>@(applicationForm.Student.OfficialLetterStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.OfficialLetterStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
+
+                        <td class="center state @(applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.HealthInsuranceStatus.ToLower() == "completed" ? "completed" : "NA"))">
+                            <div>@(applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.HealthInsuranceStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
                         </td>
 
                         <td class="center">
-                            @if (applicationForm.Student.OfficialLetterStatus.ToLower() == "pending")
+                            @if (applicationForm.Student.HealthInsuranceStatus.ToLower() == "pending")
                             {
-                            <a class="edit" href="/Coordinator/Coordinator/Official_Letter_Upsert?id=@applicationForm.Id">
+                                <a class="edit" href="/CareerCenter/Careercenter/Health_Upsert?id=@applicationForm.Id">
                                     <img src="~/img/upload.png" height="20px">
                                 </a>
 
-                                <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
+                                <a href="@Url.Action("Application_Form_View", "Careercenter", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
                                     <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
                                 </a>
                             }
-                            else if (applicationForm.Student.OfficialLetterStatus.ToLower() == "n/a")
+                            else if (applicationForm.Student.HealthInsuranceStatus.ToLower() == "n/a")
                             {
                                 <span>Not Submitted</span>
                             }
+
                         </td>
 
                     </tr>

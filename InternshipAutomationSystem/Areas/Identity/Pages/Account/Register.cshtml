@@ -24,7 +24,7 @@
                     <p>Add User</p>
                     <img src="~/img/CareerCenter/AddUser.png" height="45px" alt="">
                 </div>
-                <form class="RegisterForm" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <form class="RegisterForm" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" onsubmit="return validateForm();">
                    
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -35,6 +35,7 @@
                             <select id="Input_Role" asp-for="Input.Role" asp-items="@Model.Input.RoleList" class=form-select>
                                 <option disabled selected>-Select Role-</option>
                             </select>
+                            <span class="text-danger"></span>
                         </div>
 
                         <div class="form-floating">
@@ -57,17 +58,17 @@
                             </div>
                         </div>
 
-                        <div class="inputQue">
+                        <div class="inputQue Two-Inputs-line">
                             <div class="form-floating">
                                 <label asp-for="Input.Name">Name</label>
-                                <input asp-for="Input.Name" class="form-control" />
-                                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                                <input asp-for="Input.Name" id="Input_Name" id="Input_PhoneNumber" class="form-control" />
+                                <span class="text-danger"></span>
                             </div>
 
                             <div class="form-floating">
                                 <label asp-for="Input.PhoneNumber">Phone Number</label>
-                                <input asp-for="Input.PhoneNumber" class="form-control" />
-                                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                <input asp-for="Input.PhoneNumber" id="Input_PhoneNumber" class="form-control" />
+                                <span class="text-danger"></span>
                             </div>
                         </div>
 
@@ -80,10 +81,19 @@
 
                     <!-- Second Slide -->
                     <div id="second-slide" style="display: none;">
-                        <div class="form-floating">
-                            <label asp-for="Input.TC">TC</label>
-                            <input asp-for="Input.TC" class="form-control" />
-                            <span asp-validation-for="Input.TC" class="text-danger"></span>
+                        <div class="Two-Inputs-line">
+                            <div class="form-floating">
+                                <label asp-for="Input.TC">TC</label>
+                                <input asp-for="Input.TC" class="form-control" />
+                                <span asp-validation-for="Input.TC" class="text-danger"></span>
+                            </div>
+                            <div class="form-floating py-2 col-6">
+                                <label for="">Select Role</label>
+                                <select asp-for="Input.CoordinatorId"
+                                        asp-items="@Model.Input.CoordinatorList" class="form-select">
+                                    <option disabled selected>-Select Role-</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="Two-Inputs-line">
                             <div class="form-floating">
@@ -95,7 +105,8 @@
                             <div class="form-floating">
                                 <label asp-for="Input.Department">Department</label>
                                 <input asp-for="Input.Department" class="form-control" />
-                                <span asp-validation-for="Input.Department" class="text-danger"></span>
+                                <span asp-validation-for="Input.Department"
+                                      class="text-danger"></span>
                             </div>
 
                             <div class="form-floating">
@@ -104,39 +115,62 @@
                                 <span asp-validation-for="Input.Class" class="text-danger"></span>
                             </div>
                         </div>
+
                         <div class="form-check">
-                            <label class="form-check-label" asp-for="Input.IsApproved">Is Approved</label>
-                            <input class="form-check-input" type="checkbox" asp-for="Input.IsApproved" />
+                            <label class="form-check-label" asp-for="Input.IsApproved">
+                                <input class="form-check-input" type="checkbox"
+                                       asp-for="Input.IsApproved" /> <p>
+                                    Is
+                                    Approved
+                                </p>
+                            </label>
+
                             <span asp-validation-for="Input.IsApproved" class="text-danger"></span>
                         </div>
 
-                        <div class="form-floating py-2 col-6">
-                            <select asp-for="Input.CoordinatorId" asp-items="@Model.Input.CoordinatorList" class="form-select">
-                                <option disabled selected>-Select Role-</option>
-                            </select>
+
+                        <div class="form-check">
+                            <label class="form-check-label" asp-for="Input.HasTakenFirstInternship">
+                                <input class="form-check-input" type="checkbox"
+                                       asp-for="Input.HasTakenFirstInternship"> <p>
+                                    Has Taken First
+                                    Internship
+                                </p>
+                            </label>
+
                         </div>
 
                         <div class="form-check">
-                            <label class="form-check-label" asp-for="Input.HasTakenFirstInternship">Has Taken First Internship</label>
-                            <input class="form-check-input" type="checkbox" asp-for="Input.HasTakenFirstInternship">
+                            <label class="form-check-label"
+                                   asp-for="Input.HasTakenSecondInternship">
+                                <input class="form-check-input" type="checkbox"
+                                       asp-for="Input.HasTakenSecondInternship"> <p>
+                                    Has Taken Second
+                                    Internship
+                                </p>
+                            </label>
+
                         </div>
 
-                        <div class="form-check">
-                            <label class="form-check-label" asp-for="Input.HasTakenSecondInternship">Has Taken Second Internship</label>
-                            <input class="form-check-input" type="checkbox" asp-for="Input.HasTakenSecondInternship">
-                        </div>
-
-                        <div class="sendButton Add">
-                            <div class=" backButton">
+                        <div class="sendButton Add" id="Back-Button1">
+                            <div class="backButton">
+                                &#8592;Back
                             </div>
                         </div>
                     </div>
+                    
                     <div class="sendButton Add">
-                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Add User</button>
+                        <button style="    position: absolute;
+    top: 78.5%;
+    left: 75%;
+}" id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">
+                            Add User
+                        </button>
                     </div>
 
                     <div class="sendButton Add">
-                        <div class="post-btn" id="next-btn">Next</div>
+                        <div class="post-btn" id="next-btn">Next&#8594;</div>
+
                     </div>
                     
                 </form>
@@ -152,41 +186,152 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script src="~/JS/CareerCenter.js"></script>
+    <script src="~/js/adduser.js"></script>
 
     <script>
 
+      
+
+
+      
+    </script>
+
+    <script>
+
+
         $(document).ready(function () {
-            $('#next-btn').hide();
+            // Register input change event handlers
+            $('#Input_Role, #Input_Email, #Input_Password, #Input_ConfirmPassword, #Input_Name, #Input_PhoneNumber, #Input_TC').change(function () {
+                validateInput($(this));
+            });
 
-            $('#Input_Role').change(function () {
-                var selection = $('#Input_Role option:selected').text();
-                if (selection === 'Student') {
-                    $('#next-btn').show();
-                    $('#registerSubmit').hide();
+            $('#registerForm').submit(function (event) {
+                // Check if all required fields are filled
+                var isValid = true;
+                $('#registerForm .form-control').each(function () {
+                    if ($(this).val() === '') {
+                        isValid = false;
+                        validateInput($(this));
+                    }
+                });
 
-                } else {
-                    $('#next-btn').hide();
-                    $('#registerSubmit').show();
-
+                if (!isValid) {
+                   console.log("The inputs are not valid");
+                    return;
                 }
-            });
-            $('#next-btn').click(function () {
-                $('#registerSubmit').show();
-                        
-                    });
 
-            $('.backButton').click(function () {
-                $('#registerSubmit').hide();
-
+                // Submit the form using AJAX
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        // Handle the success response
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error response
+                    }
+                });
             });
+
+            var validateInput = function ($input) {
+                var $parent = $input.closest('.form-floating');
+                var $errorMessage = $parent.find('.text-danger');
+                var inputValue = $input.val();
+                var isValid = true;
+
+                if (inputValue === '') {
+                    isValid = false;
+                    $errorMessage.text($input.attr('name') + ' field is required.');
+                } else if ($input.attr('id') === 'Input_TC') {
+                    isValid = checkTcNum(inputValue);
+                    if (!isValid) {
+                        $errorMessage.text('Please enter a valid Turkish ID number (TC).');
+                    }
+                }
+
+                if (isValid) {
+                    $errorMessage.text('');
+                }
+            };
+
+            var checkTcNum = function (value) {
+                value = value.toString();
+                        var isEleven = /^[0-9]{11}$/.test(value);
+                        var totalX = 0;
+                        for (var i = 0; i < 10; i++) {
+                            totalX += Number(value.substr(i, 1));
+                        }
+                        var isRuleX = totalX % 10 == value.substr(10, 1);
+                        var totalY1 = 0;
+                        var totalY2 = 0;
+                        for (var i = 0; i < 9; i += 2) {
+                            totalY1 += Number(value.substr(i, 1));
+                        }
+                        for (var i = 1; i < 9; i += 2) {
+                            totalY2 += Number(value.substr(i, 1));
+                        }
+                        var isRuleY = ((totalY1 * 7) - totalY2) % 10 == value.substr(9, 1);
+                        return isEleven && isRuleX && isRuleY;
+            };
         });
 
 
-        //    $('#backButton').click(function () {
-        //        $('#secondSlide').hide();
-        //        $('#firstSlide').show();
+        //$(document).ready(function () {
+        //    $('#registerForm').submit(function (event) {
+        //        event.preventDefault(); // Prevent form submission
+
+        //        // Check if all required fields are filled
+        //        var role = $('#Input_Role option:selected').val();
+        //        var email = $('#Input_Email').val();
+        //        var password = $('#Input_Password').val();
+        //        var confirmPassword = $('#Input_ConfirmPassword').val();
+        //        var name = $('#Input_Name').val();
+        //        var phoneNumber = $('#Input_PhoneNumber').val();
+        //        var tc = $('#Input_TC').val();
+
+        //        if (role === "" || email === "" || password === "" || confirmPassword === "" || name === "" || phoneNumber === "" || tc === "") {
+        //            // Display an error message or highlight the fields that need to be filled
+        //            alert('Please fill in all the required fields.');
+        //            return; // Exit the function
+        //        }
+
+        //        // Check TC ID validation
+        //        var isValidTC = checkTcNum(tc);
+
+        //        if (!isValidTC) {
+        //            // Display an error message under the TC input indicating that the ID is invalid
+        //            $('#Input_TC').siblings('.text-danger').text('Please enter a valid Turkish ID number (TC).');
+        //            return; // Exit the function
+        //        }
+
+        //        // Additional validation logic
+        //        // ...
+
+        //        // If all validations pass, proceed with form submission
+        //        this.submit();
         //    });
+
+        //    var checkTcNum = function (value) {
+        //        value = value.toString();
+        //        var isEleven = /^[0-9]{11}$/.test(value);
+        //        var totalX = 0;
+        //        for (var i = 0; i < 10; i++) {
+        //            totalX += Number(value.substr(i, 1));
+        //        }
+        //        var isRuleX = totalX % 10 == value.substr(10, 1);
+        //        var totalY1 = 0;
+        //        var totalY2 = 0;
+        //        for (var i = 0; i < 9; i += 2) {
+        //            totalY1 += Number(value.substr(i, 1));
+        //        }
+        //        for (var i = 1; i < 9; i += 2) {
+        //            totalY2 += Number(value.substr(i, 1));
+        //        }
+        //        var isRuleY = ((totalY1 * 7) - totalY2) % 10 == value.substr(9, 1);
+        //        return isEleven && isRuleX && isRuleY;
+        //    };
+
         //});
     </script>
 }

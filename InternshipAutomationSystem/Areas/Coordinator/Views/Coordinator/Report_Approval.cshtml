@@ -2,7 +2,7 @@
 
 @using Internship.Models;
 @using Internship.Utility;
-@model IEnumerable<OfficialLetter>
+@model IEnumerable<Report>
 
 
 
@@ -66,32 +66,40 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var applicationForm in Model)
+                @foreach (var ReportForm in Model)
                 {
                     <tr>
-                        <td>@applicationForm.Student.Name</td>
+                        <td>@ReportForm.Student.Name</td>
 
-                        <td>@applicationForm.Student.StudentId</td>
-                        <td class="center state @(applicationForm.Student.OfficialLetterStatus.ToLower() == "pending" ? "pending" : (applicationForm.Student.OfficialLetterStatus.ToLower() == "completed" ? "completed" : "NA"))">
-                            <div>@(applicationForm.Student.OfficialLetterStatus.ToLower() == "pending" ? "Pending" : (applicationForm.Student.OfficialLetterStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
+                        <td>@ReportForm.Student.StudentId</td>
+
+                        <td class="center state @(ReportForm.Student.ReportStatus.ToLower() == "pending" ? "pending" : (ReportForm.Student.ReportStatus.ToLower() == "completed" ? "completed" : "NA"))">
+                            <div>@(ReportForm.Student.ReportStatus.ToLower() == "pending" ? "Pending" : (ReportForm.Student.ReportStatus.ToLower() == "completed" ? "completed" : "N/A"))</div>
                         </td>
 
+                        
+
                         <td class="center">
-                            @if (applicationForm.Student.OfficialLetterStatus.ToLower() == "pending")
-                            {
-                            <a class="edit" href="/Coordinator/Coordinator/Official_Letter_Upsert?id=@applicationForm.Id">
+                         @*   @if (ReportForm.Student.ReportStatus.ToLower() == "pending")
+                            {*@
+                                <a class="edit" href="/Coordinator/Coordinator/Report_Approvel_Upsert?id=@ReportForm.Id">
                                     <img src="~/img/upload.png" height="20px">
                                 </a>
 
-                                <a href="@Url.Action("Application_Form_View", "Coordinator", new { applicationFormId = applicationForm.Id })" style="margin-left:1rem;">
+                                <a href="@Url.Action("Report_View", "Coordinator", new { ReportFormId = 6 })" style="margin-left:1rem;">
+                                    <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
+                                </a>
+                          @*  }
+                            else if (ReportForm.Student.ReportStatus.ToLower() == "completed")
+                            {
+                                <a href="@Url.Action("Report_View", "Coordinator", new { ReportFormId = ReportForm.Id })" style="margin-left:1rem;">
                                     <img src="~/img/eye-symbol.png" height="20px" alt="View" class="upload-icon">
                                 </a>
                             }
-                            else if (applicationForm.Student.OfficialLetterStatus.ToLower() == "n/a")
+                            else if (ReportForm.Student.ReportStatus.ToLower() == "n/a")
                             {
                                 <span>Not Submitted</span>
-                            }
-                        </td>
+                            }*@
 
                     </tr>
                 }
