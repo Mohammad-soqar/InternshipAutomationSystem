@@ -67,7 +67,8 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
             return View(applicationFormsList);
         }
 
-    
+      
+
 
         public IActionResult Application_Form_View(int applicationFormId)
         {
@@ -149,9 +150,6 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ApplicationForm_Approvel_Upsert(FinalApplicationVM obj, IFormFile file)
         {
-       
-
-
             if (ModelState.IsValid)
             {
 
@@ -184,21 +182,25 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
 
                     // Update the Status property for the student
                     var student = _dbContext.Students.FirstOrDefault(s => s.StudentId == obj.SubmittedApplicationForms.StudentId);
-                    if (student != null)
-                    {
-                        if (student.Status == "Pending")
-                        {
-                            student.Status = "Completed";
-                        }
-                    }
+                    
                 }
                 Student_User studentUser = _dbContext.Students
                 .Include(s => s.User)
                 .FirstOrDefault(s => s.UserId == obj.SubmittedApplicationForms.Student.UserId);
 
-                if (studentUser.User.Status == "notyet")
+                if (studentUser.ApplicationFormStatus.ToLower() == "pending")
                 {
-                    studentUser.User.Status = "applicationsubmit";
+                    studentUser.ApplicationFormStatus = "completed";
+                    studentUser.HealthInsuranceStatus = "pending";
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+                if (studentUser.User.Status == "applicationsaved")
+                {
+                    studentUser.User.Status = "approved";
                 }
                 else
                 {
@@ -294,7 +296,7 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
 
             if (FirstInternship == false && SecondInternship == false)
             {
-                obj.OfficialLetters.NumOfInternships = 1;
+                obj.OfficialLetters.NumOfInternships = 2;
             }
             else if(FirstInternship == true && SecondInternship == false)
             {
@@ -304,6 +306,7 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
             {
                 obj.OfficialLetters.NumOfInternships = 1;
             }
+           
             else
             {
                 return NotFound();
@@ -318,10 +321,6 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
                     obj.OfficialLetters.OfficialLetterPDF = existingOfficialLetter.OfficialLetterPDF;
                     obj.OfficialLetters.Student = existingOfficialLetter.Student;
                 }
-
-               
-             
-
 
                 PdfGenerator pdfGenerator = new PdfGenerator(_HostEnvironment);
                 pdfGenerator.GeneratePdfOfficialLetter(obj.OfficialLetters);
@@ -374,13 +373,24 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
                             .Include(s => s.User)
                             .FirstOrDefault(s => s.UserId == student.UserId);
 
-                        if (studentUser.User.Status == "applicationsubmit")
+                        if (studentUser.OfficialLetterStatus.ToLower() == "pending")
                         {
-                            studentUser.User.Status = "OfficialLetter";
+                            studentUser.OfficialLetterStatus = "completed";
+                   
                         }
-                        else if (studentUser.User.Status == "HealthInsurance")
+                        else
                         {
-                            studentUser.User.Status = "Letter-Health";
+                            return NotFound();
+                        }
+
+
+                        if (studentUser.User.Status == "official-letter-requsted")
+                        {
+                            studentUser.User.Status = "official-letter";
+                        }
+                        else if (studentUser.User.Status == "health_insurance")
+                        {
+                            studentUser.User.Status = "health-letter";
                         }
                     }
                     else
@@ -414,10 +424,195 @@ namespace InternshipAutomationSystem.Areas.Coordinator.Controllers
         }
 
 
-       
 
-        
-        
+
+        public IActionResult Report_Approval()
+        {
+
+            IEnumerable<Student_User> students = _unitOfWork.Students.GetAll();
+
+            var ReportList = students.Select(student => new Report
+            {
+                Student = student,
+                StudentId = student.StudentId,
+                Id = student.ReportId != null ? int.Parse(student.ReportId) : 0,
+                ReportPdf = student.Report != null ? student.Report.ReportPdf : null,
+            }); ;
+
+            return View(ReportList);
+        }
+
+
+
+        public IActionResult Report_View(int ReportFormId)
+        {
+
+
+            var ReportForm = _unitOfWork.Reports.GetAll()
+         .FirstOrDefault(form => form.Id == ReportFormId);
+
+            if (ReportForm == null)
+            {
+                return NotFound();
+            }
+
+            ReportForm.Student = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == ReportForm.Id).Student;
+            ReportForm.InternshipCoordinator = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == ReportForm.Id).InternshipCoordinator;
+
+
+
+            return View(ReportForm);
+
+
+        }
+
+        public IActionResult Report_GetPdf(int ReportFormId)
+        {
+            var ReportForm = _unitOfWork.Reports.GetAll()
+         .FirstOrDefault(form => form.Id == ReportFormId);
+
+            if (ReportForm == null || string.IsNullOrEmpty(ReportForm.ReportPdf))
+            {
+                return NotFound();
+            }
+
+            string filePath = ReportForm.ReportPdf;
+            byte[] fileBytes = System.IO.File.ReadAllBytes(Path.Combine(_HostEnvironment.WebRootPath, filePath));
+            return File(fileBytes, "application/pdf");
+
+        }
+
+
+        public IActionResult Report_Approvel_Upsert(int? Id)
+        {
+
+            ReportVM ReportVM = new()
+            {
+                Reports = new(),
+
+                StudentList = _unitOfWork.Students.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.StudentId.ToString(),
+                    Selected = i.ReportId != null
+                }),
+
+                CoordinatorList = _unitOfWork.Coordinators.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+
+            };
+
+
+            if (Id == null || Id == 0)
+            {
+                return View(ReportVM);
+            }
+
+            else
+            {
+                ReportVM.Reports = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == Id, includeProperties: "Student,InternshipCoordinator");
+
+
+                return View(ReportVM);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Report_Approvel_Upsert(ReportVM obj, IFormFile file)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                obj.Reports = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == obj.Reports.Id, includeProperties: "Student,InternshipCoordinator");
+                obj.Reports.ReportPdf = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == obj.Reports.Id).ReportPdf;
+                obj.Reports.Student = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == obj.Reports.Id).Student;
+                obj.Reports.InternshipCoordinator = _unitOfWork.Reports.GetFirstOrDefault(u => u.Id == obj.Reports.Id).InternshipCoordinator;
+
+                string wwwRootPath = _HostEnvironment.WebRootPath;
+
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"PDFCAN\Reports");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    if (obj.Reports.Id != null || obj.Reports.Id != 0)
+                    {
+                        var oldFilePath = Path.Combine(wwwRootPath, obj.Reports.ReportPdf.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldFilePath))
+                        {
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    obj.Reports.ReportPdf = @"PDFCAN\Reports\" + fileName + extension;
+
+                    // Update the Status property for the student
+                    var student = _dbContext.Students.FirstOrDefault(s => s.StudentId == obj.Reports.StudentId);
+                    if (student != null)
+                    {
+                        Student_User studentUser = _dbContext.Students
+                            .Include(s => s.User)
+                            .FirstOrDefault(s => s.UserId == student.UserId);
+
+                        if (studentUser.ReportStatus.ToLower() == "pending")
+                        {
+                            studentUser.ReportStatus = "completed";
+                           
+                        }
+                        else
+                        {
+                            return NotFound();
+                        }
+
+
+                        studentUser.User.Status = "report-approvad";
+                        
+                    }
+                  
+                }
+
+                if (obj.Reports.Id == 0)
+                {
+                    _unitOfWork.Reports.Add(obj.Reports);
+                }
+                else
+                {
+                    _unitOfWork.Reports.Update(obj.Reports);
+                }
+
+                _unitOfWork.Save();
+
+                var student2 = _dbContext.Students.FirstOrDefault(s => s.StudentId == obj.Reports.StudentId);
+
+                if (student2 != null)
+                {
+                    student2.ReportId = obj.Reports.Id.ToString();
+
+                    _dbContext.SaveChanges();
+                }
+                return RedirectToAction("Success");
+            }
+            return View(obj);
+        }
+
+
+
+
+        public IActionResult Success()
+        {
+            return View();
+        }
+
+
         public IActionResult AFA()
         {
             return View();

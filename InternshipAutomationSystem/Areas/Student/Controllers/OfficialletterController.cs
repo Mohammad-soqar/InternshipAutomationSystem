@@ -102,7 +102,36 @@ namespace InternshipAutomationSystem.Areas.Student.Controllers
                     return RedirectToAction("noooope");
 
                 }
+
+
+                var student = _dbContext.Students.FirstOrDefault(s => s.StudentId == obj.OfficialLetters.StudentId);
+                if (student != null)
+                {
+                    if (student.OfficialLetterStatus.ToLower() == "n/a")
+                    {
+                        student.OfficialLetterStatus = "pending";
+                    }
+
+                    else
+                    {
+                        return NotFound();
+                    }
+
+                    if (student.User.Status == "approved")
+                    {
+                        student.User.Status = "official-letter-requsted";
+                    }
+                   
+                    else
+                    {
+                        return NotFound();
+                    }
+
+                 
+                }
                 _unitOfWork.Save();
+
+
 
                 var student2 = _dbContext.Students.FirstOrDefault(s => s.StudentId == obj.OfficialLetters.StudentId);
 
