@@ -1,0 +1,81 @@
+﻿@using Internship.DataAccess.Data;
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<SavedInternship>
+
+@inject ApplicationDbContext DbContext
+@inject UserManager<ApplicationUser> UserManager
+@{
+    // Get the currently signed-in user
+    ApplicationUser user2 = await UserManager.GetUserAsync(User);
+
+    // Get the associated Student_User record from the Student_User table
+    Student_User studentUser = DbContext.Students.FirstOrDefault(s => s.UserId == user2.Id);
+    int studentId = studentUser.StudentId;
+
+    }
+<head>
+    <link rel="icon" href="~/img/webIcon.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Saved Internships</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/savedinternship.css" rel="stylesheet" />
+    <link href="~/css/account.css" rel="stylesheet" />
+    <link href="~/css/student.css" rel="stylesheet" />
+
+  
+</head>
+
+
+<div class="Account-Content">
+    <div class="Account-Links">
+        <a asp-area="Identity" asp-page="/Account/Manage/Index"> My profile</a>
+        <a href="AccountStatus.html">Status</a>
+        <a asp-area="Student" asp-action="Report_View" asp-controller="Application">Health Insurance</a>
+        <a id="selected" href="SavedInternships.html">Saved Internships</a>
+    </div>
+
+    <div id="line"></div>
+
+
+    <div class="right-side-panel">
+        <div class="MyProfile">
+
+            <h3>Saved Internships</h3>
+
+        </div>
+        <div class="SavedInternships">
+
+            @foreach (var Internship in Model.Where(i => i.StudentId == @studentId).ToList())
+            {
+                <div class="firstInternship2">
+                    <a asp-action="Internship" asp-area="User" asp-controller="Home">
+
+
+                        <div class="companySave">
+
+                            <div class="companyLogo">
+                                <img src="@Internship.InternshipOpportunity.ImageUrl" alt="" width="36px" height="36">
+                                <h3>@Internship.InternshipOpportunity.CompanyName</h3>
+                            </div>
+
+                        </div>
+                        <div class="job">
+                            <h3>@Internship.InternshipOpportunity.JobTitle</h3>
+                            <h5>@Internship.InternshipOpportunity.type</h5>
+                        </div>
+                        <div class="location">
+                            <img src="img\location-symbol.png" alt="">
+                            <h5>@Internship.InternshipOpportunity.Location</h5>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+   
+
+</div>
+
